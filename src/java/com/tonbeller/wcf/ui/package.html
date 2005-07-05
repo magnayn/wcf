@@ -1,0 +1,100 @@
+<html>
+<body>
+
+<p>Provides an API to create and manipulate a DOM tree that conforms to the xoplon DTD.</p>
+
+
+<img src="doc-files/classdiagram.gif"/>
+
+<ul>
+  <li><a href="doc-files/xoplon.xml">xoplon.xml</a></li>
+  <li><a href="doc-files/xoplon.dtd">xoplon.dtd</a></li>
+</ul>
+<hr>
+
+<p>Xoplon supports a set of controls like text input, button, listbox etc.
+which can be used for creating user interfaces by instantiating controls per API functions
+or by configuring UIs using an XML configuration file. The Xoplon controls are
+converted to HTML Controls using the <code>xoplon.xsl</code> stylesheet. Formatting
+and validation of Xoplon controls content are automized using the
+{@link com.tonbeller.xoplon.format} validator classes.</p>
+
+<h4>Supported controls</h4>
+
+<p>Xoplon supports now the following controls:</p>
+
+<table border=1>
+  <tr> <th colspan=3>Simple Xoplon controls, access via configuration file and API</th> </tr>
+  <tr> <th>Xoplon Control</th> <th>Meaning</th> <th>HTML equivalent</th> </tr>
+  <tr> <td>textField</td>      <td>text input field</td>  <td>input, type=text</td></tr>
+  <tr> <td>password</td>       <td>password input</td> <td>input, type=password</td> </tr>
+  <tr> <td>textArea</td>       <td>text input ctrl, multiple rows</td> <td>textarea</td></tr>
+  <tr> <td>listBox</td>        <td>listbox supporting single or multiple selection</td> <td>select</td> </tr>
+  <tr> <td>listItem</td>       <td>listbox item</td> <td>option</td> </tr>
+  <tr> <td>checkBoxes</td>     <td>container for check boxes</td> <td>n/a</td> </tr>
+  <tr> <td>checkBox</td>       <td>checkbox</td> <td>input, type=checkbox</td> </tr>
+  <tr> <td>radioButtons</td>   <td>container for radio buttons</td> <td>n/a</td> </tr>
+  <tr> <td>radioButton</td>    <td>radio button</td> <td>input, type=radio</td> </tr>
+  <tr> <td>button</td>         <td>button</td> <td>input, type=submit</td> </tr>
+</table>
+<p>
+
+<h4>Supported data types</h4>
+
+<p>Xoplon supports the following simple data types for text controls:</p>
+
+<ul>
+  <li>string: string type</li>
+  <li>int: integer type</li>
+  <li>double: float type</li>
+  <li>date: date type</li>
+</ul>
+
+<p>Xoplon implements formatters and parsers for the descriped types which automize
+formatting and validation of user input. See packages
+{@link com.tonbeller.xoplon.format} and {@link com.tonbeller.xoplon.convert}.</p>
+
+
+
+<h4>Configuring Xoplon Controls via configuration file</h4>
+
+<p>Xoplon Controls can be configured using an XML configuration file:</p>
+
+<pre>&lt;!-- Text control --&gt;
+&lt;textField type="string" label="Text:" value="hello world"/&gt;
+&lt;textField type="int"    label="Integer:" value="123"/&gt;
+&lt;textField type="double" label="Double:"  value="1,23"/&gt;
+&lt;!-- Password control --&gt;
+&lt;password type="string" label="Password:" value=""/&gt;</pre>
+
+<p>The <code>type</code> attribute specifies the data type used for formatting and
+validation, see above "Supported data types".</p>
+
+
+<h4>Accessing Controls via API</h4>
+
+<p>As an alternative to configuring Xoplon controls, they can be instantiated
+programmatically by using the control's static factory functions. Attributes like
+<code>label, value</code> etc. can be accessed/changed using the appropriate
+static getters/setters.</p>
+
+<pre>Document factory;
+Formatter formatter; // see package com.tonbeller.xoplon.format for this one
+
+TextField textField1 = TextField.createTextField(factory, TextField.STRING_TYPE);
+TextField.setLabel(textField1, "Text:");
+TextField.setValue(formatter, textField1, "hello world");
+
+TextField textField2 = TextField.createTextField(factory, TextField.INT_TYPE);
+TextField.setLabel(textField2, "Integer:");
+TextField.setValue(formatter, textField2, new Integer(123));
+
+etc.</pre>
+
+<p>The formatter for the <code>setValue</code> function supports type conform,
+locale specific and format string specific formatting/parsing of the value.
+See package {@link com.tonbeller.xoplon.format}.</p>
+
+
+</body>
+</html>

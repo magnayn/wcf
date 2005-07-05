@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- DOCTYPE xform SYSTEM "wcf.dtd" -->
+
+<xform style="twocolumn">
+  <title value="Multi Column Layout"/>
+  
+  <subtitle value="2 Column Layout"/>
+  
+  <textField type="string" label="Text 1"/>
+  <textField type="string" label="Text 2"/>
+  <textField type="string" label="Text 3"/>
+  
+  
+  <subtitle value="N Column Layout"/>
+  <multicolumn>
+    <column>
+      <textField type="string" label="Text 1"/>
+      <textField id="requiredField" type="string" required="true" label="Text 2"/>
+      <textField type="string" label="Text 3"/>
+    </column>
+    <column>
+      <textField type="string" label="Text 4"/>
+      <textField type="string" label="Text 5"/>
+      <textField type="string" label="Text 6"/>
+    </column>
+  </multicolumn>
+
+  <buttons>
+    <button id="$id.ok" action="validate" label="OK"/>
+  </buttons>
+
+</xform>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<jsp:root 
+  xmlns:jsp="http://java.sun.com/JSP/Page"
+  xmlns:c="http://java.sun.com/jstl/core_rt"
+  xmlns:wcf="http://www.tonbeller.com/wcf"
+  version="2.0">
+  <jsp:directive.page isELIgnored="false"  session="true" contentType="text/html; charset=UTF-8" />
+  <html>
+    <head>
+    <title>Tomat 5 / JSP 2.0 Expression Language Test</title>
+      <link rel="stylesheet" type="text/css" href="wcf/form/xform.css" />
+      <link rel="stylesheet" type="text/css" href="wcf/table/xtable.css" />
+    </head>
+    <body bgcolor="white">
+      <jsp:useBean id="tomcat5TableModel" class="com.tonbeller.wcf.table.TestModel" scope="session" />
+      <wcf:table id="tomcat5Table" model="#{tomcat5TableModel}" editForm="/WEB-INF/wcf/tableproperties.xml"/>
+
+      <h2>Tomat 5 / JSP 2.0 Expression Language Test</h2>
+      With JSP 2.0 you should use <code>#{}</code> notation to define 
+      expressions for WCF attributes and <code>\${}</code> to define 
+      JSP EL expressions. 
+      <p />
+      JSP EL expressions can not be used with WCF tags currently, all
+      tag attributes have their <code>rtexprvalue</code> set to false.
+      There may be a twin library supporting JSP EL expressions in 
+      the future (similar to the twin libraries in JSTL, e.g. core
+      and core_rt).
+      <p />
+      <c:choose>
+        <c:when test="${tomcat5Table.tableComp.pageable}">
+          Current Page = ${tomcat5Table.tableComp.currentPage + 1} of  ${tomcat5Table.tableComp.pageCount}
+        </c:when>
+        <c:otherwise>
+          Paging is disabled in the table below.
+        </c:otherwise>
+      </c:choose>
+      <p />
+      <form action="tomcat5.jspx" method="post" id="form01">
+        <wcf:render ref="#{tomcat5Table}" xslUri="/WEB-INF/wcf/wcf.xsl"/>
+      </form>
+      <p />
+      <a href="index.jsp">back to index</a>
+    </body>
+  </html>
+</jsp:root>

@@ -1,0 +1,1796 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!DOCTYPE taglib [
+
+<!ENTITY id.attr
+"<attr rtexpr='false' required='true' name='id' type='String'>
+  <descr lang='de'>Name des Session Attributes, das durch dieses Tag erzeugt wird</descr>
+  <descr lang='en'>Name of the Session Attribute that is created by this tag</descr>
+</attr>">
+
+<!ENTITY visible.attr
+"<attr rtexpr='false' required='false' name='visible' type='boolean'>
+  <descr lang='de'>Entscheidet, ob die Komponenente sichtbar ist oder nicht. Das WCF Render Tag zeigt eine Komponente mit visible == false nicht an</descr>
+  <descr lang='en'>Sets the visible property of the component. The WCF Render tag will not show a component whose visible flag is false</descr>
+</attr>">
+
+<!ENTITY validate.attr
+"<attr rtexpr='false' required='false' name='validate' type='boolean'>
+  <descr lang='de'>wenn true, werden die Benutzereingaben automatisch uebernommen und geprüft,
+   auch wenn der Button einer anderen Komponente abgeschickt wurde.
+   Dazu müssen allerdings beide Komponenten im selben HTML Formular liegen.</descr>
+  <descr lang='en'>if set to true, then user input will be automatically
+  verified, even if the button of another component was pressed.
+  Both components must be part of the same HTML form element to make this work.</descr>
+</attr>">
+
+<!ENTITY bundle.attr
+"<attr type='String' rtexpr='false' required='false' name='bundle'>
+  <descr lang='en'>ResourceBundle for i18n replacements. If a text- or attributenode in xml starts with 'fmt:' the remaining text will be interpreted as key into the resource bundle.</descr>
+  <descr lang='de'>ResourceBundle für i18n Ersetzungen. Wenn ein Text- oder Attributnode mit 'fmt:' beginnt wird der Rest als Key für das ResourceBundle interpretiert.</descr>
+</attr>">
+
+<!ENTITY xmluri.attr
+"<attr type='String' rtexpr='false' required='true' name='xmlUri'>
+  <descr lang='en'>
+    Path of an XML config file that describes the HTML form, relative to the application context.
+    There may be different form descriptions for different Locales, the
+    stylesheet will be choosen upon similar rules to ResourceBundle.
+    <p/>
+    Example: <code>xmlUri='/WEB-INF/myform.xml'</code>. For a german
+    Browser WCF will try to load <code>/WEB-INF/myform_de.xml</code>.
+    If this fails, it will load <code>/WEB-INF/myform.xml</code>.
+  </descr>
+  <descr lang='de'>
+    Pfad einer XML Datei, die das HTML Formular beschreibt, relativ zum Application Context.
+    Es können verschiedene Stylesheets für verschiedene Locales
+    hinterlegt werden, die Auswahl erfolgt anhand des Dateinamens
+    analog zu Java ResourceBundles.
+    <p/>
+    Bsp: <code>xmlUri='/WEB-INF/myform.xml'</code>, für einen
+    deutschen Browser wird versucht, die Datei <code>/WEB-INF/myform_de.xml</code>
+    zu laden. Gelingt dies nicht, wird  <code>/WEB-INF/myform.xml</code> geladen.
+  </descr>
+</attr>">
+
+<!ENTITY role.attr
+"<attr rtexpr='false' required='false' name='role' type='String'>
+  <descr lang='de'>
+    Name einer Rolle, optional mit vorangestelltem '!'.
+    Beispiel role='tomcat' erlaubt allen Mitgliedern der Rolle 'tomcat' den Zugriff,
+    role='!tomcat' erlaubt allen ausser den Mitgliedern der Rolle 'tomcat' den Zugriff.
+  </descr>
+  <descr lang='en'>
+    Name of a role, optionally prefixed by '!'.
+    Example: role='tomcat' allows members of the role tomcat to access
+    this component, role='!tomcat' grants access to everybody except tomcat members.
+  </descr>
+</attr>">
+
+<!-- toolbar -->
+
+<!ENTITY tbid.attr
+"<attr rtexpr='false' required='true' name='id' type='String'>
+  <descr lang='de'>ID des Buttons, der Button kann in EL durch <tt>TOOLBAR_ID.buttons.BUTTON_ID</tt> angesprochen werden</descr>
+  <descr lang='en'>ID of the button. The button may be accessed in EL as <tt>TOOLBAR_ID.buttons.BUTTON_ID</tt></descr>
+</attr>">
+
+<!ENTITY visibleref.attr
+"<attr type='String' rtexpr='false' required='false' name='visibleRef'>
+  <descr lang='en'>Either <code>true</code>, <code>false</code> or an EL expression that evaluates to a boolean property. The button will be visible only, if that property is true</descr>
+  <descr lang='de'><code>true</code>, <code>false</code> oder ein EL Ausdruck eines boolean property. Der Button wird nur dann angezeigt, wenn das property true ist.</descr>
+</attr>">
+
+
+<!ENTITY tbimg.attr
+"<attr type='String' rtexpr='false' required='true' name='img'>
+  <descr lang='en'>Name of the image to use. The generated URLs are <tt>APPCONTEXT/wcf/toolbar/IMG-up.png</tt> and <tt>APPCONTEXT/wcf/toolbar/IMG-down.png</tt></descr>
+  <descr lang='de'>Name der Bilddatei. Die erzeugten URLs sind <tt>APPCONTEXT/wcf/toolbar/IMG-up.png</tt> und <tt>APPCONTEXT/wcf/toolbar/IMG-down.png</tt></descr>
+</attr>">
+
+<!ENTITY radiogroup.attr
+"<attr type='String' rtexpr='false' required='false' name='radioGroup'>
+  <descr lang='en'>Name of a radio group. At most one button of a group may be pressed.</descr>
+  <descr lang='de'>Name einer 'Radio Group'. Höchstens ein Button einer Gruppe kann gedrückt sein.</descr>
+</attr>">
+
+<!ENTITY tooltip.attr
+"<attr type='String' rtexpr='false' required='false' name='tooltip'>
+  <descr lang='en'>name of the tooltip in the toolbars ResourceBundle</descr>
+  <descr lang='de'>Key im ResourceBundle des Toolbars für den Tooltip dieses Buttons</descr>
+</attr>">
+
+<!ENTITY renderable.en "This component does not produce visible output directly, it must be rendered via the WCF <tt>render</tt> tag.">
+<!ENTITY renderable.de "Diese Komponente erzeugt selbst keinen sichtbaren Output, sie wird durch das WCF <tt>render</tt> Tag dargestellt.">
+
+<!-- session parameter -->
+
+<!ENTITY session.param.name.attr.required
+"<attr rtexpr='true' required='true' name='paramName' type='String'>
+  <descr lang='en'>Name of the SessionParam</descr>
+  <descr lang='de'>Name des Session Parameters</descr>
+</attr>">
+
+<!ENTITY session.param.name.attr.optional
+"<attr rtexpr='true' required='false' name='paramName' type='String'>
+  <descr lang='en'>Name of the SessionParam</descr>
+  <descr lang='de'>Name des Session Parameters</descr>
+</attr>">
+
+<!ENTITY session.param.attrs
+"<attr rtexpr='true' required='false' name='displayName' type='String'>
+  <descr lang='en'>visible name of the SessionParam</descr>
+  <descr lang='de'>Sichtbarer Name des Session Parameters</descr>
+</attr>
+<attr rtexpr='true' required='false' name='displayValue' type='String'>
+  <descr lang='en'>visible value of the SessionParam</descr>
+  <descr lang='de'>Sichtbarer Wert des Session Parameters</descr>
+</attr>
+<attr rtexpr='true' required='false' name='sqlValue' type='String'>
+  <descr lang='en'>SQL value of the SessionParam</descr>
+  <descr lang='de'>SQL Wert des Session Parameters</descr>
+</attr>
+<attr rtexpr='true' required='false' name='mdxValue' type='String'>
+  <descr lang='en'>MDX value of the SessionParam</descr>
+  <descr lang='de'>MDX Wert des Session Parameters</descr>
+</attr>
+<attr rtexpr='true' required='false' name='textValue' type='String'>
+  <descr lang='en'>Text constant as value of the SessionParam</descr>
+  <descr lang='de'>Textkonstante als Wert des Session Parameters</descr>
+</attr>">
+
+]>
+
+<taglib uri="http://www.tonbeller.com/wcf" name="Web Component Framework Tags">
+
+  <descr lang="en">
+    Web Component Framework (WCF) tag library. A collection of reuseable JSP tags like
+    tree, table, HTML form and XSL rendering.
+    <p />
+    WCF uses the <a href="http://jakarta.apache.org/commons/beanutils/">BeanUtils</a> package
+    as its expression language EL.
+  </descr>
+
+  <descr lang="de">
+    Web Component Framework (WCF) tag library. Eine Sammlung wiederverwendbarer JSP Tags, z.B.
+    tree, table, HTML Formular und XSL rendering.
+  </descr>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="JSP" class="com.tonbeller.wcf.scroller.ScrollerTag" name="scroller">
+    <descr lang="en">
+      Adds java script code to the page that ensures that the browser keeps the
+      scroll position when a user is navigating
+    </descr>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="JSP" class="com.tonbeller.wcf.component.RendererTag" name="render">
+
+    <descr lang="en">
+      WCF components produce XML Documents (DOM) internally which is transformed via XSLT into the
+      outputformat by this tag. The output format will be HTML most of the time,
+      but may be any other text format like CSV for example.
+      <p/>
+      The render tag will not produce any output for components that
+      are not visible.
+
+      <p/>
+
+      The body may contain <a href="#renderParam">renderParam</a> tags that supply
+      parameters for rendering. The following
+      stylesheet parameters are provided automatically (w/o nested parameter tag):
+      <ul>
+        <li><code>renderId</code> - contains the id of this tag. If not set the modelReference is taken</li>
+        <li><code>context</code> - the context path of the application for building URLs</li>
+      </ul>
+      Parameters may occur in xsl (via standard &lt;xsl:param .. &gt;) and in the <code>DOM</code>.
+      The render tag searches for &lt;param name=".."/&gt; elements in the
+      <code>DOM</code> and creates a corresponding attribute in its parent.
+      For example, the following <code>DOM</code>
+      <pre>
+      &lt;myelem&gt;
+        &lt;param name="abc" attr="bcd"/&gt;
+      &lt;/myelem&gt;
+      </pre>
+      it will become
+      <pre>
+      &lt;myelem bcd="efg"&gt;
+        &lt;param name="abc" attr="bcd"/&gt;
+      &lt;/myelem&gt;
+      </pre>
+      where <code>efg</code> is the value of the <code>abc</code> parameter that was
+      supplied by the JSP author. If the parameter named <code>abc</code> does not exsist,
+      the attribute <code>bcd</code> is removed.
+      <p/>
+      This may be used to configure the page flow from a jsp, e.g.
+      <pre>
+        &lt;button label="OK" action="validate" handler="...">
+          &lt;param name="successPage" attr="forward"/>
+        &lt;/button>
+      </pre>
+      will create a forward attribute to the button element whose value is supplied by the jsp author
+      via the renderParam tag, e.g.
+      <pre>
+        &lt;wcf:renderParam name="successPage" value="/somepage.jsp"/&gt;
+      </pre>
+    </descr>
+
+    <descr lang="de">
+      WCF Komponenten erzeugen intern ein XML Document (W3C DOM), das mit einem XSLT Stylesheet in
+      das Ausgabeformat konvertiert wird. Das Ausgabeformat ist meist HTML, kann aber auch ein
+      anderes Textformat sein (z.B. CSV).
+      <p/>
+      Das render Tag produziert keinen output, wenn die Komponente nicht sichtbar ist (d.h.
+      wenn ihr <tt>visible</tt> Property <tt>false</tt> ist).
+      <p/>
+      Der body kann <a href="#renderParam">renderParam</a> Tags enthalten, das Parameter
+      definiert. Folgende Parameter werden automatisch bereitgestellt (ohne explizite Angabe):
+      <ul>
+        <li><code>renderId</code> - contains the id of this tag. If not set the modelReference is taken</li>
+        <li><code>context</code> - the context path of the application for building URLs</li>
+      </ul>
+      Parameter können sowohl im XSLT Stylesheet angsesprochen werden (über das &lt;xsl:param .. &gt; Element)
+      als auch im <code>DOM</code>. Das render Tag sucht nach  &lt;param name=".."/&gt; Elementen
+      im <code>DOM</code> und erzeugt entsprechende Attribute im Parent Element. Im folgenden
+      Beispiel wird aus dem <code>DOM</code>
+      <pre>
+      &lt;myelem&gt;
+        &lt;param name="abc" attr="bcd"/&gt;
+      &lt;/myelem&gt;
+      </pre>
+      der neue <code>DOM</code>
+      <pre>
+      &lt;myelem bcd="efg"&gt;
+        &lt;param name="abc" attr="bcd"/&gt;
+      &lt;/myelem&gt;
+      </pre>
+      wobei <code>efg</code> der Wert des Parameters <code>abc</code> ist, der vom
+      JSP Author definiert wurde. Wurde kein Parameter mit dem Namen <code>abc</code>
+      definiert, so wird das Attribut <code>bcd</code> entfernt.
+      <p/>
+      Dies kann z.B. verwendet werden, um den Page Flow einer Anwendung über JSP zu steuern:
+      <pre>
+        &lt;button label="OK" action="validate" handler="...">
+          &lt;param name="successPage" attr="forward"/>
+        &lt;/button>
+      </pre>
+      Es wird ein <code>forward</code> Attribut im button Element erzeugt, dessen Wert durch
+      den JSP Autor über ein <a href="#renderParam">renderParam</a> Tag festgelegt wird, z.B:
+      <pre>
+        &lt;wcf:renderParam name="successPage" value="/somepage.jsp"/&gt;
+      </pre>
+
+    </descr>
+
+    <attr rtexpr="false" required="false" name="id" type="String">
+      <descr lang="de">the renderId Stylesheet parameter</descr>
+      <descr lang="en">der renderId Stylesheet Parameter</descr>
+    </attr>
+
+    <attr rtexpr="false" required="true" name="ref" type="Component">
+      <descr lang="en">
+        Name of the Session Attribute that contains the Component to be rendered.
+      </descr>
+      <descr lang="de">
+        Name des Session Attributes, das die anzuzeigende Komponente enthält.
+      </descr>
+    </attr>
+
+    <attr type="String" rtexpr="false" required="true" name="xslUri">
+      <descr lang="en">
+        Path of the XSLT stylesheet to use, relative to the application context.
+        There may be different stylesheets for different Locales, the
+        stylesheet will be choosen upon similar rules to ResourceBundle.
+        <p/>
+        Example: <code>xslUri="/WEB-INF/mystyle.xsl"</code>. For a german
+        Browser WCF will try to load <code>/WEB-INF/mystyle_de.xsl</code>.
+        If this fails, it will load <code>/WEB-INF/mystyle.xsl</code>.
+      </descr>
+      <descr lang="de">
+        Pfad des XSLT Stylesheets, relativ zum Application Context.
+        Es können verschiedene Stylesheets für verschiedene Locales
+        hinterlegt werden, die Auswahl erfolgt anhand des Dateinamens
+        analog zu Java ResourceBundles.
+        <p/>
+        Bsp: <code>xslUri="/WEB-INF/mystyle.xsl"</code>, für einen
+        deutschen Browser wird versucht, die Datei <code>/WEB-INF/mystyle_de.xsl</code>
+        zu laden. Gelingt dies nicht, wird  <code>/WEB-INF/mystyle_de.xsl</code> geladen.
+      </descr>
+    </attr>
+
+    <attr type="boolean" rtexpr="false" required="false" name="xslCache">
+      <descr lang="en">true, if the stylesheet shall be compiled once and then reused. This gives better
+       performance but makes it difficult to develop the stylesheets. Use <code>true</code> for production
+       and <code>false</code> for development</descr>
+
+      <descr lang="de">true, wenn das Stylesheet kompiliert und dann wiederverwendet werden soll.
+        Das führt zu besserer Performance, erschwert aber das Erstellen der Stylesheets.
+        Empfohlen: <code>true</code> für produktiven Einsatz und <code>false</code> während
+        der Entwicklung</descr>
+    </attr>
+    <example><![CDATA[
+<wcf:tree id="tree01"/>
+<wcf:render ref="#{tree01}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true">
+  <wcf:renderParam name="border" value="1"/>
+</wcf:render>
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="tagdependent" class="com.tonbeller.wcf.component.RendererParameterTag" name="renderParam">
+    <descr lang="en">
+       Adds an XSL parameter for the the <a href="#render">render</a> tag. If used inside a
+       render tag, the parameter is local to that transformation. Otherwise
+       the scope attribute specifies the scope of the parameter.
+       <p />
+       The value may be provided as literal, or as expression (starting with "#{").
+       <p />
+       Exactly one of the attributes name or test must be set.
+    </descr>
+    <descr lang="de">
+      Definiert einen Stylesheet Parameter für das <a href="#render">render</a> Tag.
+      Wenn es im Body des render Tags definiert wird, gilt der Parameter nur für
+      die eine Transformation. Andernfalls wird die Lebensdauer durch das Scope Attribut
+      bestimmt.
+      <p />
+      Genau eines der Attribute name oder test muss vorhanden sein.
+    </descr>
+    <attr type="String" rtexpr="false" required="false" name="name">
+      <descr lang="en">Name of the parameter</descr>
+      <descr lang="de">Der Name des Parameters</descr>
+    </attr>
+    <attr type="String" rtexpr="false" required="false" name="value">
+      <descr lang="en">Value of the parameter. If value starts with '#{' its interpreted as EL expression, otherwise its taken literally</descr>
+      <descr lang="de">Der Value des Parameters. Wenn der Wert mit '#{' beginnt, wird er als EL Ausdruck interpretiert. Andernfalls wird der literale Wert genommen</descr>
+    </attr>
+    <attr type="String" rtexpr="false" required="false" name="scope">
+      <descr lang="en">The scope of the parameter, one of 'request' (default), 'session', 'application'.</descr>
+      <descr lang="de">Die Lebensdauer des Parameters: 'request' (default), 'session', 'application'.</descr>
+    </attr>
+    <attr type="String" rtexpr="false" required="false" name="test">
+      <descr lang="en">if present, the tag evaluates its body only if the parameter is set</descr>
+      <descr lang="de">wenn vorhanden, wird der body nur ausgewertet wenn der Parameter vorhanden ist</descr>
+    </attr>
+    <example><![CDATA[
+<wcf:renderParam name="language" value="en" scope="session"/>
+<wcf:render ...>
+  <wcf:renderParam name="border" value="0"/>
+</wcf:render>
+<wcf:renderParam test="language" value="en">
+  This is english.
+</wcf:renderParam>
+<wcf:renderParam test="language" value="!en">
+  This is not english.
+</wcf:renderParam>
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="tagdependent" class="com.tonbeller.wcf.form.FormComponentTag" name="form">
+
+    <descr lang="en">
+      Creates an HTML form that is defined by an XML file.
+      &renderable.en;
+      <p/>
+      <strong>Structure of the XML File</strong>
+      <p/>
+<pre><![CDATA[
+<xform style="twocolumn">
+  <title value="Form Demo">
+    <imgButton label="Cancel" .../>
+  </title>
+  <textField type="int" modelReference="intValue" label="Count" .../>
+  <checkBox modelReference="nestedBean.boolValue" label="Check Me" .../>
+</xform>
+]]></pre>
+      creates a Form with a title, a close button in the upper right corner, a text input field
+      and a check box.
+      <p/>
+      <strong>Data binding</strong>
+      <p/>
+      The form component is associated with a JavaBean. The input elements of the HTML
+      form are bound to the bean properties via the <tt>modelReference</tt> attribute.
+      The bean in the above example has an int property with the name <tt>intValue</tt>
+      that can be modified by the <tt>&lt;textField ...&gt;</tt>.
+      As shown in the check box example, the <tt>modelReference</tt> may contain
+      an EL (JSTL Expression Language) expression.
+      <p/>
+      Valid type attribute values:
+      <ul>
+        <li>boolean</li>
+        <li>string</li>
+        <li>date</li>
+        <li>int</li>
+        <li>posint - integer &gt;= 0</li>
+        <li>double</li>
+        <li>email</li>
+      </ul>
+
+      <p/>
+      <strong>Element IDs</strong>
+      <p/>
+      The names of the HTTP parameters are generated by random. If this is not desired,
+      you can use the <tt>id</tt> attribute.
+
+<pre><![CDATA[
+<xform style="twocolumn">
+  <textField id="field1" .../>
+  <checkBox id="$id.field2" .../>
+</xform>
+]]></pre>
+
+      creates two HTML input fields, the first with
+      <tt>name="field1"</tt>, the second with <tt>name="myform.field2"</tt>, where <tt>myform</tt>
+      is the <tt>id</tt> attribute of this form tag.
+
+      <p/>
+      <strong>Form Elements</strong>
+      <p/>
+      The elements are rendered via <tt>/WEB-INF/wcf/controls.xsl</tt>. Please
+      look there for details.
+      <ul>
+        <li>label</li>
+        <li>textField</li>
+        <li>textArea</li>
+        <li>password</li>
+        <li>checkBox</li>
+        <li>radioButton</li>
+        <li>listBox1</li>
+        <li>listBoxN</li>
+        <li>imgButton</li>
+        <li>button</li>
+      </ul>
+      Use <tt>disabled="true"</tt> to make elements read-only.
+      <p/>
+      Use <tt>required="true"</tt> if user input is required.
+
+      <p/>
+      <strong>Form Buttons</strong>
+      <p/>
+       Buttons must have either a "handler" or an "actionReference"
+       attribute. "handler" specifies a class that implements the
+       NodeHandler interface which may handle requests, change button
+       label etc. Use of "actionReference" is much easier and recommended,
+       "actionReference" is the name of a method in the bean, that
+       takes a single argument of type RequestContext. This method
+       is invoked when the user presses the button.
+       <ul>
+         <li>action="revert" -
+            calls revert() on the <code>Form</code>, i.e. reads
+            the bean properties and formats
+            the data for presentation.
+         </li>
+
+         <li>action="validate" -
+             calls validate() on the <code>Form</code>, i.e. parses
+             user input and writes the values to the bean properties
+         </li>
+
+         <li>forward="/some/page.jsp" -
+             if validation succeeds forwards to another page. Paramers make sense here.
+         </li>
+
+         <li>hide="true" -
+             if validation succeeds hides the component
+         </li>
+
+         <li>successAttr="name-of-request-attribute" -
+             if validation succeeds a request attribute with value <code>true</code>
+             is created.
+         </li>
+
+         <li>handler="fully.qualified.ClassName" -
+             name of a class that implements NodeHandler and is
+             responsible for this node</li>
+         <li>actionReference="methodName" the name of a method
+             that takes an RequestContext as its argument.
+         </li>
+       </ul>
+
+      <p/>
+      <strong>Bookmark support</strong>
+      <p/>
+      see com.tonbeller.wcf.bookmark. The content of the editable bean properties can be
+      collected and restored via the Bookmarkable interface. To enable this, the tag
+      attribute "bookmarkable" must be set to true.
+
+      <p/>
+      <strong>Examples</strong>
+      <p/>
+      See working examples in /WEB-INF
+
+    </descr>
+
+    <descr lang="de">
+      Erzeugt ein HTML Formular, das durch eine XML Datei beschrieben wird.
+      &renderable.de;
+      <p/>
+      <strong>Aufbau der XML Datei</strong>
+      <p/>
+<pre><![CDATA[
+<xform style="twocolumn">
+  <title value="Form Demo">
+    <imgButton label="Cancel" .../>
+  </title>
+  <textField type="int" modelReference="intValue" label="Count" .../>
+  <checkBox modelReference="nestedBean.boolValue" label="Check Me" .../>
+</xform>
+]]></pre>
+      erzeugt ein Formular mit einer Titelzeile, einem Close-Button in der rechten oberen Ecke,
+      einem Textfeld und einer Checkbox.
+      <p/>
+      <strong>Data binding</strong>
+      <p/>
+      Der Form Komponente wird eine JavaBean zugeordnet. Die Eingabe Elemente des HTML
+      Formulars werden über das <tt>modelReference</tt> Attribut an die Properties
+      dieser Bean gebunden. In obigem Beispiel hat die Bean ein Integer Property mit
+      dem Namen <tt>intValue</tt>, das über das <tt>&lt;textField ...&gt;</tt>
+      modifiziert werden kann. Das <tt>modelReference</tt> Attribut kann
+      ein EL (JSTL Expression Language) Ausdruck sein, wie bei der Checkbox.
+      <tt>nestedBean.boolValue</tt> entspricht in Java
+      <tt>bean.getNestedBean().getBoolValue()</tt>. Vordefinierte Werte
+      für das <tt>type</tt> Attribut sind:
+      <ul>
+        <li>boolean</li>
+        <li>string</li>
+        <li>date</li>
+        <li>int</li>
+        <li>posint - integer &gt;= 0</li>
+        <li>double</li>
+        <li>email</li>
+      </ul>
+
+      <p/>
+      <strong>Element IDs</strong>
+      <p/>
+      Die Namen der HTTP Parameter werden von einem Zufallsgenerator erzeugt. Wenn dies
+      nicht gewünscht wird (z.B. bei Unit Tests, oder wenn RequestListener auf
+      bestimmte HTTP Parameter registriert sind), kann ein <tt>id</tt> Attribut verwendet
+      werden.
+
+<pre><![CDATA[
+<xform style="twocolumn">
+  <textField id="field1" .../>
+  <checkBox id="$id.field2" .../>
+</xform>
+]]></pre>
+
+      erzeugt zwei HTML Eingabefelder, das erste mit <tt>name="field1"</tt>, das
+      zweite mit <tt>name="myform.field2"</tt>, wobei <tt>myform</tt> das
+      <tt>id</tt> Attribut dieses form tags ist.
+
+      <p/>
+      <strong>Form Elemente</strong>
+      <p/>
+      Die Elemente werden durch <tt>/WEB-INF/wcf/controls.xsl</tt> dargestellt,
+      Details sind dort entnehmen. Formelemente:
+      <ul>
+        <li>label</li>
+        <li>textField</li>
+        <li>textArea</li>
+        <li>password</li>
+        <li>checkBox</li>
+        <li>radioButton</li>
+        <li>listBox1</li>
+        <li>listBoxN</li>
+        <li>imgButton</li>
+        <li>button</li>
+      </ul>
+      Über das <tt>disabled="true"</tt> Attribut können die Elemente
+      "read-only" gemacht werden.
+      <p/>
+      Mit <tt>required="true"</tt> erzeugt Feld, für das eine Eingabe
+      erforderlich ist.
+
+      <p/>
+      <strong>Form Buttons</strong>
+      <p/>
+
+       Über das Attribut <tt>handler="com.tonbeller.wcf.form.ButtonHandler"</tt> wird
+       die für diesen Button zuständige Java Klasse definiert. Einfacher ist
+       die Verwendung des Attributes "actionReference". Das Attribut enthält
+       den Namen einer Methode der Bean, die einen RequestContext als einzigen
+       Parameter nimmt. Diese Methode wird aufgerufen, wenn der Anwender
+       den Knopf drückt.
+       <ul>
+         <li>action="revert" -
+            liest die Bean Properties und formatiert die Daten für die Anzeige
+         </li>
+
+         <li>action="validate" -
+             liest die Benutzereingabe und schreibt die Werte zurück in die Bean Properties
+         </li>
+
+         <li>forward="/some/page.jsp" -
+             Wenn die Validierung erfolgreich war (d.h. keine Fehler in der Benutzereingabe)
+             wird auf diese Seite verzweigt. Die Seite kann sinnvoll durch Parameter
+             festgelegt werden.
+         </li>
+
+         <li>hide="true" -
+             Wenn die Validierung erfolgreich war, wird die Komponente unsichtbar.
+         </li>
+
+         <li>successAttr="name-of-request-attribute" -
+             Wenn die Validierung erfolgreich war, wird ein Request Attribut mit
+             dem Wert <tt>true</tt> erzeugt.
+         </li>
+         <li>actionReference="methodName" s.o.</li>
+         <li>handler="..." s.o. </li>
+       </ul>
+
+      <p/>
+      <strong>Bookmarks</strong>
+      <p/>
+      Vgl com.tonbeller.wcf.bookmark. Die editierbaren Bean Properties koennen
+      via Bookmarkable Interface gespeichert und restauriert werden. Dies muss
+      ueber das Tag Attribut bookmarkable="true" aktiviert werden.
+
+      <p/>
+      <strong>Beispiele</strong>
+      <p/>
+      Siehe WCF Beispiele in /WEB-INF
+    </descr>
+
+    &id.attr;
+    &xmluri.attr;
+    &visible.attr;
+    &validate.attr;
+    &role.attr;
+    &bundle.attr;
+    <attr type="String" rtexpr="false" required="true" name="model">
+      <descr lang="en">EL expression that resolves to the bean that shall be edited</descr>
+      <descr lang="de">EL Ausdruck der die JavaBean bezeichnet, die editiert werden soll</descr>
+    </attr>
+
+    <attr type="boolean" rtexpr="false" required="false" name="bookmarkable">
+      <descr lang="en">true|false indicating whether this form shall save its beans state. Default is false</descr>
+      <descr lang="de">true|false, zeigt an ob der Zustand der bean gespeichert werden soll. Default ist false</descr>
+    </attr>
+
+    <attr type="boolean" rtexpr="false" required="false" name="finishButton">
+      <descr lang="en">true|false indicating whether this form supports finish if it is not the last page of a wizard. Default is true</descr>
+      <descr lang="de">true|false, zeigt an ob das Formular einen Fertigstellen-Button anbietet, auch wenn
+                       dies nicht die letzte Seite in einem Wizard ist (vorzeitiges Beenden). Default ist true</descr>
+    </attr>
+
+    <example><![CDATA[
+<jsp:useBean id="testbean" class="com.tonbeller.wcf.form.TestBean" scope="session" />
+<wcf:form id="formcomp" xmlUri="/WEB-INF/formdemo.xml" model="#{testbean}"/>
+<form action="formdemo.jsp" method="post" id="form01">
+  <wcf:render ref="#{formcomp}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true"/>
+</form>
+]]></example>
+
+    <example><![CDATA[
+<xform style="twocolumn">
+  <title value="fmt:fetch.title.from.resource.bundle">
+    <imgButton id="cancel" src="wcf/form/cancel.png" action="revert" label="Cancel" forward="tabledemo.jsp" handler="com.tonbeller.wcf.form.ButtonHandler"/>
+  </title>
+
+  <!-- Text control -->
+  <textField id="string" type="string" modelReference="stringValue" label="Text:"    value="" title="please enter some text"/>
+  <textField id="int"    type="int"    modelReference="intValue"    label="Integer:" value="" title="please enter an integer"/>
+  <textField id="double" type="double" modelReference="doubleValue" label="Decimal number:"    value="" title="please enter a decimal number"/>
+  <textField id="date"   type="date"   modelReference="dateValue"   label="Date:"    value="" title="please enter a date"/>
+  <textField id="dateTime" type="dateTime"   modelReference="dateTimeValue"   label="Date/Time:"    value="" title="please enter a date/time"/>
+
+  <!-- Password control -->
+  <password id="password" type="string" modelReference="password" label="Password:" value=""/>
+
+  <!-- Text area -->
+  <textArea id="textarea" rows="7" cols="40" type="string" modelReference="textArea" label="Text area:" value="This is a text area"/>
+
+  <checkBox id="checkbox1" modelReference="checkBox1" label="check box 1"/>
+  <checkBox id="checkbox2" modelReference="checkBox2" label="check box 2"/>
+
+  <!-- ListBox, single selection -->
+  <listBox1 id="list1" type="int" modelReference="list1" label="List, single selection:">
+    <listItem id="list1.1" value="1" label="list item 1"/>
+    <listItem id="list1.2" value="2" label="list item 2"/>
+    <listItem id="list1.3" value="3" label="list item 3"/>
+    <listItem id="list1.4" value="4" label="list item 4"/>
+  </listBox1>
+
+
+  <!-- ListBox, multiple selection -->
+  <listBoxN id="listN" type="int" modelReference="listN" label="List, multiple selection:">
+    <listItem id="listN.1" value="1" label="list item 1"/>
+    <listItem id="listN.2" value="2" label="list item 2"/>
+    <listItem id="listN.3" value="3" label="list item 3"/>
+    <listItem id="listN.4" value="4" label="list item 4"/>
+  </listBoxN>
+
+
+  <!-- ListBox, single selection, dynamic item list -->
+  <listBox1 id="listbox" type="int" modelReference="dynList" label="List, dynamic content:" handler="com.tonbeller.wcf.form.TestItems"/>
+
+  <label label="This is a label" value="value attribute goes here"/>
+  <label label="Dynamic label (content from TextArea)" modelReference="textArea"/>
+
+  <radioButton id="radio1" modelReference="radioButton1" group-id="group1" label="radio button 1"/>
+  <radioButton id="radio2" modelReference="radioButton2" group-id="group1" label="radio button 2"/>
+
+  <buttons>
+    <button id="cancel" action="revert" label="Cancel" forward="tabledemo.jsp" handler="com.tonbeller.wcf.form.ButtonHandler"/>
+    <button id="revert" action="revert" label="Revert" handler="com.tonbeller.wcf.form.ButtonHandler"/>
+    <button id="validate" action="validate" label="Validate" handler="com.tonbeller.wcf.form.ButtonHandler"/>
+    <button id="ok" action="validate" label="OK" forward="tabledemo.jsp" handler="com.tonbeller.wcf.form.ButtonHandler"/>
+  </buttons>
+
+</xform>
+    ]]></example>
+
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="tagdependent" class="com.tonbeller.wcf.form.ConfirmComponentTag" name="confirm">
+    <descr lang="en">A confirmation dialog. Used by other Components, not stand-alone</descr>
+    <descr lang="de">Ein Bestätigungsdialog. Wird von anderen Komponenten verwendet, nicht stand-alone nutzbar</descr>
+    <attr type="String" rtexpr="false" required="false" name="id">
+      <descr lang="en">Name of the session attribute created by this tag. Defaults to "confirmForm"</descr>
+      <descr lang="de">Name des Session Attributs das von diesem Tag erzeugt wird. Default ist "confirmForm"</descr>
+    </attr>
+    <attr type="String" rtexpr="false" required="false" name="xmlUri">
+      <descr lang="en">URI of the form XML. Defaults to "/WEB-INF/wcf/confirm.xml"</descr>
+      <descr lang="de">URI of the form XML. Defaults to "/WEB-INF/wcf/confirm.xml"</descr>
+    </attr>
+    &visible.attr;
+    &validate.attr;
+    <example><![CDATA[
+<wcf:confirm id="confirmForm"  xmlUri="/WEB-INF/wcf/confirm.xml" visible="false"/>
+]]></example>
+
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="JSP" class="com.tonbeller.wcf.table.TableComponentTag" name="table">
+    <descr lang="en">Creates a table component. &renderable.en;</descr>
+    <descr lang="de">Erzeugt eine Tabellen Komponente. &renderable.de;</descr>
+    &id.attr;
+    &visible.attr;
+    &validate.attr;
+    &role.attr;
+    <attr type="String" rtexpr="false" required="false" name="model">
+      <descr lang="en">EL expression that resolves to a com.tonbeller.wcf.table.TableModel</descr>
+      <descr lang="de">EL Ausdruck der ein com.tonbeller.wcf.table.TableModel bezeichnet</descr>
+    </attr>
+    <attr type="String" rtexpr="false" required="false" name="selmode">
+      <descr lang="en">Row selection mode: href, single, multi or none</descr>
+      <descr lang="de">Zeilen-Auswahlmodus: href, single, multi oder none</descr>
+    </attr>
+    <attr type="boolean" rtexpr="false" required="false" name="closable">
+      <descr lang='en'>Either <code>true</code>, <code>false</code> or an EL expression that evaluates to a boolean property. The close button will be visible only, if that property is true</descr>
+      <descr lang='de'><code>true</code>, <code>false</code> oder ein EL Ausdruck eines boolean property. Die "Schließe-Tabelle"-Schaltfläche wird nur dann angezeigt, wenn das property true ist</descr>
+    </attr>
+    <attr type="boolean" rtexpr="false" required="false" name="editable">
+      <descr lang='en'>"true" if the user shall hide columns etc</descr>
+      <descr lang='de'>"true" wenn der Anwender Spalten ausblenden kann</descr>
+    </attr>
+    <attr type="boolean" rtexpr="false" required="false" name="sortable">
+      <descr lang='en'>Either <code>true</code>, <code>false</code> or an EL expression that evaluates to a boolean property. The sorting function will be activated, if that property is true</descr>
+      <descr lang='de'><code>true</code>, <code>false</code> oder ein EL Ausdruck eines boolean property. Die Sortierfunktion wird aktiviert, wenn das property true ist</descr>
+    </attr>
+    <attr type="boolean" rtexpr="false" required="false" name="pagable">
+      <descr lang='en'>Either <code>true</code>, <code>false</code> or an EL expression that evaluates to a boolean property. The paging function will be activated, if that property is true</descr>
+      <descr lang='de'><code>true</code>, <code>false</code> oder ein EL Ausdruck eines boolean property. Die Blätterfunktion wird aktiviert, wenn das property true ist</descr>
+    </attr>
+    <attr type="boolean" rtexpr="false" required="false" name="colHeaders">
+      <descr lang='en'>Either <code>true</code>, <code>false</code> or an EL expression that evaluates to a boolean property. Column headers will be shown, if that property is true</descr>
+      <descr lang='de'><code>true</code>, <code>false</code> oder ein EL Ausdruck eines boolean property. Spaltenüberschriften werden angezeigt, wenn das property true ist</descr>
+    </attr>
+    <attr type="int" rtexpr="false" required="false" name="pagesize">
+      <descr lang="en">Maximum row count which will be displayed for a single page. The paging function must be active (pagable=true)</descr>
+      <descr lang="de">Maximale Zeilenzahl die pro Seite angezeigt werden soll. Die Blätterfunktion muss aktiviert sein (pagable=true)</descr>
+    </attr>
+    <attr type="String" rtexpr="false" required="false" name="editForm">
+      <descr lang='en'>DEPRECATED - use editable. set to context relative URI the XML file describing the table properties form to allow users to hide columns</descr>
+      <descr lang='de'>DEPRECATED - use editable. Context relative URI einer Formularbeschreibung in XML, mit dem die Benutzer die Einstellungen der Tabelle aendern koennen</descr>
+    </attr>
+    <example><![CDATA[
+<wcf:table id="t1" model="#{tmodel}" selmode="multi" closable="false" sortable="false" pageable="true" pagesize="10"/>
+<wcf:render ref="#{t1}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true"/>
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="JSP" class="com.tonbeller.wcf.table.TablePropertiesFormTag" name="tablePropertiesForm">
+    <descr lang="en">Creates a table component. &renderable.en;</descr>
+    <descr lang="de">Erzeugt eine Tabellen Komponente. &renderable.de;</descr>
+    &id.attr;
+    &visible.attr;
+    &validate.attr;
+    &role.attr;
+    &xmluri.attr;
+    <attr type="boolean" rtexpr="false" required="false" name="closable">
+      <descr lang='en'>set to <code>true</code> make the component closeable</descr>
+      <descr lang='de'><code>true</code> damit die Komponente einen close-button bekommt</descr>
+    </attr>
+    <attr type="String" rtexpr="false" required="true" name="table">
+      <descr lang="en">EL expression that resolves to a &lt;wcf:table ...&gt;</descr>
+      <descr lang="de">EL Ausdruck der ein &lt;wcf:table ...&gt; referenziert</descr>
+    </attr>
+    <example><![CDATA[
+<wcf:table id="t1" model="#{tmodel}" selmode="multi" closable="false" sortable="false" pageable="true" pagesize="10"/>
+<wcf:tablePropertiesForm id="t1properties" table="#{t1}"/>
+...
+<!-- render the table -->
+<wcf:render ref="#{t1}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true"/>
+<!-- render the properties form -->
+<wcf:render ref="#{t1properties}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true"/>
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="JSP" class="com.tonbeller.wcf.toolbar.ToolBarTag" name="toolbar">
+    <descr lang="en">Creates a toolbar component. Buttons are defined via nested Elements:
+    <ul>
+      <li><a href="#formbutton">formbutton</a></li>
+      <li><a href="#pushbutton">pushbutton</a></li>
+      <li><a href="#scriptbutton">scriptbutton</a></li>
+      <li><a href="#imgbutton">imgbutton</a></li>
+      <li><a href="#separator">separator</a></li>
+    </ul>
+    &renderable.en;</descr>
+
+    <descr lang="de">Erzeugt eine Toolbar Komponente. Die Buttons werden im Body
+    definiert:
+    <ul>
+      <li><a href="#formbutton">formbutton</a></li>
+      <li><a href="#pushbutton">pushbutton</a></li>
+      <li><a href="#scriptbutton">scriptbutton</a></li>
+      <li><a href="#imgbutton">imgbutton</a></li>
+      <li><a href="#separator">separator</a></li>
+    </ul>
+    &renderable.de;</descr>
+
+    &id.attr;
+    &visible.attr;
+    &validate.attr;
+    &role.attr;
+    <attr type="String" rtexpr="false" required="false" name="bundle">
+      <descr lang="en">ResourceBundle for tooltips</descr>
+      <descr lang="de">ResourceBundle für Tooltips</descr>
+    </attr>
+    <attr type="boolean" rtexpr="false" required="false" name="globalButtonIds">
+      <descr lang="en">@DEPRECATED - do not use. Workaround for a bug in earlier versions that prevented multiple toolbars to have buttons with the same id</descr>
+      <descr lang="en">@DEPRECATED - do not use. Workaround for a bug in earlier versions that prevented multiple toolbars to have buttons with the same id</descr>
+    </attr>
+    <example><![CDATA[
+<wcf:toolbar id="toolbar01" bundle="com.tonbeller.wcf.toolbar.resources">
+  <wcf:scriptbutton id="button1" tooltip="testlabel" img="button" model="#{toolbean.checkBox1}"/>
+  <wcf:separator/>
+  <wcf:scriptbutton id="button2" img="button" model="#{toolbean.radioButton1}" radioGroup="radio1" visibleRef="#{toolbean.checkBox1}"/>
+  <wcf:scriptbutton id="button3" img="button" model="#{toolbean.radioButton2}" radioGroup="radio1" visibleRef="#{toolbean.checkBox1}"/>
+  <wcf:separator/>
+  <wcf:pushbutton id="button4" img="button" visibleRef="#{toolbean.checkBox1}"/>
+  <wcf:imgbutton  id="button5" img="button" href="/some/path" visibleRef="#{toolbean.checkBox1}"/>
+</wcf:toolbar>
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="empty" class="com.tonbeller.wcf.toolbar.ToolSeparatorTag" name="separator">
+    <descr lang="en">Adds space between toolbar buttons</descr>
+    <descr lang="de">Fügt eine Lücke zwischen Toolbar Buttons ein</descr>
+    <attr type="String" rtexpr="false" required="false" name="size">
+      <descr lang="en">width in pixel</descr>
+      <descr lang="de">Breite in pixeln</descr>
+    </attr>
+    &visibleref.attr;
+    &role.attr;
+    <example><![CDATA[<wcf:separator/>]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="empty" class="com.tonbeller.wcf.toolbar.ScriptButtonTag" name="scriptbutton">
+    <descr lang="en">A toolbar button that is bound to a boolean bean property</descr>
+    <descr lang="de">Ein Toolbar Button, der an ein boolean JavaBean Property gebunden ist</descr>
+
+    &tbid.attr;
+    &tbimg.attr;
+    &radiogroup.attr;
+    &tooltip.attr;
+    &visibleref.attr;
+    &role.attr;
+
+    <attr type="String" rtexpr="false" required="true" name="model">
+      <descr lang="en">EL expression that evaluates to a boolean property</descr>
+      <descr lang="de">EL Ausdruck eines boolean JavaBean Properties</descr>
+    </attr>
+
+    <example><![CDATA[<wcf:scriptbutton id="button2" img="button" model="#{toolbean.radioButton1}" radioGroup="radio1" visibleRef="#{toolbean.checkBox1}"/>
+]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="empty" class="com.tonbeller.wcf.toolbar.ImgButtonTag" name="imgbutton">
+    <descr lang="en">A toolbar button with a static hyperlink</descr>
+    <descr lang="de">Ein Toolbar Button mit statischem Hyperlink</descr>
+    &tbid.attr;
+    &tbimg.attr;
+    &tooltip.attr;
+    &visibleref.attr;
+    &role.attr;
+    <attr type="String" rtexpr="false" required="true" name="href">
+      <descr lang="en">the <tt>href</tt> attribute of the hyperlink. "{0}" is replaced with the context, "{1}" with a random string.</descr>
+      <descr lang="de">das <tt>href</tt> Attribut des hyperlinks.  Dabei wird "{0}" durch den Kontextpfad ersetzt, "{1}" durch einen zufaelligen String</descr>
+    </attr>
+    <attr type="String" rtexpr="false" required="false" name="target">
+      <descr lang="en">the <tt>target</tt> attribute of the hyperlink</descr>
+      <descr lang="de">das <tt>target</tt> Attribut des hyperlinks</descr>
+    </attr>
+    <example><![CDATA[<wcf:imgbutton  id="button5" img="button" href="/some/path" visibleRef="#{toolbean.checkBox1}"/>]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="empty" class="com.tonbeller.wcf.toolbar.PushButtonTag" name="pushbutton">
+    <descr lang="en">A toolbar button with builtin boolean property <tt>pressed</tt> that reflects its state.</descr>
+    <descr lang="de">Ein Toolbar Button, der ein boolean JavaBean Property <tt>pressed</tt> besitzt, das seinen Zustand widerspiegelt.</descr>
+    &tbid.attr;
+    &tbimg.attr;
+    &radiogroup.attr;
+    &tooltip.attr;
+    &visibleref.attr;
+    &role.attr;
+    <attr type="String" rtexpr="false" required="false" name="pressed">
+      <descr lang="en">inital state</descr>
+      <descr lang="de">Initialer Zustand des Buttons</descr>
+    </attr>
+    <example><![CDATA[
+<wcf:toolbar id="toolbar01" bundle="com.tonbeller.wcf.toolbar.resources">
+  <wcf:pushbutton id="button4" img="button"/>
+  ...
+</wcf:toolbar>
+...
+<c:if test="${toolbar01.buttons.button4.pressed">
+  <h1>Button Pressed!!</h1>
+</c:if>
+]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="empty" class="com.tonbeller.wcf.toolbar.FormButtonTag" name="formbutton">
+    <descr lang="en">Submit button for a WCF <a href="#form">form</a></descr>
+    <descr lang="de">Submit Button für ein WCF <a href="#form">form</a></descr>
+    &tbid.attr;
+    &tbimg.attr;
+    &radiogroup.attr;
+    &tooltip.attr;
+    &visibleref.attr;
+    &role.attr;
+
+    <attr type="String" rtexpr="false" required="false" name="action">
+      <descr lang="en">either "revert" or "validate"</descr>
+      <descr lang="de">entweder "revert" oder "validate"</descr>
+    </attr>
+    <attr type="String" rtexpr="false" required="true" name="forward">
+      <descr lang="en">URI of the JSP to display if validation succeeds</descr>
+      <descr lang="de">URI der JSP die bei erfolgreicher Validierung angezeigt werden soll</descr>
+    </attr>
+    <attr type="String" rtexpr="false" required="true" name="form">
+      <descr lang="en">EL expression that evaluates to the form to validate</descr>
+      <descr lang="de">EL Ausdruck der das Formular bezeichnet</descr>
+    </attr>
+
+    <example><![CDATA[
+<jsp:useBean id="testbean" class="com.tonbeller.wcf.form.TestBean" scope="session" />
+<wcf:form id="formcomp" xmlUri="/WEB-INF/formdemo.xml" model="#{testbean}"/>
+<wcf:toolbar id="toolbar01" bundle="com.tonbeller.wcf.toolbar.resources">
+  <wcf:formbutton ... action="validate" forward="newpage.jsp" form="#{formcomp.form}"/>
+</wcf:toolbar>
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="EMPTY" class="com.tonbeller.wcf.tree.TreeComponentTag" name="tree">
+    <descr lang="en">Creates a tree component. &renderable.en;</descr>
+    <descr lang="de">Erzeugt eine Tree Komponente. &renderable.de;</descr>
+    &id.attr;
+    &visible.attr;
+    &validate.attr;
+    &role.attr;
+    <attr type="String" rtexpr="false" required="false" name="model">
+      <descr lang="en">EL expression that resolves to a com.tonbeller.wcf.tree.TreeModel</descr>
+      <descr lang="de">EL expression that resolves to a com.tonbeller.wcf.tree.TreeModel</descr>
+    </attr>
+    <example><![CDATA[
+<wcf:tree id="tree01"/>
+<wcf:render ref="#{tree01}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true">
+  <wcf:renderParam name="border" value="1"/>
+</wcf:render>
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="EMPTY" class="com.tonbeller.wcf.catedit.CategoryEditorTag" name="catedit">
+    <descr lang="en">Creates a categoy editor component. &renderable.en;</descr>
+    <descr lang="de">Erzeugt eine CategoryEditor Komponente. &renderable.de;</descr>
+    &id.attr;
+    &visible.attr;
+    &validate.attr;
+    &role.attr;
+    <attr type="String" rtexpr="false" required="false" name="model">
+      <descr lang="en">EL expression that resolves to a com.tonbeller.wcf.catedit.CategoryModel</descr>
+      <descr lang="de">EL expression that resolves to a com.tonbeller.wcf.catedit.CategoryModel</descr>
+    </attr>
+    <example><![CDATA[]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="EMPTY" class="com.tonbeller.wcf.utils.IncludeTag" name="include">
+    <descr lang="en">
+      Includes a JSP page if a certain HTTP parameter is present.
+      The name of the file is prefix + paremeter + suffix. <p/>
+      For example,
+      if <tt>prefix="/WEB-INF/mypages/"</tt>, <tt>httpParam="page"</tt> and
+      <tt>suffix=".jsp"</tt>, then the URL <tt>?page=page20</tt> will include
+      the file <tt>/WEB-INF/mypages/page20.jsp</tt>. If the parameter <tt>page</tt>
+      is not present in the HTTP request, no page will be included.
+    </descr>
+
+    <descr lang="de">
+      Fügt eine JSP Seite ein, wenn ein bestimmter HTTP Parameter vorhanden ist.
+      Der Name der einzufügenden Seite ergibt sich aus prefix + parameter + suffix.
+      <p/>Beispiel:
+      Wenn <tt>prefix="/WEB-INF/mypages/"</tt>, <tt>httpParam="page"</tt> und
+      <tt>suffix=".jsp"</tt>, dann wird die URL <tt>?page=page20</tt> die
+      Datei <tt>/WEB-INF/mypages/page20.jsp</tt> eingefügt. Ist der
+      Parameter <tt>page</tt> im HTTP Request nicht vorhanden, wird keine Datei eingefügt.
+    </descr>
+
+    &id.attr;
+    <attr type="String" rtexpr="false" required="true" name="httpParam">
+      <descr lang="en">name of the HTTP parameter</descr>
+      <descr lang="de">Name des HTTP Parameters</descr>
+    </attr>
+    <attr type="String" rtexpr="false" required="false" name="prefix">
+      <descr lang="en">Prefix</descr>
+      <descr lang="de">Prefix</descr>
+    </attr>
+    <attr type="String" rtexpr="false" required="false" name="suffix">
+      <descr lang="en">Suffix</descr>
+      <descr lang="de">Suffix</descr>
+    </attr>
+    <example><![CDATA[<wcf:include id="include01" httpParam="query" prefix="/WEB-INF/queries/" suffix=".jsp"/>]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="EMPTY" class="com.tonbeller.wcf.form.ConnectFormTag" name="connect">
+    <descr lang="en"><em>Deprecated</em>. Use "validate" attribute of WCF components instead, which is
+    more natural and will be sufficient most of the time. Connects different WCF Components. This makes the buttons
+    of one form act on another form too. If a tree and a form are connected for example,
+    pressing the OK button in the form will make the tree read its selection.</descr>
+
+    <descr lang="de"><em>Deprecated</em>. Verwenden Sie statt dessen das "validate" Attribut der meisten
+     WCF Komponenten, das ist einfacher zu verwenden und meist ausreichend.
+     Verbindet WCF Komponenten. Auf diese Weise wirken die Buttons
+     des einen Formulars auch auf das andere. Verbindet man z.B. einen Tree und
+     ein Formular, so wird der Tree seine Selektion lesen, wenn im Formular der OK button
+     gedrückt wird.</descr>
+
+    <attr type="String" rtexpr="false" required="true" name="form1">
+      <descr lang="en">Form 1</descr>
+      <descr lang="de">Form 1</descr>
+    </attr>
+    <attr type="String" rtexpr="false" required="true" name="form2">
+      <descr lang="en">Form 2</descr>
+      <descr lang="de">Form 2</descr>
+    </attr>
+    <example><![CDATA[
+<jsp:useBean id="testbean" class="com.tonbeller.wcf.form.TestBean" scope="session" />
+<wcf:form id="formcomp" xmlUri="/WEB-INF/formdemo.xml" model="#{testbean}"/>
+<wcf:tree id="tree01"/>
+<wcf:connect form1="#{formcomp}" form2="#{tree01}"/>
+
+<form action="formdemo.jsp" method="post" id="form01">
+  <wcf:render ref="#{formcomp}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true"/>
+  <wcf:render ref="#{tree01}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true">
+    <wcf:renderParam name="border" value="1"/>
+  </wcf:render>
+</form>
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="JSP" class="com.tonbeller.wcf.log.LogTag" name="logform">
+    <descr lang="en">
+     An HTML form that allows to set logging options for Apache log4j
+    </descr>
+
+    <descr lang="de">
+      Ein HTML Formular in dem die Logging Optionen für Apache log4j eingestellt
+      werden können.
+    </descr>
+    &id.attr;
+    &visible.attr;
+    &validate.attr;
+    &role.attr;
+    &xmluri.attr;
+
+    <attr type="String" rtexpr="false" required="true" name="logDir">
+
+      <descr lang="en">
+        Name of a directory relative to <tt>user.home</tt> or - in case of missing write permissions -
+        relative to <tt>java.io.tmpdir</tt>. This directory contains the configuration files
+        for log4j, default configuration files are created.
+      </descr>
+
+      <descr lang="de">
+        Name eines Verzeichnisses, relativ zu <tt>user.home</tt> oder - falls in <tt>user.home</tt> keine
+        Schreibrechte vorhanden sind, relativ zu <tt>java.io.tmpdir</tt>. In dieses Verzeichnis
+        werden einige Konfigurationsdateien für log4j erzeugt. Sie können in dieses Verzeichnis
+        auch eigene Konfigurationsdateien ablegen, die dann in dem Formular ausgewählt werden können.
+      </descr>
+
+    </attr>
+    <example><![CDATA[
+<wcf:logform id="logdemo" xmlUri="/WEB-INF/logdemo.xml" logDir=".wcf/logging"/>
+<form action="logdemo.jsp" method="post" id="logform">
+  <wcf:render ref="logdemo" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true"/>
+</form>
+    ]]></example>
+  </tag>
+
+
+  <!-- ******************************************************************** -->
+
+  <tag body="JSP" class="com.tonbeller.wcf.component.RoleExprTag" name="ifRole">
+    <descr lang="en">
+     A conditional tag that tests if the user holds some role.
+    </descr>
+
+    <descr lang="de">
+     Ein condition tag das prueft, ob der Anwender eine Rolle innehat.
+    </descr>
+    &role.attr;
+    <example><![CDATA[
+<wcf:ifRole role="tomcat">
+  <h1>Hi, Tomcat</h1>
+</wcf:ifRole>
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="EMPTY" class="com.tonbeller.wcf.token.TokenTag" name="token">
+    <descr lang="en">
+      Creates a hidden field to synchronize the page flow. Should be used
+      together with the TokenFilter
+    </descr>
+
+    <descr lang="de">
+      Erzeugt ein hidden Input Field um die Verwendung der Browser Back button
+      zu unterbinden. Muss zusammen mit dem TokenFilter verwendet werden.
+    </descr>
+
+    <attr type="boolean" rtexpr="false" required="false" name="clear">
+      <descr lang="en">Instead of producing the HTML hidden field, the token is cleared and browser back button is allowed (once!)</descr>
+      <descr lang="de">Anstelle des HTML hidden field wird das Token gelöscht und einmalig ein Browser Back zugelassen</descr>
+    </attr>
+
+    <example><![CDATA[
+<form ...>
+  <wcf:token/>
+</form>
+or w/o form
+  <!-- allow browser back once -->
+  <wcf:token clear="true"/>
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="JSP" class="com.tonbeller.wcf.statusline.StatusLineTag" name="statusline">
+    <descr lang="en">
+      Displays messages and errors. The body content is the default content that is
+      displayed if there are no errors or messages to display. In case of errors
+      a stack trace will be printed into the generated html - it will be commented
+      out and thus not visible, but you will see it if you choose "view source"
+      in your browser.
+    </descr>
+    <descr lang="de">
+      Displays messages and errors. The body content is the default content that is
+      displayed if there are no errors or messages to display. In case of errors
+      a stack trace will be printed into the generated html - it will be commented
+      out and thus not visible, but you will see it if you choose "view source"
+      in your browser.
+    </descr>
+    <attr type="String" rtexpr="false" required="false" name="format">
+      <descr lang="en">output format: either "html" or "text" (default = "html")</descr>
+      <descr lang="de">Ausgabeformat: entweder "html" oder "text" (default = "html")</descr>
+    </attr>
+    <attr type="boolean" rtexpr="false" required="false" name="clear">
+      <descr lang="en">clears the status line after output (default = true!)</descr>
+      <descr lang="de">Löscht die Statuszeile nach der Ausgabe (default = true!)</descr>
+    </attr>
+
+    <example><![CDATA[
+<wcf:statusline/>
+]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+  <!-- Parameter Pool ***************************************************** -->
+  <!-- ******************************************************************** -->
+
+
+
+  <tag body="JSP" class="com.tonbeller.wcf.param.SessionParamPoolTag" name="paramPool">
+    <descr lang="en">
+      ensures the SessionParamPool exists in the session with id="paramPool". Similar
+      to jsp:useBean
+    </descr>
+    <descr lang="de">
+      ensures the SessionParamPool exists in the session with id="paramPool". Similar
+      to jsp:useBean
+    </descr>
+    <example>
+&lt;wcf:paramPool/&gt;
+    </example>
+  </tag>
+
+  <tag body="JSP" class="com.tonbeller.wcf.param.ParamLinkGroupTag" name="paramLinkGroup">
+    <descr lang="en">
+      groups a set of paramLink tags. When the start tag is executed, the
+      links generated on previous pages are invalidated.
+    </descr>
+    <descr lang="de">
+      groups a set of paramLink tags. When the start tag is executed, the
+      links generated on previous pages are invalidated.
+    </descr>
+    &id.attr;
+    <attr type="String" rtexpr="false" required="false" name="hideIf">
+      <descr lang="en">EL expression. If the EL returns true, no links will be rendererd.</descr>
+      <descr lang="de">EL expression. If the EL returns true, no links will be rendererd.</descr>
+    </attr>
+    <example>
+&lt;wcf:paramLinkGroup id="mylinks"...&gt;
+  &lt;wcf:paramLink .../&gt;
+  &lt;wcf:paramLink .../&gt;
+&lt;/wcf:paramLinkGroup/&gt;
+    </example>
+    <example>
+&lt;wcf:paramLinkGroup id="mylinks" hideIf="#{mybean.printMode}"&gt;
+  &lt;wcf:paramLink .../&gt;
+  &lt;wcf:paramLink .../&gt;
+&lt;/wcf:paramLinkGroup/&gt;
+    </example>
+  </tag>
+
+  <tag body="JSP" class="com.tonbeller.wcf.param.PushParamTag" name="pushParam">
+    <descr lang="en">
+      replaces the attributes of a session parameter when the start tag is processed and
+      restores it when the end tag is processed.
+    </descr>
+    <descr lang="de">
+      Ersetzt die Attribute eines SessionParam beim Start Tag und restauriert
+      sie beim End Tag.
+    </descr>
+    &session.param.name.attr.required;
+    &session.param.attrs;
+    <example>
+      CUSTOMER_ID = 999
+      &lt;wcf:pushParam name="CUSTOMER_ID" value="#{bean.myProperty}"&gt;
+        render page as if CUSTOMER_ID was bean.getMyProperty()
+      &lt;/wcf:pushParam&gt;
+      now is back to CUSTOMER_ID = 999
+    </example>
+  </tag>
+
+  <tag body="JSP" class="com.tonbeller.wcf.param.SetParamTag" name="setParam">
+    <descr lang="en">
+      replaces the attributes of a session parameter.
+    </descr>
+    <descr lang="de">
+      Ersetzt die Attribute eines SessionParam.
+    </descr>
+    &session.param.name.attr.required;
+    &session.param.attrs;
+    <example>
+      CUSTOMER_ID = 999
+      &lt;wcf:setParam name="CUSTOMER_ID" value="#{bean.myProperty}"/&gt;
+      now CUSTOMER_ID is bean.getMyProperty()
+    </example>
+  </tag>
+
+  <tag body="JSP" class="com.tonbeller.wcf.param.ParamLinkTag" name="paramLink">
+    <descr lang="en">
+      Outputs an &lt;a href="..."&gt; hyperlink.
+      Stores a List of SessionParam's and Actions.
+      If the user clicks on the hyperlink, the SessionParam instances
+      will be activated, i.e. they will be set into the SessionParamPool.
+      Then the actions are executed. Finally it forwards to the target page.
+      <p/>
+      A single parameter may be specified through attributes of this tag,
+      if multiple parameters are required, nested linkParam tags may
+      be used.
+      <p/>
+      The generated URL
+      is "secure" because it contains a random number only. Users can
+      not change it in the browsers location field for example.
+    </descr>
+    <descr lang="de">
+      Outputs an &lt;a href="..."&gt; hyperlink.
+      Stores a List of SessionParam's and Actions.
+      If the user clicks on the hyperlink, the SessionParam instances
+      will be activated, i.e. they will be set into the SessionParamPool.
+      Then the actions are executed. Finally it forwards to the target page.
+      <p/>
+      A single parameter may be specified through attributes of this tag,
+      if multiple parameters are required, nested linkParam tags may
+      be used.
+      <p/>
+      The generated URL
+      is "secure" because it contains a random number only. Users can
+      not change it in the browsers location field for example.
+    </descr>
+    <attr rtexpr="true" required="false" name="page" type="String">
+      <descr lang="en">target page</descr>
+      <descr lang="de">target page</descr>
+    </attr>
+    <attr rtexpr="true" required="false" name="target" type="String">
+      <descr lang="en">HTML target base</descr>
+      <descr lang="de">HTML target base</descr>
+    </attr>
+    <attr rtexpr="true" required="false" name="token" type="boolean">
+      <descr lang="en">Set to "true" to enerate a token into the URL to prevent the user from using the browser's back button. Defaults to "false".</descr>
+      <descr lang="de">Wenn "true" wird ein token in die URL generiert, welches den Benutzer daran hindert, den Browser Back Button zu verwenden. Default ist "false".</descr>
+    </attr>
+    &session.param.name.attr.optional;
+    &session.param.attrs;
+
+    <example><![CDATA[
+      <paramLinkGroup id="myParam">
+        ...
+        <!-- single parameter -->
+        <wcf:paramLink
+          page="/customer.jsp"
+          target="_blank"
+          paramName="CUSTOMERID"
+          sqlValue="${result.customerId}">
+          click here!!
+        </wcf:paramLink>
+        ...
+        <!-- multiple parameters -->
+        <wcf:paramLink page="/customer.jsp">
+          click here!!
+          <wcf:linkParam
+            paramName="CUSTOMERID"
+            sqlValue="${result.customerId}"/>
+          <wcf:linkParam
+            paramName="PRODUCTID"
+            sqlValue="${result.productId}"/>
+        </wcf:paramLink>
+
+        ...
+      </paramLinkGroup>
+    ]]></example>
+  </tag>
+
+  <tag body="JSP" class="com.tonbeller.wcf.param.ParamLinkParamTag" name="linkParam">
+    <descr lang="en">
+      adds another SessionParam to a paramLink tag. Must be nested inside
+      a paramLink tag.
+    </descr>
+    <descr lang="de">
+      adds another SessionParam to a paramLink tag. Must be nested inside
+      a paramLink tag.
+    </descr>
+    &session.param.name.attr.required;
+    &session.param.attrs;
+
+    <example><![CDATA[
+      <paramLinkGroup id="myParam">
+        ...
+        <!-- single parameter -->
+        <wcf:paramLink
+          page="/customer.jsp"
+          name="CUSTOMERID"
+          sqlValue="${result.customerId}">
+          click here!!
+        </wcf:paramLink>
+        ...
+        <!-- multiple parameters -->
+        <wcf:paramLink page="/customer.jsp">
+          click here!!
+          <wcf:linkParam
+            name="CUSTOMERID"
+            sqlValue="${result.customerId}"/>
+          <wcf:linkParam
+            name="SCOREID"
+            sqlValue="${result.scoreId}"/>
+        </wcf:paramLink>
+        ...
+      </paramLinkGroup>
+    ]]></example>
+  </tag>
+
+  <tag body="JSP" class="com.tonbeller.wcf.param.ParamLinkActionTag" name="linkAction">
+    <descr lang="en">
+      when the user clicks on the link, a method in the target bean is invoked.
+    </descr>
+    <descr lang="de">
+      Wenn der Anwender auf den Link klickt wird eine Methode in der Target Bean aufgerufen.
+    </descr>
+    <attr rtexpr="true" required="true" name="target" type="String">
+      <descr lang="en">EL that evaluates to the target bean</descr>
+      <descr lang="de">EL that evaluates to the target bean</descr>
+    </attr>
+    <attr rtexpr="true" required="true" name="method" type="String">
+      <descr lang="en">name of the method. The method must have the signature
+        <tt>void methodName(RequestContext context) throws Exception;</tt>
+      </descr>
+      <descr lang="de">name of the method. The method must have the signature
+        <tt>void methodName(RequestContext context) throws Exception;</tt>
+      </descr>
+    </attr>
+
+    <example><![CDATA[
+      <paramLinkGroup id="myParam">
+        ...
+        <wcf:paramLink page="/customer.jsp">
+          click here!!
+          <wcf:linkParam
+            name="CUSTOMERID"
+            sqlValue="${result.customerId}"/>
+          <wcf:linkAction
+            target="${customerViewHelper}"
+            method="onClick"/>
+        </wcf:paramLink>
+        ...
+      </paramLinkGroup>
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="JSP" class="com.tonbeller.wcf.param.ParamSqlTag" name="paramSql">
+    <descr lang="en">
+      outputs SQL syntax for the named session parameter. May contain nested paramSqlMapping tags
+    </descr>
+    <descr lang="de">
+      erzeugt SQL syntax für einen session parameter
+    </descr>
+    <attr rtexpr="true" required="false" name="param" type="String">
+      <descr lang="en">Name of the SessionParam</descr>
+      <descr lang="de">Name des Session Parameters.</descr>
+    </attr>
+    <attr rtexpr="true" required="false" name="qname" type="String">
+      <descr lang="en">qualified name of the default column. This is used if parameter expression does not contain its own column id's</descr>
+      <descr lang="de">qualified name of the default column. This is used if parameter expression does not contain its own column id's</descr>
+    </attr>
+
+    <example><![CDATA[
+      <wcf:paramLink
+        page="/customer.jsp"
+        name="CUSTOMERID"
+        sqlValue="${result.customerId}">
+        click here!!
+      </wcf:paramLink>
+      ...
+      <sql:query>
+        SELECT ...
+        FROM CUSTOMERS T1, ...
+        WHERE <wcf:paramSql param="CUSTOMERID" qname="T1.CUSTOMER_PK"/>
+        AND ...
+      </sql:query>
+    ]]></example>
+  </tag>
+
+  <tag body="JSP" class="com.tonbeller.wcf.param.ParamSqlMappingTag" name="paramSqlMapping">
+    <descr lang="en">
+      Maps column IDs from SQL Expressions to column alias names. For example, if a
+      SQL Parameter contains the expression <tt>CUSTOMERID = 123 AND PRODUCTID = 'ABC'</tt>,
+      then in a concrete SQL you may want to generate
+      <tt>T1.CUSTOMER_PK = 123 AND T2.PRODUCT_FK = 'ABC'"</tt>.
+      You can do this by mapping <tt>CUSTOMERID</tt> to <tt>T1.CUSTOMER_PK</tt>
+      and <tt>PRODUCTID</tt> to <tt>T2.PRODUCT_FK</tt>.
+      <p />
+      Complex conditions that need mappings usually are created by application code.
+    </descr>
+    <descr lang="de">
+      Maps column IDs from SQL Expressions to column alias names. For example, if a
+      SQL Parameter contains the expression <tt>CUSTOMERID = 123 AND PRODUCTID = 'ABC'</tt>,
+      then in a concrete SQL you may want to generate
+      <tt>T1.CUSTOMER_PK = 123 AND T2.PRODUCT_FK = 'ABC'"</tt>.
+      You can do this by mapping <tt>CUSTOMERID</tt> to <tt>T1.CUSTOMER_PK</tt>
+      and <tt>PRODUCTID</tt> to <tt>T2.PRODUCT_FK</tt>.
+      <p />
+      Complex conditions that need mappings usually are created by application code.
+    </descr>
+    <attr rtexpr="true" required="true" name="column" type="String">
+      <descr lang="en">name of the column in the SQL expression</descr>
+      <descr lang="de">Name der Column in der SQL Expression</descr>
+    </attr>
+    <attr rtexpr="true" required="true" name="qname" type="String">
+      <descr lang="en">qualified name in the generated SQL</descr>
+      <descr lang="de">qualified name im generierten SQL</descr>
+    </attr>
+
+    <example><![CDATA[
+      <sql:query>
+        SELECT ...
+        FROM CUSTOMERS T1, LINE_ITEMS T2, ...
+        WHERE
+          <wcf:paramSql param="COMPLEX_CONDITION">
+            <wcf:paramSqlMapping column="CUSTOMERID" qname="T1.CUSTOMER_PK"/>
+            <wcf:paramSqlMapping column="PRODUCTID" qname="T2.PRODUTCT_FK"/>
+          </wcf:paramSql>
+        AND ...
+      </sql:query>
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="JSP" class="com.tonbeller.wcf.sqltable.SqlTableTag" name="sqlTable">
+    <descr lang="en">
+      A table that allows sorting and paging of a JSTL sql:query result. Sorting
+      and paging are done by the database, so very large result sets are possible.
+    </descr>
+    <descr lang="de">
+      Eine Tabelle die Sortieren und Blättern in einem JSTL sql:query result erlaubt.
+      Sortierung und Blättern wird von der Datenbank durchgeführt, daher sind
+      sehr große Datenmengen möglich.
+    </descr>
+    &id.attr;
+    <attr rtexpr="true" required="false" name="maxRows" type="int">
+      <descr lang="en">number or rows per page</descr>
+      <descr lang="de">Anzahl Records pro Seite</descr>
+    </attr>
+    <attr rtexpr="true" required="false" name="orderBy" type="String">
+      <descr lang="en">Name of the column to order by</descr>
+      <descr lang="de">Name der Spalte nach der sortiert wird</descr>
+    </attr>
+    <attr rtexpr="true" required="false" name="nestedOrderBy" type="String">
+      <descr lang="en">Name of an additional column to order by</descr>
+      <descr lang="de">Name einer zusätzlichen Spalte nach der sortiert wird</descr>
+    </attr>
+    <attr rtexpr="true" required="false" name="descending" type="boolean">
+      <descr lang="en">Initial order by direction</descr>
+      <descr lang="de">Initiale Sortierung</descr>
+    </attr>
+    <example><![CDATA[
+<form action="my.jsp" method="post">
+  <wcf:sqlTable id="mytable" maxRows="200" orderBy="CUSTOMER" descending="true">
+    <sql:query var="result" maxRows="${mytable.maxRows}" startRow="${mytable.startRow}">
+      SELECT   ...
+      FROM ...
+      WHERE ...
+      <wcf:sqlTableOrderBy />
+    </sql:query>
+    <table border="1" cellspacing="0" cellpadding="2">
+      <tr>
+        <th><wcf:sqlTableSortButton column="CUSTOMER"/>&nbsp;Customer</th>
+        ... more column headings ...
+      </tr>
+      <c:forEach var="row" items="${result.rows}">
+        <tr>
+          <td>
+            <c:out value="${row.CUSTOMER}"/>
+          </td>
+          ... more columns ...
+        </tr>
+      </c:forEach>
+      <tr>
+        <td colspan="7">
+          <wcf:sqlTablePageNavigations result="${result}"/>
+        </td>
+      </tr>
+    </table>
+  </wcf:sqlTable>
+</form>
+]]></example>
+  </tag>
+
+  <tag body="empty" class="com.tonbeller.wcf.sqltable.SqlTableOrderByTag" name="sqlTableOrderBy">
+    <descr lang="en">
+      emits the "ORDER BY [column-name]" for the SQL query. Used inside &lt;sql:query&gt; tag.
+    </descr>
+    <descr lang="de">
+      gibt das "ORDER BY [column-name]" der SQL Query aus. Wird innerhalb eines &lt;sql:query&gt; Tags verwendet.
+    </descr>
+  </tag>
+
+  <tag body="empty" class="com.tonbeller.wcf.sqltable.SqlTableSortButtonTag" name="sqlTableSortButton">
+    <descr lang="en">
+      creates a sort button
+    </descr>
+    <descr lang="de">
+      erzeugt einen Sortier Button
+    </descr>
+    <attr rtexpr="true" required="true" name="column" type="String">
+      <descr lang="en">Name of the column to sort by</descr>
+      <descr lang="de">Name der Spalte nach der Sortiert werden soll</descr>
+    </attr>
+  </tag>
+
+  <tag body="empty" class="com.tonbeller.wcf.sqltable.SqlTablePageNavigationsTag" name="sqlTablePageNavigations">
+    <descr lang="en">
+      creates a dialog that allows the user to see different pages
+    </descr>
+    <descr lang="de">
+      erzeugt einen Dialog zum Blättern
+    </descr>
+    <attr rtexpr="true" required="true" name="result" type="String">
+      <descr lang="en">the sql result to scroll</descr>
+      <descr lang="de">Das Ergebnis der SQL Query</descr>
+    </attr>
+  </tag>
+
+  <tag body="empty" class="com.tonbeller.wcf.sqltable.EvenOddTag" name="evenOdd">
+    <descr lang="en">
+      appends "-even" or "-odd" to its class attribute depending on the current
+      loop status.
+    </descr>
+    <descr lang="de">
+      appends "-even" or "-odd" to its class attribute depending on the current
+      loop status.
+    </descr>
+    <attr rtexpr="true" required="false" name="clazz" type="String">
+      <descr lang="en">Name of the CSS class prefix</descr>
+      <descr lang="de">Name of the CSS class prefix</descr>
+    </attr>
+    <attr rtexpr="true" required="false" name="even" type="String">
+      <descr lang="en">if clazz == null: string printed on even rows</descr>
+      <descr lang="de">Wenn clazz == null: Text der in geraden Zeilen ausgegeben wird</descr>
+    </attr>
+    <attr rtexpr="true" required="false" name="odd" type="String">
+      <descr lang="en">if clazz == null: string printed on odd rows</descr>
+      <descr lang="de">Wenn clazz == null: Text der in ungeraden Zeilen ausgegeben wird</descr>
+    </attr>
+    <example><![CDATA[
+      <style>
+        td.mytable-even { ... }
+        td.mytable-odd { ... }
+      </style>
+      ...
+      <c:forEach ...>
+        <td class="<wcf:evenOdd clazz='mytable'/>">
+        ...
+        <!-- produces the same result as above -->
+        <td class="<wcf:evenOdd even='mytable-even' odd='mytable-odd'/>">
+      </c:forEach>
+]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="JSP" class="com.tonbeller.wcf.pagestack.PageStackTag" name="pageStack">
+    <descr lang="en">
+      shows the current position to the user, e.g.
+      <it>you are here: <a href="">Page 1</a> : <a href="">Page 2</a></it>
+    </descr>
+    <descr lang="de">
+      Zeigt dem Benutzer seine aktuelle Position, z.B.
+      <it>Sie befinden sich hier: <a href="">Page 1</a> : <a href="">Page 2</a></it>
+    </descr>
+    <attr rtexpr="true" required="false" name="var" type="String">
+      <descr lang="en">Name of the loop variable which is of type com.tonbeller.wcf.pagestack.Page</descr>
+      <descr lang="de">Name der Loop Variablen vom Typ com.tonbeller.wcf.pagestack.Page</descr>
+    </attr>
+    <attr rtexpr="true" required="false" name="page" type="String">
+      <descr lang="en">url of the current page</descr>
+      <descr lang="de">URL der aktuellen Seite</descr>
+    </attr>
+    <attr rtexpr="true" required="false" name="pageId" type="String">
+      <descr lang="en">identifies this entry.
+        If not set, the page attribute is taken.
+        This way one JSP can be replaced with another.</descr>
+      <descr lang="de">Identifiziert diesen Eintrag.
+        Falls nicht vorhanden wird das page Attribut genommen.
+        Dadurch kann eine JSP durch eine andere ersetzt werden.</descr>
+    </attr>
+    <attr rtexpr="true" required="false" name="title" type="String">
+      <descr lang="en">title of the current page</descr>
+      <descr lang="de">Titel der aktuellen Seite</descr>
+    </attr>
+    <attr rtexpr="true" required="false" name="key" type="String">
+      <descr lang="en">fetches the title for this page from the current JSTL resource bundle (same as JSTL's &lt;fmt:message../&gt; for example)</descr>
+      <descr lang="de">Holt den Titel der Seite aus dem aktuellen JSTL Resource Bundle, das z.B. auch von JSTLs &lt;fmt:message../&gt; verwendet wird</descr>
+    </attr>
+    <attr rtexpr="true" required="false" name="clear" type="boolean">
+      <descr lang="en">clears the stack before adding this page</descr>
+      <descr lang="de">Leert den Stack bevor diese Seite hinzugefügt wird</descr>
+    </attr>
+    <attr type="String" rtexpr="false" required="false" name="varStatus">
+      <descr lang="en">Name of the JSTL LoopTagStatus Object. See details in JSTL documentation</descr>
+      <descr lang="de">Name der JSTL LoopTagStatus Variablen. Diese Variable enthält Properties zum aktuellen Iterationsdurchlauf,
+        wie <tt>index</tt> (0-basiserter Zaehler), <tt>count</tt> (1-basierter Zaehler), <tt>first, last</tt> boolean flags fuer ersten und letzten Durchlauf
+        und einige andere. Details finden Sie in der JSTL Dokumentation</descr>
+    </attr>
+    <attr type='String' rtexpr='false' required='false' name='bundle'>
+      <descr lang='en'>ResourceBundle for i18n replacements</descr>
+      <descr lang='de'>ResourceBundle für i18n Ersetzungen</descr>
+    </attr>
+    <example><![CDATA[
+      <div class="pagestack">
+        You are here:
+        <wcf:pageStack var="p" varStatus="status" page="thispage.jsp" title="This Page Title">
+          <c:if test="${not status.first}">
+            &gt;
+          </c:if>
+          <a href="<c:out value='${p.page}'/>"><c:out value="${p.title}"/></a>
+        </wcf:pageStack>
+      </div>
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="JSP" class="com.tonbeller.wcf.wizard.WizardComponentTag" name="wizard">
+    <descr lang="en">Creates a wizard component. &renderable.en;</descr>
+    <descr lang="de">Erzeugt eine Wizard Komponente. &renderable.de;</descr>
+    &id.attr;
+    &visible.attr;
+    &validate.attr;
+    &role.attr;
+    <example><![CDATA[
+<wcf:wizard id="wizard01">
+  <wcf:form .../>
+  <wcf:form .../>
+  <wcf:form .../>
+</wcf:wizard>
+
+<wcf:render ref="#{wizard01}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true"/>
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="empty" class="com.tonbeller.wcf.charset.ContentTypeTag" name="contentType">
+    <descr lang="en">
+      sets the content-type of the response and appends ";charset=xxx" where
+      xxx is the charset that is configured in the CharsetFilter.
+    </descr>
+    <descr lang="de">
+      setzt den content-type der response und haengt ";charset=xxx" an, 
+      wobe xxx der charset des CharsetFilter ist.
+    </descr>
+    <attr type='String' rtexpr='true' required='true' name='type'>
+      <descr lang='en'>mime type, e.g. "text/html"</descr>
+      <descr lang='de'>mime type, e.g. "text/html"</descr>
+    </attr>
+    <example><![CDATA[
+<wcf:contentType type="text/html"/>
+will set the content-type to 
+  "text/hmtl; charset=UTF-8"
+if UTF-8 is configured in the CharsetFilter.
+    ]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
+  <tag body="empty" class="com.tonbeller.wcf.charset.CharsetTag" name="charset">
+    <descr lang="en">
+      prints the character encoding configured in the charset filter.
+    </descr>
+    <descr lang="de">
+      prints the character encoding configured in the charset filter.
+    </descr>
+    <example><![CDATA[
+<meta http-equiv=Content-Type content="text/html; charset=<wcf:charset/>">
+    ]]></example>
+  </tag>
+
+</taglib>

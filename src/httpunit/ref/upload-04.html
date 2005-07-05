@@ -1,0 +1,89 @@
+
+
+
+
+<html>
+<head>
+<title>WCF Testpage</title>
+<link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
+</head>
+<body bgcolor=white>
+
+
+
+
+
+<h2>WCF Test File Upload</h2>
+
+<form action="uploaddemo.jsp" method="post" id="form01" enctype="multipart/form-data">
+<!-- DOCTYPE xform SYSTEM "wcf.dtd" --><table id="formcomp" cellpadding="2" cellspacing="0" border="1">
+  <tr><th class="xform-title" colspan="2"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><th class="xform-title" align="left">Upload Form Demo</th><td class="xform-close-button" align="right">
+    <input alt="Cancel" title="Cancel" name="cancel" src="/wcf/wcf/form/cancel.png" type="image" id="cancel">
+  </td></tr></table></th></tr>
+
+  
+  <tr><td class="xform-label">Text:</td><td class="xform-input"><input value="some text" name="string" type="text" id="string" title="please enter some text"></td></tr>
+  <tr><td class="xform-label">Integer:</td><td class="xform-input"><input value="12" name="int" type="text" id="int" title="please enter an integer"></td></tr>
+  <tr><td class="xform-label">Decimal number:</td><td class="xform-input"><input value="123.46" name="double" type="text" id="double" title="please enter a decimal number"></td></tr>
+  <tr><td class="xform-label">Date:</td><td class="xform-input"><input value="12/31/2003" name="date" type="text" id="date" title="please enter a date"></td></tr>
+
+  
+  
+
+  
+  <tr><td class="xform-label">Password:</td><td class="xform-input"><input value="xxxx" name="password" type="password" id="password"></td></tr>
+
+  
+  <tr><td class="xform-both" colspan="2">Text area:<br><textarea class="xform-textarea" cols="40" rows="7" name="textarea" id="textarea">Form Button pressed!</textarea></td></tr>
+
+  <tr><td class="xform-label">check box 1</td><td class="xform-input"><input value="x" name="checkbox1" type="checkbox" id="checkbox1" checked><input value="x" name="checkbox1.valid" type="hidden"></td></tr>
+  <tr><td class="xform-label">check box 2</td><td class="xform-input"><input value="x" name="checkbox2" type="checkbox" id="checkbox2" checked><input value="x" name="checkbox2.valid" type="hidden"></td></tr>
+
+  
+  <tr><td class="xform-label">List, single selection:</td><td class="xform-input"><select name="list1" id="list1">
+    <option value="list1.1" selected>list item 1</option>
+    <option value="list1.2">list item 2</option>
+    <option value="list1.3">list item 3</option>
+    <option value="list1.4">list item 4</option>
+  </select><input value="x" name="list1.valid" type="hidden"></td></tr>
+
+
+  
+  <tr><td class="xform-label">List, multiple selection:</td><td class="xform-input"><select multiple name="listN" id="listN">
+    <option value="listN.1" selected>list item 1</option>
+    <option value="listN.2">list item 2</option>
+    <option value="listN.3">list item 3</option>
+    <option value="listN.4" selected>list item 4</option>
+  </select><input value="x" name="listN.valid" type="hidden"></td></tr>
+
+
+  
+  <tr><td class="xform-label">List, dynamic content:</td><td class="xform-input"><select name="listbox" id="listbox"><option value="wcf83cacf3f.0" selected>item 1</option><option value="wcf83cacf3f.1">item 2</option><option value="wcf83cacf3f.2">item 3</option><option value="wcf83cacf3f.3">item 4</option><option value="wcf83cacf3f.4">item 5</option><option value="wcf83cacf3f.5">item 6</option><option value="wcf83cacf3f.6">item 7</option><option value="wcf83cacf3f.7">item 8</option><option value="wcf83cacf3f.8">item 9</option><option value="wcf83cacf3f.9">item 10</option></select><input value="x" name="listbox.valid" type="hidden"></td></tr>
+
+  <tr><td class="xform-label">This is a label</td><td class="xform-input">value attribute goes here</td></tr>
+  <tr><td class="xform-label">Dynamic label (content from TextArea)</td><td class="xform-input">Form Button pressed!</td></tr>
+
+  <tr><td class="xform-label">radio button 1</td><td class="xform-input"><input value="radio1" name="group1" type="radio" id="radio1" checked><input value="x" name="radio1.valid" type="hidden"></td></tr>
+  <tr><td class="xform-label">radio button 2</td><td class="xform-input"><input value="radio2" name="group1" type="radio" id="radio2"><input value="x" name="radio2.valid" type="hidden"></td></tr>
+
+  <tr><td class="xform-label">text file upload (&lt; 100k)</td><td class="xform-input"><input value="" name="fileUpload1" type="file" maxlength="100000" accept="text/*" id="fileUpload1"></td></tr>
+
+  <tr><td align="right" colspan="2"><div align="right">
+    <input value="Cancel" name="cancel" type="submit" id="cancel">
+    <input value="Revert" name="revert" type="submit" id="revert">
+    <input value="Validate" name="validate" type="submit" id="validate">
+    <input value="OK" name="ok" type="submit" id="ok">
+  </div></td></tr>
+
+</table>
+</form>
+
+<pre id='uploadInfo'>
+No file received
+</pre>
+
+<p><a href="index.jsp">back to index</a>
+<br><a href="wcf/showxml.jsp?render=formcomp&amp;iehack=file.xml">show xml</a>
+
+</body>
+</html>

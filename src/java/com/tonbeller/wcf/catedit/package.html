@@ -1,0 +1,131 @@
+<html>
+<body>
+
+An editor that allows the user to assign items to categories. An item can belong to exactly one category.
+The order of items in a category may be significant. If it is, the user will be able to change the order
+of the items, otherwise she will not.
+
+<p>
+Example: Columns, Rows, Filters are categories, Measures, Products, Regions, Marketing and 
+Material are items that may be assigned to one of the categories. In the category Filters the order of items
+is not significant, in the other categories the order is significant.
+
+<p>
+<h2>Navigator</h2>
+<table cellpadding="1" cellspacing="0" border="1">
+  <tr>
+    <th align="left" class="navi-axis">
+      <img src="doc-files/column.png">
+      Columns
+    </th>
+  </tr>
+
+  <tr>
+    <td class="navi-hier">
+      <div style="margin-left: 1em">
+        <img src="doc-files/filter.png">
+        <img src="doc-files/row.png">
+        <img src="doc-files/move-down.png">
+        Measures
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="navi-hier">
+    <div style="margin-left: 1em">
+      <img src="doc-files/filter.png">
+      <img src="doc-files/row.png">
+      <img src="doc-files/move-up.png">
+      Products
+    </div>
+    </td>
+  </tr>
+  
+  <tr>
+    <th align="left" class="navi-axis">
+      <img src="doc-files/row.png">
+      Rows
+    </th>
+  </tr>
+
+  <tr>
+    <td class="navi-hier">
+    <div style="margin-left: 1em">
+      <img src="doc-files/filter.png">
+      <img src="doc-files/column.png">
+      <img src="doc-files/empty.png">
+      Regions
+    </div>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="left" class="navi-axis">
+      <img src="doc-files/filter.png">
+      Filters
+    </th>
+  </tr>
+  <tr>
+    <td class="navi-hier">
+    <div style="margin-left: 1em">
+      <img src="doc-files/column.png">
+      <img src="doc-files/row.png">
+      Marketing
+    </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="navi-hier">
+    <div style="margin-left: 1em">
+      <img src="doc-files/column.png">
+      <img src="doc-files/row.png">
+      Material
+    </div>
+    </td>
+  </tr>
+  
+
+</table>
+
+<h2>Classdiagram</h2>
+<img src="doc-files/classdiagram.gif">
+
+<h2>DOM Tree Example</h2>
+
+<pre>
+&lt;cat-edit&gt;
+  &lt;cat-category icon="column.png" name="Spalten"&gt;
+    &lt;cat-item name="Products"&gt;
+      &lt;cat-button icon="row.png" id="wcf.catbutton.0"/&gt;
+      &lt;cat-button icon="filter.png" id="wcf.catbutton.1"/&gt;
+      &lt;move-button/&gt;
+      &lt;move-button move="fwd" id="wcf.catbutton.2"/&gt;
+    &lt;/cat-item&gt;
+    &lt;cat-item name="Region"&gt;
+      &lt;cat-button icon="row.png" id="wcf.catbutton.3"/&gt;
+      &lt;cat-button icon="filter.png" id="wcf.catbutton.4"/&gt;
+      &lt;move-button move="bwd" id="wcf.catbutton.5"/&gt;
+      &lt;move-button/&gt;
+    &lt;/cat-item&gt;
+  &lt;/cat-category&gt;
+  &lt;cat-category icon="row.png" name="Zeilen"&gt;
+    &lt;cat-item name="Measures"&gt;
+      &lt;cat-button icon="column.png" id="wcf.catbutton.6"/&gt;
+      &lt;cat-button icon="filter.png" id="wcf.catbutton.7"/&gt;
+    &lt;/cat-item&gt;
+  &lt;/cat-category&gt;
+  &lt;cat-category icon="filter.png" name="Filter"&gt;
+    &lt;cat-item name="Region"&gt;
+      &lt;cat-button icon="column.png" id="wcf.catbutton.8"/&gt;
+      &lt;cat-button icon="row.png" id="wcf.catbutton.9"/&gt;
+    &lt;/cat-item&gt;
+  &lt;/cat-category&gt;
+  &lt;button id="wcf.navigator.ok" label="OK"/&gt;
+  &lt;button id="wcf.navigator.cancel" label="Cancel"/&gt;
+&lt;/cat-edit&gt;
+</pre>
+
+</body>
+</html>

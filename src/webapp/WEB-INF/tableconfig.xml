@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<xform style="twocolumn">
+
+  <checkBox id="$id.pagable" modelReference="pageable" label="Enable paging"/>
+  <textField id="$id.pagesize" type="int" modelReference="pageSize"  label="Page size" value="" title="Rows / page"/>
+  <listBox1 id="$id.selmode" type="int" modelReference="selectionModel.mode" label="Selection mode:">
+    <listItem id="sel-0" value="0" label="no selection"/>
+    <listItem id="sel-1" value="1" label="single selection"/>
+    <listItem id="sel-N" value="2" label="multiple selection"/>
+  </listBox1>
+
+  <checkBox id="$id.closable" modelReference="closable" label="Close Button"/>
+
+  <buttons>
+    <button id="$id.cancel" label="Back to form demo" forward="formdemo.jsp" handler="com.tonbeller.wcf.form.ButtonHandler"/>
+    <button id="$id.ok" action="validate" label="Apply" handler="com.tonbeller.wcf.form.ButtonHandler"/>
+  </buttons>
+
+</xform>

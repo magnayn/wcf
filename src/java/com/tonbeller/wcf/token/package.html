@@ -1,0 +1,20 @@
+<html>
+<body>
+
+Synchronizes page flow using a token.
+<p>
+
+The &lt;wcf:token/&gt; tag creates a hidden input field that creates a http
+parameter with a random number (token) as its value.
+<p>
+On every request the token filter checks if the http parameter is
+there and if it holds the random number of the previous page. If so,
+the page is processed normally, if not, the user is redirected to
+the previous page w/o any http parameters.
+<p>
+This way, users can not change the page flow using the browsers back button. If
+they try, they will be redirected to the current page w/o any processing of http
+parameters (so a form is not submitted twice).
+
+</body>
+</html>

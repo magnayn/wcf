@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xform style="twocolumn">
+  <title value="fmt:i18ntest.title"/>
+  <text>fmt:i18ntest.text</text>
+  <buttons>
+    <button label="fmt:i18ntest.button"/>
+  </buttons>
+</xform>

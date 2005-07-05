@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form method="post" action="toolbdemo.jsp">
+<table border="0" cellspacing="1" cellpadding="0">
+<tr>
+<td>
+<input type="image" src="/wcf/wcf/toolbar/button-down.png" border="0" title="test label"/>
+</td>
+<td/>
+<td>
+<input type="image" src="/wcf/wcf/toolbar/button-up.png" border="0" title=""/>
+</td>
+<td>
+<input type="image" src="/wcf/wcf/toolbar/button-down.png" border="0" title=""/>
+</td>
+<td/>
+<td>
+<input type="image" src="/wcf/wcf/toolbar/button-down.png" border="0" title=""/>
+</td>
+<td>
+<a>
+<img src="/wcf/wcf/toolbar/button-up.png" border="0" title=""/>
+</a>
+</td>
+<td>
+<input type="image" src="/wcf/wcf/toolbar/button-up.png" border="0" title="!tomcat"/>
+</td>
+</tr>
+</table>
+</form>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form method="post" action="wizard-btn.jsp">
+<h3>Wizard with several pages</h3>
+<table border="1" cellspacing="0" cellpadding="2">
+<tr>
+<th colspan="2" class="xform-title">Button Visibility Test</th>
+</tr>
+<tr>
+<td class="xform-label">wizard page content goes here...</td>
+<td class="xform-input"/>
+</tr>
+<tr>
+<td colspan="2" align="right">
+<input type="submit"/> <input type="submit"/> <input type="submit"/>
+</td>
+</tr>
+</table>
+<h3>Wizard with several pages (finish button only on last page)</h3>
+<table border="1" cellspacing="0" cellpadding="2">
+<tr>
+<th colspan="2" class="xform-title">Button Visibility Test</th>
+</tr>
+<tr>
+<td class="xform-label">wizard page content goes here...</td>
+<td class="xform-input"/>
+</tr>
+<tr>
+<td colspan="2" align="right">
+<input type="submit"/> <input type="submit"/>
+</td>
+</tr>
+</table>
+<h3>"Wizard" with a single page</h3>
+<table border="1" cellspacing="0" cellpadding="2">
+<tr>
+<th colspan="2" class="xform-title">Button Visibility Test</th>
+</tr>
+<tr>
+<td class="xform-label">wizard page content goes here...</td>
+<td class="xform-input"/>
+</tr>
+<tr>
+<td colspan="2" align="right">
+<input type="submit"/> <input type="submit"/>
+</td>
+</tr>
+</table>
+</form>

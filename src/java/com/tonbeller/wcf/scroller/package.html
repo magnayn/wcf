@@ -1,0 +1,35 @@
+Keeping the scroll position in the browser between requests.
+
+<p><b>Usage of this package</b></p>
+
+A jsp page typically consists of one or more HTML
+forms that contain WCF components like trees and tables.
+Some user actions like expanding a tree node or sorting a table
+column do support keeping the current scroll position.
+<p>
+WCF demo pages contain the necessary code. For new jsp
+pages take the following steps
+
+<ol>
+<li>Include a reference to the scroller java script file (/wcf/scroller.js)
+<li>Include the &lt;wcf:scroller/&gt; tag inside the HTML form
+    that contains the components. This will generate additional
+    hidden fields which are required by the java script code
+<li>
+</ol>
+
+For new request handlers that require keeping the position add the
+following function call to the handleRequest() method of your handler
+
+<pre>
+  public void handleRequest(RequestContext context) {
+    Scroller.enableScroller(context);
+    ...
+  }</pre>
+
+This ensures that the browser will keep it's scroll position
+after the request is finished.
+
+<p>
+
+

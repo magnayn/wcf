@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form method="post" action="treedemo2.jsp">
+<table cellpadding="1" border="1" cellspacing="0">
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/> A ...</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input border="0" type="image" src="/wcf/wcf/tree/collapse.png"/> F ...</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/collapse.png"/> F</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/> F[0] ...</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input border="0" type="image" src="/wcf/wcf/tree/collapse.png"/> F[5] ...</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/> F[5]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/> F[6]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/> F[7]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/> F[8]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/> F[9]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/> F[10] ...</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/> F[15] ...</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/> G</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/> H</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/> I</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/> J</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/> K ...</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/> P ...</td>
+</tr>
+</table>
+</form>

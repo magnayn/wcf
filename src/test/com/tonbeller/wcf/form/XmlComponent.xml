@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<node level="0" handler="com.tonbeller.wcf.form.TestNodeHandler">
+  <other/>
+  <node level="1" handler="com.tonbeller.wcf.form.TestNodeHandler">
+    <other>
+      <node level="2" handler="com.tonbeller.wcf.form.TestNodeHandler"/>
+    </other>
+  </node>
+  <other/>
+</node>

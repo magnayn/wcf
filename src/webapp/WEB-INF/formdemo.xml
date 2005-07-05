@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- DOCTYPE xform SYSTEM "wcf.dtd" -->
+
+<!-- required input see multicolumn.xml -->
+
+<xform style="twocolumn">
+  <title value="Form Demo">
+    <imgButton id="cancel" src="wcf/form/cancel.png" action="revert" label="Cancel" forward="tabledemo.jsp" actionReference="none"/>
+  </title>
+
+  <!-- Text control -->
+  <textField id="string" type="string" modelReference="stringValue" label="Text:"    value="" title="please enter some text"/>
+  <textField id="int"    type="int"    modelReference="intValue"    label="Integer:" value="" title="please enter an integer"/>
+  <textField id="double" type="double" modelReference="doubleValue" label="Decimal number:"    value="" title="please enter a decimal number"/>
+  <textField id="date"   type="date"   modelReference="dateValue"   label="Date:"    value="" title="please enter a date"/>
+  <textField id="dateTime" type="dateTime"   modelReference="dateTimeValue"   label="Date/Time:"    value="" title="please enter a date/time"/>
+
+  <!--
+   The following field is visible to members of the tomcat role only.
+
+   The id of the field will be constructed from the id of this form (supplied
+   to the render tag via its renderId attribute) and the string ".tomcat".
+   So if this form is rendered with a renderId="renderId001" then the id of
+   this field would be "renderId001.tomcat". This is useful for testing,
+   where random generated ids may cause difficulties.
+  -->
+  <textField role="tomcat" id="$id.tomcat" type="string" modelReference="stringValue" label="Tomcat only"/>
+
+  <!-- Password control, visible to all but members of tomcat role -->
+  <password role="!tomcat" id="password" type="string" modelReference="password" label="Password:" value=""/>
+
+  <!--
+    Text area
+    The content of this field will not be stored in bookmarks
+  -->
+  <textArea id="textarea" rows="7" cols="40" bookmark="false" type="string" modelReference="textArea" label="Text area:" value="This is a text area"/>
+
+  <checkBox id="checkbox1" modelReference="checkBox1" label="check box 1"/>
+  <checkBox id="checkbox2" modelReference="checkBox2" label="check box 2"/>
+
+  <!-- ListBox, single selection -->
+  <listBox1 id="list1" type="int" modelReference="list1" label="List, single selection:">
+    <listItem id="list1.1" value="1" label="list item 1"/>
+    <listItem id="list1.2" value="2" label="list item 2"/>
+    <listItem id="list1.3" value="3" label="list item 3"/>
+    <listItem id="list1.4" value="4" label="list item 4"/>
+  </listBox1>
+
+
+  <!-- ListBox, multiple selection -->
+  <listBoxN id="listN" type="int" modelReference="listN" label="List, multiple selection:">
+    <listItem id="listN.1" value="1" label="list item 1"/>
+    <listItem id="listN.2" value="2" label="list item 2"/>
+    <listItem id="listN.3" value="3" label="list item 3"/>
+    <listItem id="listN.4" value="4" label="list item 4"/>
+  </listBoxN>
+
+
+  <!-- ListBox, single selection, dynamic item list -->
+  <listBox1 id="listbox" type="int" modelReference="dynList" label="List, dynamic content:" handler="com.tonbeller.wcf.form.TestItems"/>
+
+  <label label="This is a label" value="value attribute goes here"/>
+  <label label="Your password: " modelReference="password" default-value="Enter a password above"/>
+
+  <radioButton id="radio1" modelReference="radioButton1" group-id="group1" label="radio button 1"/>
+  <radioButton id="radio2" modelReference="radioButton2" group-id="group1" label="radio button 2"/>
+
+  <buttons>
+    <button id="$id.cancel" action="revert" label="Cancel" forward="tabledemo.jsp" actionReference="testActionReference"/>
+    <button id="$id.revert" action="revert" label="Revert" actionReference="testActionReference"/>
+    <button id="$id.validate" action="validate" label="Validate" actionReference="testActionReference"/>
+    <button id="$id.ok" action="validate" label="OK" forward="tabledemo.jsp" actionReference="testActionReference"/>
+  </buttons>
+
+</xform>

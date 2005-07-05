@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<listBox1 id="lb" modelReference="intValue" type="int">
+  <listItem id="i1" selected="true" value="1"/>
+  <listItem id="i2" value="2"/>
+  <listItem id="i3" value="3"/>
+</listBox1>

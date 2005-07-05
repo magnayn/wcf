@@ -1,0 +1,34 @@
+
+
+
+<html>
+<head>
+<title>Move Tree Nodes via Cut/Paste</title>
+<link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
+<link rel="stylesheet" type="text/css" href="wcf/tree/xtree.css">
+
+<script src="wcf/scroller.js" language="JavaScript1.2" type="text/javascript"></script>
+
+</head>
+<body bgcolor=white>
+
+<h2>Move Tree Nodes via Cut/Paste</h2>
+
+<form action="treedemo3.jsp" method="post" id="form01">
+
+<input type="hidden" name="wcfXCoord" value="0"/><input type="hidden" name="wcfYCoord" value="0"/>
+
+
+
+
+
+
+
+<table cellspacing="0" id="tree03" border="1" cellpadding="1"><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 0em"><input value="x" name="wcf1c95f05d" type="checkbox" id="wcf1c95f05d"><input value="x" name="wcf1c95f05d.valid" type="hidden"><input height="9" width="9" src="/wcf/wcf/tree/collapse.png" name="wcff581d922.collapse" type="image" border="0"> A</div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 1em"><input value="x" name="wcf91470692" type="checkbox" id="wcf91470692"><input value="x" name="wcf91470692.valid" type="hidden"><input height="9" width="9" src="/wcf/wcf/tree/collapse.png" name="wcf4fc68086.collapse" type="image" border="0"> A[0]</div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 2em"><input value="x" name="wcfa0b4a144" type="checkbox" id="wcfa0b4a144"><input value="x" name="wcfa0b4a144.valid" type="hidden"><input height="9" width="9" src="/wcf/wcf/tree/collapse.png" name="wcfaa543aa4.collapse" type="image" border="0"> A[0][0]</div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 3em"><input value="x" name="wcf3d82d48e" type="checkbox" id="wcf3d82d48e"><input value="x" name="wcf3d82d48e.valid" type="hidden"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf7974b16c.expand" type="image" border="0"><input title="Paste before" height="9" width="9" src="/wcf/wcf/changeorder/paste-before.png" name="wcf93a5a9bf" type="image" border="0"> A[0][0][0]</div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 3em"><input value="x" name="wcf14a24eed" type="checkbox" id="wcf14a24eed"><input value="x" name="wcf14a24eed.valid" type="hidden"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf4a4f4894.expand" type="image" border="0"><input title="Paste before" height="9" width="9" src="/wcf/wcf/changeorder/paste-before.png" name="wcfa4d09d84" type="image" border="0"> A[0][0][1]</div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 3em"><input value="x" name="wcf4b86b7ae" type="checkbox" id="wcf4b86b7ae"><input value="x" name="wcf4b86b7ae.valid" type="hidden"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf864f9743.expand" type="image" border="0"><input title="Deselect" height="9" width="9" src="/wcf/wcf/changeorder/uncut.png" name="wcf1a474b74" type="image" border="0"> A[0][0][2]</div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 3em"><input value="x" name="wcff0414d92" type="checkbox" id="wcff0414d92"><input value="x" name="wcff0414d92.valid" type="hidden"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf2a829d5c.expand" type="image" border="0"><input title="Paste after" height="9" width="9" src="/wcf/wcf/changeorder/paste-after.png" name="wcf6882654c" type="image" border="0"> A[0][0][3]</div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 3em"><input value="x" name="wcf31521510" type="checkbox" id="wcf31521510"><input value="x" name="wcf31521510.valid" type="hidden"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf8628152d.expand" type="image" border="0"><input title="Paste after" height="9" width="9" src="/wcf/wcf/changeorder/paste-after.png" name="wcfa62355bf" type="image" border="0"> A[0][0][4]</div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 2em"><input value="x" name="wcf73ce3176" type="checkbox" id="wcf73ce3176"><input value="x" name="wcf73ce3176.valid" type="hidden"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcfe15e939c.expand" type="image" border="0"> A[0][1]</div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 2em"><input value="x" name="wcf43b9c4f1" type="checkbox" id="wcf43b9c4f1"><input value="x" name="wcf43b9c4f1.valid" type="hidden"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf78f516dd.expand" type="image" border="0"> A[0][2]</div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 1em"><input value="x" name="wcf2e6f08cd" type="checkbox" id="wcf2e6f08cd"><input value="x" name="wcf2e6f08cd.valid" type="hidden"><input height="9" width="9" src="/wcf/wcf/tree/collapse.png" name="wcf970109f7.collapse" type="image" border="0"> A[1]</div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 2em"><input value="x" name="wcfa4c48c95" type="checkbox" id="wcfa4c48c95"><input value="x" name="wcfa4c48c95.valid" type="hidden"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf9c1295a9.expand" type="image" border="0"> A[1][0]</div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 2em"><input value="x" name="wcf964396cc" type="checkbox" id="wcf964396cc"><input value="x" name="wcf964396cc.valid" type="hidden"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf1046227f.expand" type="image" border="0"> A[1][1]</div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 2em"><input value="x" name="wcf2c3c56ec" type="checkbox" id="wcf2c3c56ec"><input value="x" name="wcf2c3c56ec.valid" type="hidden"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf81dbd2d.expand" type="image" border="0"> A[1][2]</div></td></tr></table>
+
+</form>
+
+<p><a href="index.jsp">back to index</a>
+<br><a href="wcf/showxml.jsp?render=tree03&amp;iehack=file.xml">show xml</a>
+</body>
+</html>

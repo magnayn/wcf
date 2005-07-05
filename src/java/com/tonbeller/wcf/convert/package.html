@@ -1,0 +1,30 @@
+<html>
+<body>
+
+Present and update values of java bean properties.
+
+A Converter supports two different <code>convert()</code> methods:
+<ul>
+<li>fill the values of html form elements from bean properties for presentation</li>
+<li>update the bean properties from user input, i.e. http request parameters </li>
+</ul>
+
+
+<h4>Formatting values for display</h4>
+
+Values from bean properties are formatted, using the
+users preferred locale. The formatted values are stored
+in a DOM tree for display to the user.
+
+<p>
+The DOM tree must conform to the xoplon DTD.
+
+
+
+<h4>Parsing user input</h4>
+
+HTTP paramters (i.e. user input) is parsed and the values are
+stored into bean properties.
+
+</body>
+</html>

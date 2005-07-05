@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form method="post" action="formdemo.jsp"> <table border="1" cellspacing="0" cellpadding="2">
+<tr>
+<th colspan="2" class="xform-title">
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr>
+<th align="left" class="xform-title">Form Demo</th>
+<td align="right" class="xform-close-button">
+<input type="image" src="/wcf/wcf/form/cancel.png" title="Cancel" alt="Cancel"/> </td>
+</tr>
+</table>
+</th>
+</tr>
+<tr>
+<td class="xform-label">Text:</td>
+<td class="xform-input">
+<input title="please enter some text" type="text" value="--ÄÖÜß--"/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">Integer:</td>
+<td class="xform-input">
+<input title="please enter an integer" type="text" value="12"/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">Decimal number:</td>
+<td class="xform-input">
+<input title="please enter a decimal number" type="text" value="123.46"/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">Date:</td>
+<td class="xform-input"/>
+</tr>
+<tr>
+<td class="xform-label">Date/Time:</td>
+<td class="xform-input"/>
+</tr>
+<tr>
+<td class="xform-label">Password:</td>
+<td class="xform-input">
+<input type="password" value="xäöüÄÖÜß"/>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="xform-both">Text area:<br/>
+<textarea rows="7" cols="40" class="xform-textarea">Form Button pressed!</textarea>
+</td>
+</tr>
+<tr>
+<td class="xform-label">check box 1</td>
+<td class="xform-input">
+<input checked="checked" type="checkbox" value="x"/>
+<input type="hidden" value="x"/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">check box 2</td>
+<td class="xform-input">
+<input checked="checked" type="checkbox" value="x"/>
+<input type="hidden" value="x"/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">List, single selection:</td>
+<td class="xform-input">
+<select>
+<option selected="selected">list item 1</option>
+<option>list item 2</option>
+<option>list item 3</option>
+<option>list item 4</option>
+</select>
+<input type="hidden" value="x"/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">List, multiple selection:</td>
+<td class="xform-input">
+<select multiple="multiple">
+<option selected="selected">list item 1</option>
+<option>list item 2</option>
+<option>list item 3</option>
+<option selected="selected">list item 4</option>
+</select>
+<input type="hidden" value="x"/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">List, dynamic content:</td>
+<td class="xform-input">
+<select>
+<option selected="selected">item 1</option>
+<option>item 2</option>
+<option>item 3</option>
+<option>item 4</option>
+<option>item 5</option>
+<option>item 6</option>
+<option>item 7</option>
+<option>item 8</option>
+<option>item 9</option>
+<option>item 10</option>
+</select>
+<input type="hidden" value="x"/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">This is a label</td>
+<td class="xform-input">value attribute goes here</td>
+</tr>
+<tr>
+<td class="xform-label">Your password:</td>
+<td class="xform-input">xäöüÄÖÜß</td>
+</tr>
+<tr>
+<td class="xform-label">radio button 1</td>
+<td class="xform-input">
+<input checked="checked" type="radio" value="radio1"/>
+<input type="hidden" value="x"/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">radio button 2</td>
+<td class="xform-input">
+<input type="radio" value="radio2"/>
+<input type="hidden" value="x"/>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right">
+<div align="right">
+<input type="submit" value="Cancel"/> <input type="submit" value="Revert"/> <input type="submit" value="Validate"/> <input type="submit" value="OK"/>
+</div>
+</td>
+</tr>
+</table>
+</form>

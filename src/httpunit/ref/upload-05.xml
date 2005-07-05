@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pre>File received: uploadtest.txt
+Content type: text/plain
+In Memory: true
+
+abcdefghijklmnopqrstuvwxyz
+äöüßÄÖÜ
+1234567890
+
+</pre>

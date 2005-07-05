@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<xform>
+  <node>
+    <param name="param1" attr="attr1"/>
+  </node>
+</xform>

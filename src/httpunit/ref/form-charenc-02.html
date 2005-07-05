@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+<body bgcolor="white">
+<h2>Character Encoding</h2>
+
+
+<form method="post" action="charenc.jsp" id="form01">
+fmt:message: An english text.<br />
+Request Encoding: utf-8<br />
+Filter Encoding: utf-8<br />
+Umlaute: &uuml;<br />
+Parameter: ????????????Ÿš?????<br />
+<TEXTAREA name="text" rows="10" cols="20">
+ru-abc = &#1092;&#1080;&#1089;
+gr-abc = &#945;&#946;&#947;
+ysp = &#376;&#353;&#968;
+arrow = &#8592;
+uuml = &uuml;&Uuml;
+</TEXTAREA>
+<p />
+<INPUT type="submit" id="submit" name="submit"/>
+</form>
+
+<p />
+URLEncoder.encode(..., "<a href="charenc.jsp?text=%3F%3F%3F%3F%C4%D6%DC%3F%3F%3F%3F">ISO-8859-1</a>")
+<br />
+URLEncoder.encode(..., "<a id="a02" href="charenc.jsp?text=%E2%82%AC%CE%B1%CE%B2%CE%B3%C3%84%C3%96%C3%9C%C5%B8%C5%A1%CF%88%E2%86%90">UTF-8</a>")
+
+<p/>
+Header:
+<pre>
+user-agent=httpunit/1.4
+accept-language=en-US
+cookie=JSESSIONID=F20441EECE450C09FA55B8B929D05C6B
+accept-encoding=gzip
+accept-charset=ISO-8859-1,utf-8;q=0.7,*;q=0.7
+referer=http://localhost:8080/wcf/charenc.jsp
+cache-control=no-cache
+pragma=no-cache
+host=localhost:8080
+accept=text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+connection=keep-alive
+
+</pre>
+
+</body>
+</html>

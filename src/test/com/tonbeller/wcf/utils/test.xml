@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<node lang="fmt:test">
+  <tt>fmt:test</tt>
+  <other/>
+  <node lang="fmt:test">
+    <other lang="fmt:test">
+      <node lang="fmt:test" />
+      <tt>fmt:test</tt>
+    </other>
+  </node>
+  <other/>
+</node>

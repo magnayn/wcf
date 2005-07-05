@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form method="post" action="treedemo.jsp">
+<table cellpadding="1" border="1" cellspacing="0">
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/>
+<img src="/wcf/wcf/changeorder/move-empty.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-down.png"/> A <input type="image" border="0" src="/wcf/wcf/tree/delete.png"/>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-up.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-down.png"/> B</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-up.png"/>
+<img src="/wcf/wcf/changeorder/move-empty.png"/> C</td>
+</tr>
+</table>
+</form>

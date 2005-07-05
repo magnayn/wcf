@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blockquote>
+<ul>
+<li>a clazz-odd odd null</li>
+<li>b clazz-even even null</li>
+<li>c clazz-odd odd null</li>
+</ul>
+<p/> <a>Hier bitte ein Link</a> Ein Sort Button: <input border="0" src="/wcf/wcf/table/sort-dn.png" type="image"/> <p/>Not in Excel Mode: OK. <p/>Hier bitte kein Link Kein Sort Button: <p/>We are in Excel Mode: OK.</blockquote>

@@ -1,0 +1,39 @@
+<html>
+<body>
+
+Allows to select elements via checkboxes or radiobuttons. The selection is evaluated when
+validate() is called.
+
+<p>
+Usage pattern
+<pre>
+
+class MyComponent extends ComponentSupport {
+
+  selectionMgr = new SelectionMgr();
+  
+  public Document render(RequestContext context) throws Exception {
+    Document document = XmlUtils.createDocument();
+    selectionMgr.startRendering(context);
+    for (int nodeIndex = 0; nodeIndex &lt; nodeCount; nodeIndex++) {
+      Object node = ...
+      Element elem = renderElement(node);
+      selectionMgr.renderButton(element, node);
+    }
+    selectionMgr.stopRendering();
+    return document;
+  }
+  
+
+  public boolean validate(RequestContext context) {
+    selectionMgr.validate(context);
+    ...
+  }
+
+}
+</pre>
+
+
+
+</body>
+</html>

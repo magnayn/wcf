@@ -1,0 +1,41 @@
+
+
+<html>
+<head>
+<title>WCF Tree Test</title>
+  <link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
+  <link rel="stylesheet" type="text/css" href="wcf/tree/xtree.css">
+</head>
+<body bgcolor=white>
+
+<h2>WCF TreeForm Test</h2>
+A Form containing a tree component.
+<p>
+
+
+
+
+<form action="treeform.jsp" method="post" id="form01">
+  <!-- DOCTYPE xform SYSTEM "wcf.dtd" --><table id="treeform" cellpadding="2" cellspacing="0" border="1">
+  <tr><th class="xform-title" colspan="2"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><th class="xform-title" align="left">Treeform Demo</th><td class="xform-close-button" align="right">
+    <input alt="Cancel" title="Cancel" name="treeform.cancel" src="/wcf/wcf/form/cancel.png" type="image" id="treeform.cancel">
+  </td></tr></table></th></tr>
+
+  
+  <tr><td class="xform-label">Text:</td><td class="xform-input"><input value="some String" name="treeform.string" type="text" id="treeform.string" title="please enter some text"></td></tr>
+  <tr><td class="xform-label">Integer:</td><td class="xform-input"><input value="123" name="treeform.int" type="text" id="treeform.int" title="please enter an integer"></td></tr>
+
+  <tr><td class="xform-label">Tree:</td><td class="xform-input">
+    <table cellspacing="0" id="treeform.tree" border="0" cellpadding="0"><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 0em"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcfd080dcc0.expand" type="image" border="0"> <a href="?token=a3e93890&wcf4e9a85c7=x">A</a></div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 0em"><input height="9" width="9" src="/wcf/wcf/tree/collapse.png" name="wcf27922283.collapse" type="image" border="0"> <a href="?token=a3e93890&wcfc3475838=x">B</a></div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 1em"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf40af6f9.expand" type="image" border="0"> <a href="?token=a3e93890&wcfd9b614b8=x">B[0]</a></div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 1em"><input height="9" width="9" src="/wcf/wcf/tree/collapse.png" name="wcf9cbe0d9f.collapse" type="image" border="0"> <a href="?token=a3e93890&wcff31b81ac=x">B[1]</a></div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 2em"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf12d7601f.expand" type="image" border="0"> <a href="?token=a3e93890&wcf1e29bf4c=x">B[1][0]</a></div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 2em"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf5841c458.expand" type="image" border="0"> <a href="?token=a3e93890&wcf93062e9a=x">B[1][1]</a></div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 2em"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcfbd41292.expand" type="image" border="0"> <a href="?token=a3e93890&wcf6c49b266=x">B[1][2]</a></div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 2em"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf10b06099.expand" type="image" border="0"> <a href="?token=a3e93890&wcfef5c5063=x">B[1][3]</a></div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 1em"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf9b6a8439.expand" type="image" border="0"> <a href="?token=a3e93890&wcf36d9f8c3=x">B[2]</a></div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 1em"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf9f6c41c3.expand" type="image" border="0"> <a href="?token=a3e93890&wcf54222431=x">B[3]</a></div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 0em"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf396068c7.expand" type="image" border="0"> <a href="?token=a3e93890&wcff2d58534=x">C</a></div></td></tr></table>
+  </td></tr>
+
+  <tr><td align="right" colspan="2"><div align="right">
+    <input value="OK" name="treeform.ok" type="submit" id="treeform.ok">
+    <input value="Cancel" name="treeform.cancel" type="submit" id="treeform.cancel">
+  </div></td></tr>
+
+</table>
+</form>
+
+</body>
+</html>

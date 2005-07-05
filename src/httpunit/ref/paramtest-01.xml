@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blockquote>P1: (T1.COL1 = 'a' AND T2.COL2 = 'b') <p/>P2: T.COL IS NULL <p/>pushParam(P2, 123) P2: T.COL = '123' After pushParam P2: T.COL IS NULL <p/>setParam(P2, 234) P2: T.COL = '234' <p/>No Links BBB <p/>With links (#{showParam} is undefined): <a>BBB</a>
+</blockquote>

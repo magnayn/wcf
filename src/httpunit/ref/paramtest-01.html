@@ -1,0 +1,64 @@
+
+
+
+<html>
+<head>
+  <title>Parameter Tests</title>
+  <link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
+  <link rel="stylesheet" type="text/css" href="wcf/tree/xtree.css">
+</head>
+<body bgcolor=white>
+
+<h2>ParamTests</h2>
+
+
+
+<h3>Change Value of P2</h3>
+
+  <ul>
+    <li><a href="?group01=wcf162db7a7">AAA</a></li>
+    <li><a href="?group01=wcf80bbcc7a">BBB</a></li>
+    <li><a href="?group01=wcf6037c5b9">CCC</a></li>
+  </ul>
+  Current value of P2: 
+
+
+<h3>The generated SQL</h3>
+<blockquote id="test01">
+P1:
+
+  
+  
+(T1.COL1 = 'a' AND T2.COL2 = 'b')
+<p />
+P2: T.COL IS NULL
+<p />
+pushParam(P2, 123)
+
+P2: T.COL = '123'
+
+After pushParam
+P2: T.COL IS NULL
+<p />
+setParam(P2, 234)
+
+P2: T.COL = '234'
+<p />
+No Links
+
+
+  BBB
+
+<p />
+With links (#{showParam} is undefined):
+
+
+  <a href="?group02=wcfc1368d0c">BBB</a>
+
+
+</blockquote>
+
+<p><a href="index.jsp">back to index</a>
+<br><a href="wcf/showxml.jsp?render=tree03&amp;iehack=file.xml">show xml</a>
+</body>
+</html>

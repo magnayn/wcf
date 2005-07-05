@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form method="post" action="multicolumn.jsp"> <table border="1" cellspacing="0" cellpadding="2">
+<tr>
+<th colspan="2" class="xform-title">Multi Column Layout</th>
+</tr>
+<tr>
+<th colspan="2" class="xform-subtitle">2 Column Layout</th>
+</tr>
+<tr>
+<td class="xform-label">Text 1</td>
+<td class="xform-input">
+<input type="text" value=""/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">Text 2</td>
+<td class="xform-input">
+<input type="text" value=""/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">Text 3</td>
+<td class="xform-input">
+<input type="text" value=""/>
+</td>
+</tr>
+<tr>
+<th colspan="2" class="xform-subtitle">N Column Layout</th>
+</tr>
+<tr>
+<td colspan="2">
+<table>
+<tr>
+<td valign="top">
+<table>
+<tr>
+<td class="xform-label">Text 1</td>
+<td class="xform-input">
+<input type="text" value=""/>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="xform-error">Input required</td>
+</tr>
+<tr>
+<td class="xform-label">Text 2</td>
+<td class="xform-input">
+<table border="0" cellspacing="0" cellpadding="3">
+<tr>
+<td bgcolor="red">
+<input type="text" value=""/>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="xform-label">Text 3</td>
+<td class="xform-input">
+<input type="text" value=""/>
+</td>
+</tr>
+</table>
+</td>
+<td valign="top">
+<table>
+<tr>
+<td class="xform-label">Text 4</td>
+<td class="xform-input">
+<input type="text" value=""/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">Text 5</td>
+<td class="xform-input">
+<input type="text" value=""/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">Text 6</td>
+<td class="xform-input">
+<input type="text" value=""/>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right">
+<div align="right">
+<input type="submit" value="OK"/>
+</div>
+</td>
+</tr>
+</table>
+</form>

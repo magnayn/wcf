@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- DOCTYPE xform SYSTEM "wcf.dtd" -->
+
+<xform style="twocolumn">
+
+  <!-- Logging API -->
+  <label label="Version" modelReference="logVersion"/>
+
+  <!-- Log level -->
+  <label label="Filter" modelReference="logLevel"/>
+
+  <!-- Log file name -->
+  <textField id="logFile" type="string" modelReference="logFile" label="Logdatei" value="" title="Path to log file on server" size="60"/>
+
+  <!-- Configuration names -->
+  <listBox1 id="logConfs" modelReference="logConf" label="Einstellungen" handler="com.tonbeller.wcf.log.LogItems"/>
+
+  <buttons>
+    <button id="$id.revert" action="revert" label="Zurücksetzen" handler="com.tonbeller.wcf.form.ButtonHandler"/>
+    <button id="$id.ok" action="validate" label="Übernehmen" handler="com.tonbeller.wcf.form.ButtonHandler"/>
+  </buttons>
+
+</xform>

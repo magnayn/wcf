@@ -1,0 +1,50 @@
+
+
+<html>
+<head>
+<title>WCF Table Test</title>
+  <link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
+  <link rel="stylesheet" type="text/css" href="wcf/table/xtable.css">
+</head>
+<body bgcolor=white>
+
+<h2>WCF Table Test</h2>
+
+
+
+
+This page shows a table cooperating with a form.
+
+
+<form action="tabledemo.jsp" method="post" id="form01">
+
+
+<table id="t1" cellpadding="2" cellspacing="0" border="1">
+  <tr><th class="xform-title" colspan="2"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><th class="xform-title" align="left">Properties of Test Table model</th><td class="xform-close-button" align="right">
+    <input alt="Cancel" title="Cancel" name="t1.form.close" src="/wcf/wcf/form/cancel.png" type="image" id="t1.form.close">
+  </td></tr></table></th></tr>
+
+  <tr><td class="xform-label">Columns</td><td class="xform-input">
+    <table cellspacing="0" id="t1.form.tree" border="0" cellpadding="0"><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 0em"><input value="x" name="wcf56fdf4eb" type="checkbox" id="wcf56fdf4eb" checked><input value="x" name="wcf56fdf4eb.valid" type="hidden"><img height="9" width="9" src="/wcf/wcf/tree/leaf.png"><img height="9" width="9" src="/wcf/wcf/changeorder/move-empty.png"><input height="9" width="9" src="/wcf/wcf/changeorder/move-down.png" name="wcff0288919" type="image" border="0"> String</div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 0em"><input value="x" name="wcfae13b137" type="checkbox" id="wcfae13b137" checked><input value="x" name="wcfae13b137.valid" type="hidden"><img height="9" width="9" src="/wcf/wcf/tree/leaf.png"><input height="9" width="9" src="/wcf/wcf/changeorder/move-up.png" name="wcff16f5baf" type="image" border="0"><input height="9" width="9" src="/wcf/wcf/changeorder/move-down.png" name="wcf544ebdfb" type="image" border="0"> Date</div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 0em"><input value="x" name="wcf1c52398b" type="checkbox" id="wcf1c52398b" checked><input value="x" name="wcf1c52398b.valid" type="hidden"><img height="9" width="9" src="/wcf/wcf/tree/leaf.png"><input height="9" width="9" src="/wcf/wcf/changeorder/move-up.png" name="wcf65d104d4" type="image" border="0"><input height="9" width="9" src="/wcf/wcf/changeorder/move-down.png" name="wcf1bff0417" type="image" border="0"> Double</div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 0em"><input value="x" name="wcfa841d5b" type="checkbox" id="wcfa841d5b" checked><input value="x" name="wcfa841d5b.valid" type="hidden"><img height="9" width="9" src="/wcf/wcf/tree/leaf.png"><input height="9" width="9" src="/wcf/wcf/changeorder/move-up.png" name="wcf9c0c1e60" type="image" border="0"><input height="9" width="9" src="/wcf/wcf/changeorder/move-down.png" name="wcfad713331" type="image" border="0"> Integer</div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 0em"><input value="x" name="wcf50214541" type="checkbox" id="wcf50214541" checked><input value="x" name="wcf50214541.valid" type="hidden"><img height="9" width="9" src="/wcf/wcf/tree/leaf.png"><input height="9" width="9" src="/wcf/wcf/changeorder/move-up.png" name="wcf9a81317a" type="image" border="0"><input height="9" width="9" src="/wcf/wcf/changeorder/move-down.png" name="wcf6e364410" type="image" border="0"> Click Me</div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 0em"><input value="x" name="wcf482379a6" type="checkbox" id="wcf482379a6" checked><input value="x" name="wcf482379a6.valid" type="hidden"><img height="9" width="9" src="/wcf/wcf/tree/leaf.png"><input height="9" width="9" src="/wcf/wcf/changeorder/move-up.png" name="wcf8376ac43" type="image" border="0"><input height="9" width="9" src="/wcf/wcf/changeorder/move-down.png" name="wcf384ca1ad" type="image" border="0"> Image 1</div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 0em"><input value="x" name="wcf3a732f0c" type="checkbox" id="wcf3a732f0c" checked><input value="x" name="wcf3a732f0c.valid" type="hidden"><img height="9" width="9" src="/wcf/wcf/tree/leaf.png"><input height="9" width="9" src="/wcf/wcf/changeorder/move-up.png" name="wcf825a6e8d" type="image" border="0"><img height="9" width="9" src="/wcf/wcf/changeorder/move-empty.png"> Image 2</div></td></tr></table>
+  </td></tr>
+
+  <tr><td class="xform-label">Enable paging</td><td class="xform-input"><input value="x" name="t1.form.pagable" type="checkbox" id="t1.form.pagable" checked><input value="x" name="t1.form.pagable.valid" type="hidden"></td></tr>
+  <tr><td class="xform-label">Page size</td><td class="xform-input"><input value="10" name="t1.form.pagesize" type="text" id="t1.form.pagesize" title="Rows / page"></td></tr>
+
+  <tr><td align="right" colspan="2"><div align="right">
+    <input value="Cancel" name="t1.form.cancel" type="submit" id="t1.form.cancel">
+    <input value="OK" name="t1.form.ok" type="submit" id="t1.form.ok">
+  </div></td></tr>
+
+</table>
+
+<p>
+
+
+
+</form>
+<p><a href="index.jsp">back to index</a>
+<br><a href="wcf/showxml.jsp?render=t1&amp;iehack=file.xml">show xml</a>
+
+</body>
+</html>

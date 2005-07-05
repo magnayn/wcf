@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- DOCTYPE xform SYSTEM "wcf.dtd" -->
+
+<xform style="twocolumn">
+  <title value="Treeform Demo">
+    <imgButton id="$id.cancel" src="wcf/form/cancel.png" action="revert" label="Cancel" handler="com.tonbeller.wcf.form.ButtonHandler"/>
+  </title>
+
+  <!-- Text control -->
+  <textField id="string" type="string" modelReference="stringValue" label="Text:"    value="" title="please enter some text"/>
+  <textField id="int"    type="int"    modelReference="intValue"    label="Integer:" value="" title="please enter an integer"/>
+
+  <label label="Table:">
+    <xtable id="$id.table" selmode="multi" border="1" modelReference="tableValue"/>
+  </label>
+
+  <buttons>
+    <button id="$id.ok" action="validate" label="OK" handler="com.tonbeller.wcf.form.ButtonHandler"/>
+    <button id="$id.cancel" action="revert" label="Cancel" handler="com.tonbeller.wcf.form.ButtonHandler"/>
+  </buttons>
+
+</xform>

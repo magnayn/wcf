@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE document [
+<!ENTITY nbsp "&#160;">
+]>
+
+<document
+  title="WCF - Web Component Framework"
+  version="@VERSION@"
+>
+
+<section title="WCF">
+
+  <page title="Home" id="index">
+
+   WCF classes help to create, present and validate HTML forms via XML and XSLT. WCF encapsulates reuseable components that were developed for <a href="http://jpivot.sourceforge.net">JPivot</a>. Its focus is on course grained UI components like table, tree or complete forms. For single elements like a submit button or text entry field you may use <a href="http://java.sun.com/j2ee/javaserverfaces/overview.html">JavaServer Faces</a> which is also great to define page-flow and more. WCF nicely integrates with JSF.
+   <p/>
+   WCF was designed to easily integrate with other existing web applications like portals (e.g. jetspeed), JSF (JavaServer Faces), Struts and others. To integrate the view portion, JSP custom tags are used. The controller works as a servlet filter, so it may be used together with an exisiting application.
+   <p/>
+   WCF provides a fine grained controller, that identifies - for example - the button the user pressed and invokes listeners that have been registered for that button.
+
+   It also synchronizes java bean properties with form elements, i.e.
+   it formats java data types for presentation, parses and validates
+   user input and updates the bean properties.
+
+   <p/>
+   Package Overview
+   <ul>
+   <li>controller: Allows to register RequestListeners that are notified on user actions.
+       For example, RequestListeners may be registered for submit buttons
+       or anchors (&amp;lt;a href="..."&amp;gt;)</li>
+
+   <li>format: an extensible mechanism to convert java objects into string representation
+      and back with i18n support for conversion and error messages</li>
+
+   <li>convert: (a) fills the values of form elements from bean properties for presentation and
+                (b) updates the bean properties from user input</li>
+
+   <li>ui: Provides an API to create and manipulate a DOM tree that conforms to the xoplon DTD.</li>
+   <li>form: Form handling, synchronizes a form and a view helper bean</li>
+   </ul>
+
+
+    <h3>How to run?</h3>
+    Download the <tt>wcf.war</tt> and place it into tomcats webapp directory. Start
+    Tomcat and point your browser to <a href="http://localhost:8080/wcf">http://localhost:8080/wcf</a>.
+    You'll need JDK 1.4 and Tomcat 4.1.18, JPivot does not work with earlier versions (sorry).
+    To run the Mondrian examples, you will need the MondrianFoodMart ODBC datasource.
+
+    <h3>How to compile?</h3>
+    Download the <tt>wcf-@VERSIOIN@.zip</tt> and unzip. Modify the build.properties file:
+
+    <pre>
+    repository.home=d:/repository
+    </pre>
+
+    The <code>repository.home</code> points to a directory where the build process
+    finds the external jar files (and more) that that wcf depends on. For example,
+    WCF depends on commons-beanutils-1.6.1. To add this to the repository directory,
+    download the distribution from jakarta.apache.org and unzip to the repository
+    directory.
+
+    <p/>
+    The following external dependencies exist (for an exact list search for
+    <code>${repository.home}</code> in the build.xml):
+
+    <p/>
+
+    <table border="1" cellspacing="0" cellpadding="4">
+      <tr>
+        <th>Name</th>
+        <th>URL</th>
+        <th>Description</th>
+      </tr>
+
+      <tr>
+        <td>jdepend-2.6</td>
+        <td><a href="http://www.clarkware.com/software/JDepend.html">Clarkware</a></td>
+        <td>Dependency metrics</td>
+      </tr>
+      <tr>
+        <td>JSTL 1.0.3</td>
+        <td><a href="http://jakarta.apache.org">jakarta.apache.org</a></td>
+        <td>Standard Tag Library</td>
+      </tr>
+
+      <tr>
+        <td>
+          commons-digester-1.4.1<br/>
+          commons-collections-2.1<br/>
+          commons-beanutils-1.6.1<br/>
+          commons-logging-1.0.2<br/>
+        </td>
+        <td><a href="http://jakarta.apache.org">jakarta.apache.org</a></td>
+        <td>Jakarta Commons</td>
+      </tr>
+      <tr>
+        <td>jakarta-regexp-1.2</td>
+        <td><a href="http://jakarta.apache.org">jakarta.apache.org</a></td>
+        <td>Jakarta Reg Expr</td>
+      </tr>
+      <tr>
+        <td>junit3.8.1/junit</td>
+        <td><a href="http://junit.sf.net">junit.sf.net</a></td>
+        <td>JUnit Test Tool</td>
+      </tr>
+      <tr>
+        <td>jsf-1_0/lib/jsf-api.jar<br/>
+            jsf-1_0/lib/jsf-impl.jar</td>
+        <td><a href="http://java.sun.com/j2ee/javaserverfaces/overview.html">java.sun.com</a></td>
+        <td>JSF Reference Implementation</td>
+      </tr>
+    </table>
+
+  </page>
+
+  <page title="News" id="news">
+
+    <h3>New reusable Tabbed Pane component</h3>
+      see example.
+
+    <h3>WCF now nicely integrates with JSF (JavaServer Faces)</h3>
+        It is possible to use WCF Components inside
+        a JSF application. See example jsfdemo.jsp.
+
+    <h3>EL Syntax changed</h3>
+        The Syntax of the WCF Expression Language (actually its based on
+        jakarta BeanUtils) has changed from <tt>${expr}</tt> to
+        <tt>#{expr}</tt> so it cooperates from the expression language
+        available in Tomcat 5 / JSP 2.0.
+        <p />
+        So with JSP 2.0 you should use <code>#{}</code> notation to define
+        expressions for WCF attributes and <code>${}</code> to define
+        JSP EL expressions.
+        <p />
+        JSP EL expressions can not be used with WCF tags currently, all
+        tag attributes have their <code>rtexprvalue</code> set to false.
+        There may be a twin library supporting JSP EL expressions in
+        the future (similar to the twin libraries in JSTL, e.g. core
+        and core_rt).
+
+    <h3>Static accessor for RequestContext</h3>
+      RequestContext has a static <tt>instance()</tt> method that returns
+          the current instance (using java.lang.ThreadLocal). This seems to
+          be safe since JSF uses this mechanism too
+
+    <h3>actionReference in XML form descriptions</h3>
+    Form handling has been simplified, see example. In the XML file
+          describing the HTML form, the &lt;button ...&gt; element
+          accepts an element named "actionReference". The value of this
+          attribute is interpreted as the name of a function, which
+          is called when the user presses the button. The signature of
+          the function is <tt>void foo(RequestContext context) throws Exception;</tt>
+  </page>
+
+  <link href="changelog.html" title="Changelog"/>
+  <link href="junit/index.html" title="JUnit Tests"/>
+  <link href="jdepend/index.html" title="Dependencies"/>
+  <link href="api/index.html" title="Java Doc"/>
+  <link href="tags/wcf-tags-en.html" title="Tag Docs"/>
+  <link href="http://sourceforge.net/projects/jpivot" title="JPivot Project Page"/>
+</section>
+
+
+
+</document>

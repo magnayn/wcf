@@ -1,0 +1,41 @@
+
+
+<html>
+<head>
+<title>WCF Tree Test</title>
+  <link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
+  <link rel="stylesheet" type="text/css" href="wcf/tree/xtree.css">
+</head>
+<body bgcolor=white>
+
+<h2>WCF TreeForm Test</h2>
+A Form containing a tree component.
+<p>
+
+
+
+
+<form action="treeform.jsp" method="post" id="form01">
+  <!-- DOCTYPE xform SYSTEM "wcf.dtd" --><table id="treeform" cellpadding="2" cellspacing="0" border="1">
+  <tr><th class="xform-title" colspan="2"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><th class="xform-title" align="left">Treeform Demo</th><td class="xform-close-button" align="right">
+    <input alt="Cancel" title="Cancel" name="treeform.cancel" src="/wcf/wcf/form/cancel.png" type="image" id="treeform.cancel">
+  </td></tr></table></th></tr>
+
+  
+  <tr><td class="xform-label">Text:</td><td class="xform-input"><input value="some String" name="treeform.string" type="text" id="treeform.string" title="please enter some text"></td></tr>
+  <tr><td class="xform-label">Integer:</td><td class="xform-input"><input value="123" name="treeform.int" type="text" id="treeform.int" title="please enter an integer"></td></tr>
+
+  <tr><td class="xform-label">Tree:</td><td class="xform-input">
+    <table cellspacing="0" id="treeform.tree" border="0" cellpadding="0"><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 0em"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf3dfb5cfc.expand" type="image" border="0"> <a href="?token=d7ab1acd&wcf45e8d2eb=x">A</a></div></td></tr><tr><td class="tree-node-even" nowrap="nowrap"><div style="margin-left: 0em"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf19645505.expand" type="image" border="0"> <a href="?token=d7ab1acd&wcfaf5dc367=x">B</a></div></td></tr><tr><td class="tree-node-odd" nowrap="nowrap"><div style="margin-left: 0em"><input height="9" width="9" src="/wcf/wcf/tree/expand.png" name="wcf7fd4b514.expand" type="image" border="0"> <a href="?token=d7ab1acd&wcf88b1fa0f=x">C</a></div></td></tr></table>
+  </td></tr>
+
+  <tr><td align="right" colspan="2"><div align="right">
+    <input value="OK" name="treeform.ok" type="submit" id="treeform.ok">
+    <input value="Cancel" name="treeform.cancel" type="submit" id="treeform.cancel">
+  </div></td></tr>
+
+</table>
+</form>
+
+</body>
+</html>

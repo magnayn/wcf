@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<body bgcolor="white">
+<h2>PageStack Test</h2>
+<h4>Adding Page 1</h4>[<a>Page 1</a>]<h4>Adding Page 2</h4>You are here :: <a>Page 1</a> :: <a>Page 2</a>
+<h4>Add Page 3</h4>You are here :: <a>Page 1</a> :: <a>Page 2</a> :: <a>Page 3</a>
+<p>Replace Page 3 with Page 3A</p>You are here :: <a>Page 1</a> :: <a>Page 2</a> :: <a>Page 3A</a>
+<h4>Back to Page 2</h4>[<a>Page 1</a>] [<a>Page 2</a>]<h4>Back to Page 1</h4>[<a>Page 1</a>]<h4>Title from JSTL Resource Bundle</h4>Expecting: An english text. [<a>An english text.</a>]<h4>bundle</h4>[<a>English from resources</a>]<h4>Use Token</h4>[<a>Token 1</a>] [<a>Token 2</a>] [<a>Token 3</a>]</body>

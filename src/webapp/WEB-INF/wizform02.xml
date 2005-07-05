@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xform style="twocolumn">
+  <title value="Wizard Form 02"/>
+  <errorElement id="errorElementID"/>
+  <textField id="intID" type="int" modelReference="intValue" label="Integer: "    title="Please enter an integer"/>
+  <buttons>
+    <button id="$id.back"   action="validate" label="&lt;&lt; Back" actionReference="onBack"/>
+    <button id="$id.next"   action="validate" label="Next &gt;&gt;" actionReference="onNext"/>
+    <button id="$id.cancel" action="validate" label="Finish" actionReference="onFinish" forward="/index.jsp"/>
+  </buttons>
+</xform>

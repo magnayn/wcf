@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form method="post" action="tabledemo.jsp">
+<table border="1" cellspacing="0" cellpadding="2">
+<tr>
+<th colspan="2" class="xform-title">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<th align="left" class="xform-title">Properties of Test Table model</th>
+<td align="right" class="xform-close-button">
+<input type="image" src="/wcf/wcf/form/cancel.png" title="Cancel" alt="Cancel"/> </td>
+</tr>
+</table>
+</th>
+</tr>
+<tr>
+<td class="xform-label">Columns</td>
+<td class="xform-input">
+<table cellpadding="0" border="0" cellspacing="0">
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<img src="/wcf/wcf/changeorder/move-empty.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-down.png"/> String</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-up.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-down.png"/> Date</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-up.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-down.png"/> Double</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-up.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-down.png"/> Integer</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-up.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-down.png"/> Click Me</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-up.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-down.png"/> Image 1</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/move-up.png"/>
+<img src="/wcf/wcf/changeorder/move-empty.png"/> Image 2</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="xform-label">Enable paging</td>
+<td class="xform-input">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">Page size</td>
+<td class="xform-input">
+<input title="Rows / page" type="text"/>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right">
+<input type="submit"/> <input type="submit"/>
+</td>
+</tr>
+</table>
+<p/>
+</form>

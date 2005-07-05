@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form action="charenc.jsp" method="post">fmt:message: An english text.<br/>Request Encoding: utf-8<br/>Filter Encoding: utf-8<br/>Umlaute: ü<br/>Parameter: �?�αβγ�?�?�?Ÿš�?�??<br/>
+<textarea cols="20" rows="10">ru-abc = фис
+gr-abc = αβγ
+ysp = Ÿšψ
+arrow = ←
+uuml = üÜ
+</textarea> <p/>
+<input type="submit"/>
+</form>

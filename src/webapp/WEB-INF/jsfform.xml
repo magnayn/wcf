@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- DOCTYPE xform SYSTEM "wcf.dtd" -->
+
+<xform style="twocolumn">
+  <title value="Form forwarding to JSF Page" />
+
+  <!-- Text control -->
+  <textField id="string" type="string" modelReference="stringValue" label="Text:"    value="" title="please enter some text"/>
+
+  <buttons>
+    <button id="$id.button01" action="validate" label="Same Page" actionReference="testActionReference"/>
+    <button id="$id.button02" action="validate" label="Non JSF Page" forward="formdemo.jsp" actionReference="testActionReference"/>
+    <button id="$id.button03" action="validate" label="JSF Page" forward="/faces/jsfresponse.jsp" actionReference="testActionReference"/>
+  </buttons>
+
+</xform>

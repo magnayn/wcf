@@ -1,0 +1,51 @@
+
+
+
+<html>
+<head>
+<title>WCF Testpage</title>
+<link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
+<script src="wcf/scroller.js" language="JavaScript1.2" type="text/javascript"></script>
+</head>
+<body bgcolor=white>
+
+
+
+
+
+<h2>WCF Test Form</h2>
+
+<form action="multicolumn.jsp" method="post" id="form01">
+  <input type="hidden" name="wcfXCoord" value="0"/><input type="hidden" name="wcfYCoord" value="0"/>
+  <!-- DOCTYPE xform SYSTEM "wcf.dtd" --><table id="multicolumnForm" cellpadding="2" cellspacing="0" border="1">
+  <tr><th class="xform-title" colspan="2">Multi Column Layout</th></tr>
+  
+  <tr><th class="xform-subtitle" colspan="2">2 Column Layout</th></tr>
+  
+  <tr><td class="xform-label">Text 1</td><td class="xform-input"><input value="" name="multicolumnForm.2" type="text" id="multicolumnForm.2"></td></tr>
+  <tr><td class="xform-label">Text 2</td><td class="xform-input"><input value="" name="multicolumnForm.3" type="text" id="multicolumnForm.3"></td></tr>
+  <tr><td class="xform-label">Text 3</td><td class="xform-input"><input value="" name="multicolumnForm.4" type="text" id="multicolumnForm.4"></td></tr>
+  
+  
+  <tr><th class="xform-subtitle" colspan="2">N Column Layout</th></tr>
+  <tr><td colspan="2"><table><tr><td valign="top"><table>
+      <tr><td class="xform-label">Text 1</td><td class="xform-input"><input value="" name="multicolumnForm.8" type="text" id="multicolumnForm.8"></td></tr>
+      <tr><td class="xform-error" colspan="2">Input required</td></tr><tr><td class="xform-label">Text 2</td><td class="xform-input"><table cellpadding="3" cellspacing="0" border="0"><tr><td bgcolor="red"><input value="" name="requiredField" type="text" id="requiredField"></td></tr></table></td></tr>
+      <tr><td class="xform-label">Text 3</td><td class="xform-input"><input value="" name="multicolumnForm.9" type="text" id="multicolumnForm.9"></td></tr>
+    </table></td><td valign="top"><table>
+      <tr><td class="xform-label">Text 4</td><td class="xform-input"><input value="" name="multicolumnForm.11" type="text" id="multicolumnForm.11"></td></tr>
+      <tr><td class="xform-label">Text 5</td><td class="xform-input"><input value="" name="multicolumnForm.12" type="text" id="multicolumnForm.12"></td></tr>
+      <tr><td class="xform-label">Text 6</td><td class="xform-input"><input value="" name="multicolumnForm.13" type="text" id="multicolumnForm.13"></td></tr>
+    </table></td></tr></table></td></tr>
+
+  <tr><td align="right" colspan="2"><div align="right">
+    <input value="OK" name="ok" type="submit" id="ok">
+  </div></td></tr>
+
+</table>
+</form>
+<p><a href="index.jsp">back to index</a>
+<br><a href="wcf/showxml.jsp?render=formcomp&amp;iehack=file.xml">show xml</a>
+
+</body>
+</html>

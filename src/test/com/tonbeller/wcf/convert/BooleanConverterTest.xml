@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<blah>
+  <checkBox id="cb1" selected="true" modelReference="booleanValue" />
+  <checkBox id="cb2" selected="false"/>
+
+  <radioButton id="rb1" selected="true"/>
+  <radioButton id="rb2" selected="false"/>
+
+</blah>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form method="post" action="tabledemo.jsp">
+<table border="1" cellspacing="0" cellpadding="2">
+<tr>
+<th colspan="8" class="xtable-title">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<th align="left" class="xtable-title">
+<input type="image" src="/wcf/wcf/table/edit.png"/>
+</th>
+<th align="left" class="xtable-title"> Test Table model</th>
+<td align="right" class="xtable-title">
+<input type="image" src="/wcf/wcf/form/cancel.png"/>
+</td>
+</tr>
+</table>
+</th>
+</tr>
+<tr>
+<th class="xtable-heading">
+<input type="image" border="0" src="/wcf/wcf/table/select.png"/>
+</th>
+<th class="xtable-heading">
+<input type="image" border="0" src="/wcf/wcf/table/sort-dc.png"/> String</th>
+<th class="xtable-heading">
+<input type="image" border="0" src="/wcf/wcf/table/sort-dn.png"/> Date</th>
+<th class="xtable-heading">
+<input type="image" border="0" src="/wcf/wcf/table/sort-dn.png"/> Double</th>
+<th class="xtable-heading">
+<input type="image" border="0" src="/wcf/wcf/table/sort-dn.png"/> Integer</th>
+<th class="xtable-heading">
+<input type="image" border="0" src="/wcf/wcf/table/sort-dn.png"/> Click Me</th>
+<th class="xtable-heading">
+<input type="image" border="0" src="/wcf/wcf/table/sort-dn.png"/> Image 1</th>
+<th class="xtable-heading">
+<input type="image" border="0" src="/wcf/wcf/table/sort-dn.png"/> Image 2</th>
+</tr>
+<tr>
+<td class="xtable-data">
+<input type="checkbox"/>
+<input type="hidden"/>
+</td>
+<td align="left" class="xtable-data">Hello World: 12</td>
+<td align="left" class="xtable-data">03/24/2003</td>
+<td align="right" class="xtable-data">23.68</td>
+<td align="right" class="xtable-data">613</td>
+<td align="right" class="xtable-data">
+<a>454</a>
+</td>
+<td class="xtable-data">
+<a>
+<img src="wcf/table/sort-ac.png" border="0"/>
+</a> </td>
+<td align="left" class="xtable-data">
+<a>
+<img src="wcf/table/sort-dn.png" border="0"/> Text 35</a>
+</td>
+</tr>
+<tr>
+<td class="xtable-data">
+<input type="checkbox"/>
+<input type="hidden"/>
+</td>
+<td align="left" class="xtable-data">Hello World: 13</td>
+<td align="left" class="xtable-data">04/05/2003</td>
+<td align="right" class="xtable-data">64.49</td>
+<td align="right" class="xtable-data">990</td>
+<td align="right" class="xtable-data">
+<a>30</a>
+</td>
+<td class="xtable-data">
+<a>
+<img src="wcf/table/sort-ac.png" border="0"/>
+</a> </td>
+<td align="left" class="xtable-data">
+<a>
+<img src="wcf/table/sort-dn.png" border="0"/> Text 3</a>
+</td>
+</tr>
+<tr>
+<td class="xtable-data">
+<input type="checkbox"/>
+<input type="hidden"/>
+</td>
+<td align="left" class="xtable-data">Hello World: 14</td>
+<td align="left" class="xtable-data">05/06/2003</td>
+<td align="right" class="xtable-data">343.08</td>
+<td align="right" class="xtable-data">446</td>
+<td align="right" class="xtable-data">
+<a>24</a>
+</td>
+<td class="xtable-data">
+<a>
+<img src="wcf/table/sort-ac.png" border="0"/>
+</a> </td>
+<td align="left" class="xtable-data">
+<a>
+<img src="wcf/table/sort-ac.png" border="0"/> Text 63</a>
+</td>
+</tr>
+<tr>
+<td class="xtable-data">
+<input type="checkbox"/>
+<input type="hidden"/>
+</td>
+<td align="left" class="xtable-data">Hello World: 15</td>
+<td align="left" class="xtable-data">04/07/2003</td>
+<td align="right" class="xtable-data">1,960.00</td>
+<td align="right" class="xtable-data">573</td>
+<td align="right" class="xtable-data">
+<a>563</a>
+</td>
+<td class="xtable-data">
+<a>
+<img src="wcf/table/sort-ac.png" border="0"/>
+</a> </td>
+<td align="left" class="xtable-data">
+<a>
+<img src="wcf/table/sort-ac.png" border="0"/> Text 21</a>
+</td>
+</tr>
+<tr>
+<td colspan="8" class="xtable-data"> <input type="image" border="0" src="/wcf/wcf/table/page-first.png"/>
+<input type="image" border="0" src="/wcf/wcf/table/page-prev.png"/> Page 2/5 <input type="image" border="0" src="/wcf/wcf/table/page-next.png"/>
+<input type="image" border="0" src="/wcf/wcf/table/page-last.png"/>  Goto Page <input type="text" maxlength="3" size="3"/> <input type="image" border="0" src="/wcf/wcf/table/gotopage.png"/>
+</td>
+</tr>
+</table>
+<p/>
+</form>

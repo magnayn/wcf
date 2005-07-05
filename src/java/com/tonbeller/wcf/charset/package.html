@@ -1,0 +1,54 @@
+<html>
+<body>
+Forces the request encoding to UTF-8 or another configurable character encoding.
+<p>
+Problem: in servlet 2.3, when {@link ServletResponse#setLocale(java.util.Locale)}
+is called, the character encoding is changed implicit in an unspecified way.
+To prevent this, this wrapper does not forward the setLocale call.
+All JSTL fmt:xxx actions call setLocale on the response, which causes
+the problem.
+<p /> 
+This package uses a response wrapper that does not allow the character encoding to be changed.
+Also the filter sets the Request encoding to UTF-8 (or another configurable charset) 
+because most browsers dont follow the
+http spec and do not send a content-type header 
+when submitting a form. They use the
+character encoding of the page that contained the form.
+<p />
+The encoding is configurable as filter init parameter <code>encoding</code>,
+via the property <code>tbeller.charset</code>. If the filter is installed,
+it defaults to UTF-8, otherwise it defaults to ISO-8859-1.
+<p />
+The filter automatically changes (or adds) the response encoding 
+of one configurable content-type. If the filter init-param 
+<code>contentType</code> is set to <code>text/html</code>,
+then a response content type will of "text/html; charset=iso-8859-1" 
+will be changed into "text/html; charset=utf-8".
+
+<p />
+The ContentTypeTag sets the content-type and character encoding of the response
+to the given type.
+<p />
+Filter example:
+<pre>
+  &lt;filter>
+    &lt;filter-name>CharsetFilter&lt;/filter-name>
+    &lt;filter-class>com.tonbeller.wcf.charset.CharsetFilter&lt;/filter-class>
+    &lt;init-param>
+      &lt;param-name>encoding&lt;/param-name>
+      &lt;param-value>ISO-8859-2&lt;/param-value>
+      &lt;description>character encoding that this filter will enforce&lt;/description>
+    &lt;/init-param>
+    &lt;init-param>
+      &lt;param-name>contentType&lt;/param-name>
+      &lt;param-value>text/html&lt;/param-value>
+      &lt;description>this content type will be set to the above encoding automatically, e.g. "text/html; charset=iso-8859-1" will become "text/html; charset=utf-8"&lt;/description>
+    &lt;/init-param>
+  &lt;/filter>
+</pre>
+see JSTL spec, section 8.4 and fmt:requestEncoding
+
+@see ServletResponse#setLocale(java.util.Locale)
+@see com.tonbeller.tbutils.res
+</body>
+</html>

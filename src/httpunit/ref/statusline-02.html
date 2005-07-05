@@ -1,0 +1,185 @@
+
+
+
+
+<html>
+<head>
+<title>WCF StatusLine</title>
+<link rel="stylesheet" type="text/css" href="wcf/status/status.css">
+</head>
+<body bgcolor="white">
+
+<h2>WCF StatusLine</h2>
+
+<div id="showError">
+  <blockquote>
+    <span class="wcf-statusline-error">java.lang.RuntimeException : Boom</span><!-- java.lang.RuntimeException: Boom
+	at org.apache.jsp.statusline_jsp$1.request(statusline_jsp.java:105)
+	at com.tonbeller.wcf.controller.DispatcherSupport.request(DispatcherSupport.java:194)
+	at com.tonbeller.wcf.controller.WcfController.request(WcfController.java:56)
+	at com.tonbeller.wcf.controller.RequestFilter$MyHandler.normalRequest(RequestFilter.java:170)
+	at com.tonbeller.wcf.controller.RequestSynchronizer.handleRequest(RequestSynchronizer.java:102)
+	at com.tonbeller.wcf.controller.RequestFilter.doFilter(RequestFilter.java:229)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.tonbeller.wcf.token.TokenFilter.doFilter(TokenFilter.java:49)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:256)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContext.invoke(StandardContext.java:2422)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:180)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.valves.ErrorDispatcherValve.invoke(ErrorDispatcherValve.java:171)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:163)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:174)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.coyote.tomcat4.CoyoteAdapter.service(CoyoteAdapter.java:199)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:828)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.processConnection(Http11Protocol.java:700)
+	at org.apache.tomcat.util.net.TcpWorkerThread.runIt(PoolTcpEndpoint.java:584)
+	at org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run(ThreadPool.java:683)
+	at java.lang.Thread.run(Thread.java:534)
+ -->
+  </blockquote>
+</div>
+
+<div id="xmlcontent">
+<blockquote>
+
+<span class="wcf-statusline-message">My Message</span> (non empty)
+<br />
+<pre>My Message (non empty)</pre>
+<br />
+ (empty)
+done.
+<p />
+
+
+<span class="wcf-statusline-error">Userfriendly Exception Type : Exception.getMessage</span><!-- java.lang.RuntimeException: Exception.getMessage
+	at org.apache.jsp.statusline_jsp._jspService(statusline_jsp.java:114)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:137)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:210)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:295)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:241)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:247)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.tonbeller.wcf.controller.RequestFilter$MyHandler.normalRequest(RequestFilter.java:177)
+	at com.tonbeller.wcf.controller.RequestSynchronizer.handleRequest(RequestSynchronizer.java:102)
+	at com.tonbeller.wcf.controller.RequestFilter.doFilter(RequestFilter.java:229)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.tonbeller.wcf.token.TokenFilter.doFilter(TokenFilter.java:49)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:256)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContext.invoke(StandardContext.java:2422)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:180)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.valves.ErrorDispatcherValve.invoke(ErrorDispatcherValve.java:171)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:163)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:174)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.coyote.tomcat4.CoyoteAdapter.service(CoyoteAdapter.java:199)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:828)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.processConnection(Http11Protocol.java:700)
+	at org.apache.tomcat.util.net.TcpWorkerThread.runIt(PoolTcpEndpoint.java:584)
+	at org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run(ThreadPool.java:683)
+	at java.lang.Thread.run(Thread.java:534)
+ -->
+
+<br />
+
+  default text is visible!
+
+done.
+
+<p/>
+
+<span class="wcf-statusline-error">java.lang.RuntimeException : null</span><!-- java.lang.RuntimeException
+	at org.apache.jsp.statusline_jsp._jspService(statusline_jsp.java:130)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:137)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:210)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:295)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:241)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:247)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.tonbeller.wcf.controller.RequestFilter$MyHandler.normalRequest(RequestFilter.java:177)
+	at com.tonbeller.wcf.controller.RequestSynchronizer.handleRequest(RequestSynchronizer.java:102)
+	at com.tonbeller.wcf.controller.RequestFilter.doFilter(RequestFilter.java:229)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.tonbeller.wcf.token.TokenFilter.doFilter(TokenFilter.java:49)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:256)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContext.invoke(StandardContext.java:2422)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:180)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.valves.ErrorDispatcherValve.invoke(ErrorDispatcherValve.java:171)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:163)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:174)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.coyote.tomcat4.CoyoteAdapter.service(CoyoteAdapter.java:199)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:828)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.processConnection(Http11Protocol.java:700)
+	at org.apache.tomcat.util.net.TcpWorkerThread.runIt(PoolTcpEndpoint.java:584)
+	at org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run(ThreadPool.java:683)
+	at java.lang.Thread.run(Thread.java:534)
+ --> (non empty)
+<br />
+ (empty)
+done.
+</blockquote>
+</div>
+
+</body>
+</html>

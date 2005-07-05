@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<form id="form1">
+  <!-- Text control -->
+  <textField id="stringId" type="string" modelReference="stringValue" value="string" />
+  <textField id="intId" type="int"       modelReference="intValue"  value="123" />
+  <textField id="dateId" type="date"     modelReference="dateValue" format="dd.MM.yyyy" value="11.11.2002"/>
+
+  <!-- Password control -->
+  <password id="passwordId" type="string" label="Password:" />
+
+  <!-- Text area -->
+  <textArea id="textAreaId" value="textArea"/>
+</form>

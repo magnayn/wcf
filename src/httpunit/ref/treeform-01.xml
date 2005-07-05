@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form method="post" action="treeform.jsp">
+<table border="1" cellspacing="0" cellpadding="2">
+<tr>
+<th colspan="2" class="xform-title">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<th align="left" class="xform-title">Treeform Demo</th>
+<td align="right" class="xform-close-button">
+<input type="image" src="/wcf/wcf/form/cancel.png" title="Cancel" alt="Cancel"/> </td>
+</tr>
+</table>
+</th>
+</tr>
+<tr>
+<td class="xform-label">Text:</td>
+<td class="xform-input">
+<input title="please enter some text" type="text"/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">Integer:</td>
+<td class="xform-input">
+<input title="please enter an integer" type="text"/>
+</td>
+</tr>
+<tr>
+<td class="xform-label">Tree:</td>
+<td class="xform-input">
+<table cellpadding="0" border="0" cellspacing="0">
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/> <a>A</a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/> <a>B</a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/> <a>C</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right">
+<input type="submit"/> <input type="submit"/>
+</td>
+</tr>
+</table>
+</form>

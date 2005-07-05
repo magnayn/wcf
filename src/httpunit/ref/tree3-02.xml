@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form method="post" action="treedemo3.jsp"> <table cellpadding="1" border="1" cellspacing="0">
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/collapse.png"/> A</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> A[0]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> A[1]</td>
+</tr>
+</table>
+</form>

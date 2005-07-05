@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xform style="twocolumn">
+  <title value="Wizard Form 03"/>
+  <errorElement id="errorElementID"/>
+  <checkBox id="checkbox1" modelReference="booleanValue" label="Check Me!"/>
+  <buttons>
+    <button id="$id.back"   action="validate" label="&lt;&lt; Back" actionReference="onBack"/>
+    <button id="$id.cancel" action="revert" label="Cancel" actionReference="onCancel" forward="/index.jsp"/>
+    <button id="$id.finish" action="validate" label="Finish" actionReference="onFinish" forward="/index.jsp"/>
+  </buttons>
+</xform>

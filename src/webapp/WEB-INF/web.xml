@@ -1,0 +1,163 @@
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+  <display-name>Web Component Framework</display-name>
+  <description/>
+
+  <!-- use messages.properties for JSTL format tag library -->
+  <context-param>
+    <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+    <param-value>messages</param-value>
+  </context-param>
+
+  <filter>
+    <filter-name>RequestToken</filter-name>
+    <filter-class>com.tonbeller.wcf.token.TokenFilter</filter-class>
+    <init-param>
+      <param-name>token</param-name>
+      <param-value>token</param-value>
+    </init-param>
+    <init-param>
+      <param-name>showMessage</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+
+  <filter>
+    <filter-name>WcfController</filter-name>
+    <filter-class>com.tonbeller.wcf.controller.RequestFilter</filter-class>
+    <!--
+    <init-param>
+      <param-name>indexJSP</param-name>
+      <param-value>/index.jsp</param-value>
+      <description>forward to this page if session is new</description>
+    </init-param>
+    <init-param>
+      <param-name>busyJSP</param-name>
+      <param-value>/busy.jsp</param-value>
+      <description>forward to this page if a long running request is interrupted</description>
+    </init-param>
+    <init-param>
+      <param-name>errorJSP</param-name>
+      <param-value>/error.jsp</param-value>
+      <description>forward to this page if an exception was caught</description>
+    </init-param>
+    -->
+  </filter>
+
+  <filter>
+    <filter-name>CharsetFilter</filter-name>
+    <filter-class>com.tonbeller.wcf.charset.CharsetFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+      <description>character encoding that this filter will enforce</description>
+    </init-param>
+    <init-param>
+      <param-name>contentType</param-name>
+      <param-value>text/html</param-value>
+      <description>this content type will be set to the above encoding automatically, e.g. "text/html; charset=iso-8859-1" will become "text/html; charset=utf-8"</description>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>CharsetFilter</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>RequestToken</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>RequestToken</filter-name>
+    <url-pattern>*.jspx</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>WcfController</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>WcfController</filter-name>
+    <url-pattern>*.faces</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>WcfController</filter-name>
+    <url-pattern>*.jspx</url-pattern>
+  </filter-mapping>
+
+  <listener>
+    <listener-class>com.tonbeller.tbutils.res.ResourcesFactoryContextListener</listener-class>
+  </listener>
+
+  <servlet>
+    <servlet-name>facesServlet</servlet-name>
+    <servlet-class>com.tonbeller.wcf.controller.FacesServlet</servlet-class>
+    <load-on-startup> 1 </load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>SnoopServlet</servlet-name>
+    <servlet-class>com.tonbeller.wcf.test.SnoopServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SnoopServlet</servlet-name>
+    <url-pattern>/snoop</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>facesServlet</servlet-name>
+    <url-pattern>*.faces</url-pattern>
+  </servlet-mapping>
+
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <!--
+  <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/error.jsp</location>
+  </error-page>
+  -->
+
+  <taglib>
+    <taglib-uri>http://www.tonbeller.com/wcf</taglib-uri>
+    <taglib-location>/WEB-INF/wcf/wcf-tags.tld</taglib-location>
+  </taglib>
+
+
+  <!-- security tests -->
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Roles Tests</web-resource-name>
+      <url-pattern>/secure/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>tomcat</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>RoleTests</realm-name>
+  </login-config>
+
+  <security-role>
+    <description>test role</description>
+    <role-name>tomcat</role-name>
+  </security-role>
+
+</web-app>

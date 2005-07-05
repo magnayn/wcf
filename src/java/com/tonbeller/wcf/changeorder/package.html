@@ -1,0 +1,56 @@
+<html>
+<body>
+
+Generates buttons to change the order of elements in a list or tree.
+<p />
+There are 2 user interfaces available: forward/backward buttons and cut/paste buttons.
+The UI is choosen by ChangeOrderMgr.setCutPasteMode(boolean), default is forward/backward.
+
+<h4>Forward/Backward mode</h4>
+Every node gets buttons for "move forward" and "move backward". Allows the user to move a node
+for one position with each click. This is easy for small amount of nodes, but requires
+many clicks for larger amount.
+<p />
+Appends "move-button" elements to the DOM with "style" attribute "fwd" or "bwd", e.g.
+&lt;move-button id="wcf.e5f8fbfc" style="bwd"/&gt;
+
+<h4>Cut/Paste mode</h4>
+Every node has a "cut" button. When the user selects a node by pressing that button,
+the ChangeOrderMgr goes into paste mode and renders paste buttons for those nodes
+that share the same parent (aka scope) with the selected node. If the user clicks
+on a paste button, the node is moved to that posision. If he clicks elsewhere (e.g.
+collapses a tree node), the ChangeOrderMgr goes back into cut mode.
+<p />
+Appends "move-button" elements to the DOM with "style" attribute "cut", "paste" or "uncut", e.g.
+&lt;move-button id="wcf.e5f8fbfc" style="cut"/&gt;
+
+<h4>Usage pattern</h4>
+<pre>
+class MyComponent implements Component {
+
+  public void initialize(RequestContext context, Environment env) {
+    ...
+    changeOrderMgr = new ChangeOrderMgr(dispatcher, env, model);
+    changeOrderMgr.setCutPasteMode(true);
+  }
+  
+  public Document render(RequestContext context) throws Exception {
+    Document document = XmlUtils.createDocument();
+    changeOrderMgr.startRendering(context);
+    for (int nodeIndex = 0; nodeIndex &lt; nodeCount; nodeIndex++) {
+      Object node = ...
+      Object parent = getParent(node);
+      Element elem = renderElement(node);
+      changeOrderMgr.renderButton(element, parent, node, nodeIndex, nodeCount);
+    }
+    changeOrderMgr.stopRendering();
+    return document;
+  }
+
+}
+</pre>
+
+
+
+</body>
+</html>

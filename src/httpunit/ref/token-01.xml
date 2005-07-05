@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form method="get" action="token2.jsp">
+<h2>Token 1</h2>
+<input type="hidden"/> <input type="submit"/>
+</form>

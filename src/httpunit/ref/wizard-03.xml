@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form method="post" action="wizard.jsp">
+<table border="1" cellspacing="0" cellpadding="2">
+<tr>
+<th colspan="2" class="xform-title">Wizard Form 02</th>
+</tr>
+<tr>
+<td class="xform-label">Integer:</td>
+<td class="xform-input">
+<input title="Please enter an integer" type="text"/>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right">
+<input type="submit"/> <input type="submit"/> <input type="submit"/>
+</td>
+</tr>
+</table>Step 2</form>

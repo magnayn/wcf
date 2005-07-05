@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blockquote>My Message &lt;b&gt;bold&lt;/b&gt; "a" 'b' &amp;amp; (non empty)<br/>
+<pre>My Message <b>bold</b> "a" 'b' &amp;  (non empty)</pre>
+<br/> (empty) done. <p/>Userfriendly Exception Type : Exception.getMessage returns HTML &lt;h1&gt;Title&lt;/h1&gt;<br/> default text is visible! done. <p/>java.lang.RuntimeException : null (non empty)<br/> (empty) done.</blockquote>

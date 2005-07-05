@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xform style="twocolumn">
+  <title value="Wizard Form 01"/>
+  <errorElement id="errorElementID"/>
+  <textField id="stringID" type="string" modelReference="stringValue" label="Enter 'AB'"    title="Please enter 'AB'"/>
+  <buttons>
+    <button id="$id.next"   action="validate" label="Next &gt;&gt;" actionReference="onNext"/>
+    <button id="$id.cancel" action="revert" label="Cancel" actionReference="onCancel" forward="/index.jsp"/>
+  </buttons>
+
+</xform>

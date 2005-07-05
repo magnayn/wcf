@@ -1,0 +1,119 @@
+
+
+
+
+<html>
+<head>
+<title>PageStack Test</title>
+  <link rel="stylesheet" type="text/css" href="wcf/wcf.css">
+</head>
+
+<body bgcolor="white" id="body">
+
+
+<h2>PageStack Test</h2>
+
+<div class="pagestack">
+
+</div>
+
+
+<h4>Adding Page 1</h4>
+
+
+<div class="pagestack">
+
+  [<a href="page1.jsp">Page 1</a>]
+
+</div>
+
+
+<h4>Adding Page 2</h4>
+
+<div class="pagestack">
+You are here
+
+  :: <a href="page1.jsp">Page 1</a>
+
+  :: <a href="page2.jsp">Page 2</a>
+
+</div>
+
+<h4>Add Page 3</h4>
+<div class="pagestack">
+You are here
+
+ :: <a href="page1.jsp">Page 1</a>
+
+ :: <a href="page2.jsp">Page 2</a>
+
+ :: <a href="page3.jsp">Page 3</a>
+
+</div>
+<p>
+Replace Page 3 with Page 3A
+<p>
+<div class="pagestack">
+You are here
+
+ :: <a href="page1.jsp">Page 1</a>
+
+ :: <a href="page2.jsp">Page 2</a>
+
+ :: <a href="page3a.jsp">Page 3A</a>
+
+</div>
+
+
+<h4>Back to Page 2</h4>
+
+<div class="pagestack">
+
+  [<a href="page1.jsp">Page 1</a>]
+
+  [<a href="page2.jsp">Page 2</a>]
+
+</div>
+
+<h4>Back to Page 1</h4>
+
+<div class="pagestack">
+
+  [<a href="page1.jsp">Page 1</a>]
+
+</div>
+
+<h4>Title from JSTL Resource Bundle</h4>
+Expecting: An english text.
+<p>
+<div class="pagestack">
+
+  [<a href="page1.jsp">An english text.</a>]
+
+</div>
+
+<h4>bundle</h4>
+<div class="pagestack">
+
+  [<a href="page1.jsp">English from resources</a>]
+
+</div>
+
+<h4>Use Token</h4>
+<div class="pagestack">
+
+
+
+
+  [<a href="token1.jsp?token=54010eaa">Token 1</a>]
+
+  [<a href="token2.jsp?param=value&amp;token=54010eaa">Token 2</a>]
+
+  [<a href="token3.jsp?p1=v1&amp;p2=v2&amp;token=54010eaa">Token 3</a>]
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xform style="twocolumn">
+  <title value="Tabbed Form">
+    <imgButton id="$id.cancel" src="wcf/form/cancel.png" action="revert" label="Cancel" handler="com.tonbeller.wcf.form.ButtonHandler"/>
+  </title>
+
+  <!-- tree goes left, tabbed goes right -->
+  <manual>
+    <tr>
+      <td valign="top">
+        <xtree id="$id.tree" selmode="href" border="0" modelReference="treeValue"/>
+      </td>
+      <td valign="top">
+        <xtabbed id="$id.tabbed" validate="true">
+          <xpanel id="$id.panel1" label="Tab 1" current="true">
+            <xform id="$id.xform1" style="nested" width="100%">
+              <textField id="$id.text1" label="Text Input" modelReference="stringValue" type="string"/>
+              <textField id="$id.int1"  label="Int  Input" modelReference="intValue" type="int"/>
+            </xform>
+          </xpanel>
+          <xpanel id="$id.panel2" label="Tab 2" handler="com.tonbeller.wcf.tabbed.PanelSupport">
+            <xform id="$id.xform2" style="nested" width="100%">
+              <textField id="$id.text2" label="Text Input" modelReference="stringValue" type="string"/>
+              <textField id="$id.int2"  label="Int  Input" modelReference="intValue" type="int"/>
+              <textField label="Text Input 3"/>
+              <textField label="Text Input 4"/>
+            </xform>
+          </xpanel>
+          <xpanel id="$id.panel3" label="Tab 3">
+            <tr>
+              <td colspan="2" valign="top">
+                <xtable id="$id.table" selmode="multi" border="1" modelReference="tableValue"/>
+              </td>
+            </tr>
+          </xpanel>
+          <xpanel id="$id.panel4" label="Tab 4" role="tomcat">
+            <tr>
+              <td colspan="2" valign="top">
+                Congratulation! You are a member of the role "tomcat".
+              </td>
+            </tr>
+          </xpanel>
+        </xtabbed>
+      </td>
+    </tr>
+  </manual>
+
+  <buttons>
+    <button id="$id.ok" action="validate" label="OK" actionReference="testAction"/>
+    <button id="$id.cancel" action="revert" label="Cancel" actionReference="testAction"/>
+  </buttons>
+
+</xform>

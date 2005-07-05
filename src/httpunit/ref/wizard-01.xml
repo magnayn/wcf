@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form method="post" action="wizard.jsp">
+<table border="1" cellspacing="0" cellpadding="2">
+<tr>
+<th colspan="2" class="xform-title">Wizard Form 01</th>
+</tr>
+<tr>
+<td class="xform-label">Enter 'AB'</td>
+<td class="xform-input">
+<input title="Please enter 'AB'" type="text"/>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="right">
+<input type="submit"/> <input type="submit"/>
+</td>
+</tr>
+</table>Step 1</form>

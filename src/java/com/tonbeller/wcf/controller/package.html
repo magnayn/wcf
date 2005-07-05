@@ -1,0 +1,58 @@
+<html>
+<body>
+
+Allows to register RequestListeners that are notified on user actions.
+For example, RequestListeners may be registered for submit buttons
+or anchors (&lt;a href="..."&gt;)
+       
+<h2>Dispatchers and RequestListeners</h2>
+
+RequestListeners  are classes that want to receive event notifications
+on some http requests. For example, RequestListeners may be registered for 
+a specific URL of a &lt;a href=".." &gt; -- the Listener will be invoked, whenever
+the user clicks on that anchor. Another example is a button of a form, there may
+be one RequestListener for every button.
+<p>
+A RequestListener can receive notifications
+for requests, that contain 
+<ul>
+<li>a specific name/value pair</li>
+<li>a specific name with arbitrary value (e.g. for HTML &lt;INPUT type="button" ...&gt;</li>
+<li>a specific value with arbitrary name</li>
+</ul>
+
+A Dispatcher determines the RequestListeners from the
+request parameters (name/value pairs) and notifies the matching RequestListeners.
+
+<p>
+Dispatchers may be nested. A child dispatcher, that has been added to a parent
+dispatcher via addRequestListener(), will respond to all requests that it receives
+from its parent and will dispatch these to its listeners. Common usage is to
+have a single root dispatcher (front controller) in the controller servlet, that receives all requests.
+The next dispatcher in the hierarchy dispatches on pages, the next one on
+forms and the last one on form buttons. Any hierarchy may be choosen and encoded
+into url parameters.
+<p>
+
+
+
+<h2>Class Diagram</h2>
+
+<img src="doc-files/class-diagram.gif">
+
+
+
+
+<h2>Front Controller Implementation</h2>
+
+The <code>Controller</code> is implemented by <code>RequestFilter</code>
+and <code>SessionListener</code>.
+<p>
+The Controller provides access to a Dispatcher and optionally
+forwards to the next view.
+<p>
+<code>RequestFilter</code>
+and <code>SessionListener</code> should be accessed thru <code>Controller</code>
+and not directly.
+</body>
+</html>
