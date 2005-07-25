@@ -19,4 +19,10 @@ public class NullResourceProvider implements ResourceProvider {
   public void close() {
   }
 
+  public void dump(Dumper d) {
+    d.dump(this);
+  }
+  public String getName() {
+    return "Empty Provider";
+  }
 }

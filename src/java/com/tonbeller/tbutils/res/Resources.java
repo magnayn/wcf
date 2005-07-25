@@ -265,4 +265,11 @@ public class Resources {
     persistentProvider.flush();
   }
   
+  /**
+   * returns all key/value pairs for logging / debug
+   * @see StringDumper
+   */
+  public void dump(Dumper d) {
+    provider.dump(d);
+  }
 }

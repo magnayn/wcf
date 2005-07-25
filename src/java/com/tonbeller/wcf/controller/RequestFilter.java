@@ -41,8 +41,6 @@ import com.tonbeller.wcf.utils.UrlUtils;
 
 public class RequestFilter implements Filter {
 
-  private FilterConfig config;
-
   private static Logger logger = Logger.getLogger(RequestFilter.class);
 
   static final String NEXTVIEW = RequestFilter.class.getName() + ".nextview";
@@ -71,7 +69,6 @@ public class RequestFilter implements Filter {
   }
 
   public void init(FilterConfig config) throws ServletException {
-    this.config = config;
     errorJSP = config.getInitParameter("errorJSP");
     forceExtension = config.getInitParameter("forceExtension");
     indexJSP = config.getInitParameter("indexJSP");
@@ -161,13 +158,13 @@ public class RequestFilter implements Filter {
     public void recursiveRequest() throws Exception {
       filterChain.doFilter(request, response);
     }
-    
+
     public void showBusyPage(boolean redirect) throws Exception {
       if (redirectToIndex())
         return;
       if (busyJSP != null) {
         if (redirect)
-          forward(busyJSP + "?isBusyPage=true");
+          forward(busyJSP);
         else
           filterChain.doFilter(request, response);
       } else
@@ -175,7 +172,9 @@ public class RequestFilter implements Filter {
     }
 
     public boolean isBusyPage() {
-      return "true".equals(request.getParameter("isBusyPage"));
+      if (busyJSP == null)
+        return false;
+      return request.getRequestURI().endsWith(busyJSP);
     }
 
     /**
@@ -212,7 +211,6 @@ public class RequestFilter implements Filter {
       }
       return false;
     }
-
 
   }
 
@@ -280,10 +278,6 @@ public class RequestFilter implements Filter {
     return UrlUtils.matchPattern(hsr, passThru);
   }
 
-  public void destroy() {
-    config = null;
-  }
-
   /** for testing */
   void setForceExtension(String forceExtension) {
     this.forceExtension = forceExtension;
@@ -304,6 +298,9 @@ public class RequestFilter implements Filter {
       session.setAttribute(FORCE_INDEX_JSP, "true");
     else
       session.removeAttribute(FORCE_INDEX_JSP);
+  }
+
+  public void destroy() {
   }
 
 }

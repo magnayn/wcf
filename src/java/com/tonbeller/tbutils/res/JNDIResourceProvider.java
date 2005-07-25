@@ -17,7 +17,8 @@ import org.apache.log4j.Logger;
 public class JNDIResourceProvider implements ResourceProvider {
   Context context = null;
   boolean disabled = false;
-  private static Logger logger = Logger.getLogger(JNDIResourceProvider.class);  
+  private static Logger logger = Logger.getLogger(JNDIResourceProvider.class);
+
   public String getString(String key) {
     if (disabled)
       return null;
@@ -45,7 +46,7 @@ public class JNDIResourceProvider implements ResourceProvider {
   public Collection keySet() {
     return Collections.EMPTY_SET;
   }
-  
+
   public void close() {
     try {
       if (context != null)
@@ -55,6 +56,14 @@ public class JNDIResourceProvider implements ResourceProvider {
     } finally {
       context = null;
     }
+  }
+
+  public void dump(Dumper d) {
+    d.dump(this);
+  }
+  
+  public String getName() {
+    return "JNDI Lookup " + (disabled ? "disabled" : "enabled"); 
   }
 
 }

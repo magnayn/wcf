@@ -31,4 +31,10 @@ public class ServletContextResourceProvider implements ResourceProvider {
 
   public void close() {
   }
+  public void dump(Dumper d) {
+    d.dump(this);
+  }
+  public String getName() {
+    return "Servlet Context Lookup";
+  }
 }

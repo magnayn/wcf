@@ -21,7 +21,6 @@
 	<classpathentry kind="var" path="REPOSITORY/jakarta-tomcat-4.1.31/common/lib/servlet.jar"/>
 	<classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-collections-3.1.jar"/>
 	<classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-fileupload-1.0.jar"/>
-	<classpathentry sourcepath="build/tbutils-src.jar" kind="lib" path="build/web/WEB-INF/lib/tbutils.jar"/>
 	<classpathentry kind="var" path="REPOSITORY/commons-logging-1.0.4/commons-logging.jar"/>
 	<classpathentry kind="var" path="REPOSITORY/commons-logging-1.0.4/commons-logging-api.jar"/>
 	<classpathentry kind="output" path="build/web/WEB-INF/classes"/>

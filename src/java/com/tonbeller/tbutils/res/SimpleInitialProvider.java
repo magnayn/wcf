@@ -20,7 +20,7 @@ public class SimpleInitialProvider extends CompositeResourceProvider implements 
 
     try {
       ResourceBundle resb = ResourceBundle.getBundle(USER_PROPERTIES);
-      add(new BundleResourceProvider(resb));
+      add(new BundleResourceProvider(USER_PROPERTIES, resb));
     }
     catch (MissingResourceException e) {
       // ignore
@@ -28,7 +28,7 @@ public class SimpleInitialProvider extends CompositeResourceProvider implements 
     
     try {
       ResourceBundle resb = ResourceBundle.getBundle(RESFACTORY_PROPERTIES);
-      add(new BundleResourceProvider(resb));
+      add(new BundleResourceProvider(RESFACTORY_PROPERTIES, resb));
     }
     catch (MissingResourceException e) {
       // ignore

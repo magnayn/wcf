@@ -4,9 +4,9 @@ package com.tonbeller.tbutils.res;
  * initial provider. looks up variables
  * <ol>
  * <li>in JNDI java:/comp/env context</li>
+ * <li>System.getProperty()</li>
  * <li>user.properties in root classpath</li>
  * <li>resfactory.properties in root classpath</li>
- * <li>System.getProperty()</li>
  * </ol>
  * in that order.
  * 

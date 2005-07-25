@@ -12,8 +12,10 @@ import java.util.Set;
  */
 public class BundleResourceProvider implements ResourceProvider {
   private ResourceBundle resb;
+  private String name;
 
-  BundleResourceProvider(ResourceBundle resb) {
+  BundleResourceProvider(String name, ResourceBundle resb) {
+    this.name = name;
     this.resb = resb;
   }
 
@@ -33,6 +35,14 @@ public class BundleResourceProvider implements ResourceProvider {
   }
 
   public void close() {
+  }
+
+  public String getName() {
+    return "BundleResourceProvider " + name;
+  }
+
+  public void dump(Dumper d) {
+    d.dump(this);
   }
 
 }

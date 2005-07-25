@@ -139,7 +139,7 @@ public class ResourcesFactory {
       return null;
     try {
       ResourceBundle resb = ResourceBundle.getBundle(bundleName, locale);
-      return new BundleResourceProvider(resb);
+      return new BundleResourceProvider(bundleName, resb);
     } catch (MissingResourceException e) {
       return null;
     }
@@ -179,17 +179,21 @@ public class ResourcesFactory {
     return new JNDIInitialProvider();
   }
 
-
-  void initialize(ResourceProvider p) {
+  void initialize(ResourceProvider resp) {
     locale2providerMap.clear();
-    properties = tokenize(p.getString(TBELLER_PROPERTIES));
+    
+    ResourceProvider p = new ReplacingResourceProvider(resp);
     bundles = tokenize(p.getString(TBELLER_BUNDLES));
+    
     // home directory may be overridden in ResourceBundle 
     CompositeResourceProvider c = new CompositeResourceProvider();
     c.add(p);
     addBundleProviders(Locale.getDefault(), c);
-    initHome(c);
-    initLocale(c);
+    p = new ReplacingResourceProvider(c);
+
+    initHome(p);
+    initLocale(p);
+    properties = tokenize(p.getString(TBELLER_PROPERTIES));
   }
 
   String[] tokenize(String s) {
@@ -216,14 +220,13 @@ public class ResourcesFactory {
    */
   private void addPropertyProviders(Locale locale, CompositeResourceProvider c) {
     for (int i = 0; i < properties.length; i++) {
-      String fn = homeDir.getAbsolutePath() + File.separator + properties[i];
-      File f = findFile(fn, locale);
+      File f = propertyFile(properties[i], locale);
       Properties props = new Properties();
       FileInputStream fis = null;
       try {
         fis = new FileInputStream(f);
         props.load(fis);
-        c.add(new PropertyResourceProvider(props));
+        c.add(new PropertyResourceProvider(f.getCanonicalPath(), props));
       } catch (FileNotFoundException e) {
         // ignore
         if (logger.isInfoEnabled())
@@ -241,6 +244,16 @@ public class ResourcesFactory {
     }
   }
 
+  File propertyFile(String propertyName, Locale locale) {
+    String fn;
+    File f = new File(propertyName);
+    if (f.isAbsolute())
+      fn = f.getAbsolutePath();
+    else
+      fn = homeDir.getAbsolutePath() + File.separator + propertyName;
+    return findFile(fn, locale);
+  }
+  
   /**
    * @param locale
    * @param c
@@ -249,7 +262,7 @@ public class ResourcesFactory {
     for (int i = 0; i < bundles.length; i++) {
       try {
         ResourceBundle rb = ResourceBundle.getBundle(bundles[i], locale);
-        c.add(new BundleResourceProvider(rb));
+        c.add(new BundleResourceProvider(bundles[i], rb));
       } catch (MissingResourceException e) {
         // ignore
         if (logger.isInfoEnabled())
@@ -262,7 +275,8 @@ public class ResourcesFactory {
     String ext = "";
 
     int pos = path.lastIndexOf('.');
-    ext = path.substring(pos, path.length()); // including the dot
+    if (pos >= 0)
+      ext = path.substring(pos, path.length()); // including the dot
     path = path.substring(0, pos);
 
     File f = new File(path + "_" + locale.getLanguage() + "_" + locale.getCountry() + ext);

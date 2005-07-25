@@ -21,5 +21,12 @@ public class SystemResourceProvider implements ResourceProvider {
   }
   public void close() {
   }
+  
+  public void dump(Dumper d) {
+    d.dump(this);
+  }
+  public String getName() {
+    return "System Properties";
+  }
 
 }

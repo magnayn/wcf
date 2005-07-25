@@ -7,7 +7,78 @@ Access to key/value pairs and application home directory.
 Resources. 
 {@link com.tonbeller.tbutils.res.ResourcesFactory} contains a description
 how to configure the Resources.
+<p>
+{@link com.tonbeller.tbutils.res.ResourcesFactory} looks for a resource bundle named <code>resfactory</code> in the classpath (root package).
+The resfactory may contain the following entries:
 
+<h2>Initialization</h2>
+
+<table border="1">
+  <tr>
+    <td><code>tbeller.home</code></td>
+    <td>Path of a directory in the filesystem where the application may want to store data or read property files.
+        The default is <code>~/.tonbeller</code>
+    <p>Example: <code>tbeller.home=c:\temp</code>
+    <p>Example: <code>tbeller.home=${java.io.tmpdir}</code>
+    </td>
+  </tr>
+  <tr>
+    <td><code>tbeller.usejndi</code></td>
+    <td>defaults to true. If set to false, properties will not looked up via JNDI. Example: 
+    <code>tbeller.usejndi=false</code></td>
+  </tr>
+  <tr>
+    <td><code>tbeller.bundles</code></td>
+    <td>Names of ResourceBundle's that will be looked up in the class path
+    <p>Example: <code>tbeller.bundles=com.tonbeller.jpivot.jpivot com.acme.messages</code></td>
+  </tr>
+  <tr>
+    <td><code>tbeller.resources</code></td>
+    <td>Paths of property files, that will be looked up in  the file system. If the path is relative,
+    its releative to <code>tbeller.home</code> (see above), otherwise its taken absolute.
+    <p>Example <code>tbeller.resources=local.properties </code> is identical to <code>tbeller.resources=${tbeller.home}/local.properties </code>
+    <p>Example <code>tbeller.resources=local.properties /etc/conf/conf.properties</code>
+    </td>
+  </tr>
+</table>
+
+<p>
+These four variables are looked up
+<ol>
+ <li>in JNDI java:/comp/env context (depends on tbeller.usejndi)</li>
+ <li><code>user.properties</code> in root classpath</li>
+ <li>resfactory.properties in root classpath</li>
+ <li>System.getProperty()</li>
+</ol>
+in that order.
+
+<h2>Runtime</h2>
+
+After initialization using the four variables above, Properties are searched in the following order
+<ol>
+ <li>System Properties</li>
+ <li>The <code>tbeller.properties</code> property files in the given order</li>
+ <li>The <code>tbeller.bundles</code> Resource Bundles in the given order</li>
+</ol>
+
+The first match "wins".
+
+<h2>Property references</h2>
+
+Properties may be referenced from other properties. Example:
+<pre>
+root.dir=/usr/local/myapp
+dir1=${root.dir}/dir1
+dir2=${java.io.tmpdir}/dir2
+</pre>
+
+may expand to
+
+<pre>
+root.dir=/usr/local/myapp
+dir1=/usr/local/myapp/dir1
+dir2=/tmp/dir2
+</pre>
 
 </body>
 </html>

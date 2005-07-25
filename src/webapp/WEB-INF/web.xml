@@ -29,16 +29,16 @@
   <filter>
     <filter-name>WcfController</filter-name>
     <filter-class>com.tonbeller.wcf.controller.RequestFilter</filter-class>
+    <init-param>
+      <param-name>busyJSP</param-name>
+      <param-value>/busy.jsp</param-value>
+      <description>forward to this page if a long running request is interrupted</description>
+    </init-param>
     <!--
     <init-param>
       <param-name>indexJSP</param-name>
       <param-value>/index.jsp</param-value>
       <description>forward to this page if session is new</description>
-    </init-param>
-    <init-param>
-      <param-name>busyJSP</param-name>
-      <param-value>/busy.jsp</param-value>
-      <description>forward to this page if a long running request is interrupted</description>
     </init-param>
     <init-param>
       <param-name>errorJSP</param-name>

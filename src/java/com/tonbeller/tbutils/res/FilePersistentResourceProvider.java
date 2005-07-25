@@ -92,4 +92,11 @@ class FilePersistentResourceProvider implements PersistentResourceProvider {
     store();
   }
 
+  public void dump(Dumper d) {
+    d.dump(this);
+  }
+
+  public String getName() {
+    return "FileResouceProvider " + file;
+  }
 }

@@ -111,6 +111,7 @@ public class RequestSynchronizer {
   }
 
   public void handleRequest(Handler handler) throws Exception {
+    
     // if this is the busy page, just display
     if (handler.isBusyPage()) {
       handler.showBusyPage(false);
@@ -121,11 +122,13 @@ public class RequestSynchronizer {
     if (startNormalRequest(handler)) {
       // no other requests active, run this request normally
       try {
+        resultURI = handler.getResultURI();
         logInfo("handle-normal");
         handler.normalRequest();
       } finally {
         endNormalRequest();
       }
+      resultURI = handler.getResultURI();
       return;
     }
 

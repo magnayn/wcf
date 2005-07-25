@@ -79,22 +79,6 @@ public abstract class HttpUnitTestBase extends TestCase {
     }
   }
 
-  /**
-   * Method appendProperty.
-   * @param result
-   * @param propName
-   */
-  private void appendProperty(StringBuffer result, String propName)
-      throws UnsupportedEncodingException {
-    String propVal = System.getProperty(propName);
-    if (propVal == null)
-      return;
-    result.append("&");
-    result.append(propName);
-    result.append("=");
-    result.append(URLEncoder.encode(propVal, "ISO-8859-1"));
-  }
-
   protected WebResponse submitForm(String buttonName) throws IOException, SAXException {
     WebForm form = getForm();
     SubmitButton sb = form.getSubmitButton(buttonName);

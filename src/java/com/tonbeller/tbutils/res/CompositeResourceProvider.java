@@ -53,4 +53,14 @@ public class CompositeResourceProvider implements ResourceProvider {
     }
   }
 
+  public void dump(Dumper d) {
+    for (Iterator it = list.iterator(); it.hasNext();) {
+      ResourceProvider r = (ResourceProvider) it.next();
+      r.dump(d);
+    }
+  }
+
+  public String getName() {
+    return "CompositeResourceProvider";
+  }
 }

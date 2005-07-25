@@ -13,4 +13,9 @@ public interface ResourceProvider {
   
   /** frees resources */
   void close();
+  
+  /** for debugging / logging */
+  void dump(Dumper d);
+  /** for debugging / logging */
+  String getName();
 }

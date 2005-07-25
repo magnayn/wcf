@@ -9,11 +9,13 @@ import java.util.Properties;
 
 class PropertyResourceProvider implements ResourceProvider {
   Properties props;
+  String name;
 
-  PropertyResourceProvider(Properties props) {
+  PropertyResourceProvider(String name, Properties props) {
     this.props = props;
+    this.name = name;
   }
-  
+
   public String getString(String key) {
     return props.getProperty(key);
   }
@@ -21,7 +23,14 @@ class PropertyResourceProvider implements ResourceProvider {
   public Collection keySet() {
     return props.keySet();
   }
+
   public void close() {
   }
 
+  public void dump(Dumper d) {
+    d.dump(this);
+  }
+  public String getName() {
+    return name;
+  }
 }
