@@ -924,7 +924,7 @@
     &tooltip.attr;
     &visibleref.attr;
     &role.attr;
-    <attr type="String" rtexpr="false" required="true" name="href">
+    <attr type="String" rtexpr="true" required="true" name="href">
       <descr lang="en">the <tt>href</tt> attribute of the hyperlink. "{0}" is replaced with the context, "{1}" with a random string.</descr>
       <descr lang="de">das <tt>href</tt> Attribut des hyperlinks.  Dabei wird "{0}" durch den Kontextpfad ersetzt, "{1}" durch einen zufaelligen String</descr>
     </attr>
