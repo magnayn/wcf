@@ -245,7 +245,7 @@ public class RendererTag extends TagSupport {
     parameters.put("renderId", renderId);
     parameters.put("context", context.getRequest().getContextPath());
     // Some FOP-PDF versions require a complete URL, not a path
-    parameters.put("contextUrl", createContextURLValue(context));
+    //parameters.put("contextUrl", createContextURLValue(context));
 
     // add token to control page flow
     RequestToken tok = RequestToken.instance(context.getSession());
