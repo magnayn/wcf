@@ -3,25 +3,21 @@
 	<classpathentry kind="src" path="src/java"/>
 	<classpathentry kind="src" path="src/test"/>
 	<classpathentry sourcepath="JRE_SRC" kind="var" path="JRE_LIB"/>
-	<classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-beanutils.jar"/>
-	<classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-digester.jar"/>
 	<classpathentry kind="lib" path="build/web/WEB-INF/lib/jakarta-regexp-1.2.jar"/>
 	<classpathentry kind="lib" path="build/web/WEB-INF/lib/jaxen-full.jar"/>
 	<classpathentry sourcepath="D:/repository/jakarta-taglibs-standard-1.0.6-src" kind="lib" path="build/web/WEB-INF/lib/jstl.jar"/>
 	<classpathentry kind="lib" path="build/web/WEB-INF/lib/log4j-1.2.8.jar"/>
 	<classpathentry kind="lib" path="build/web/WEB-INF/lib/saxpath.jar"/>
 	<classpathentry kind="lib" path="build/web/WEB-INF/lib/standard.jar"/>
-	<classpathentry kind="var" path="REPOSITORY/junit3.8.1/junit.jar"/>
-	<classpathentry kind="var" path="REPOSITORY/httpunit-1.5.2/lib/httpunit.jar"/>
-	<classpathentry kind="var" path="REPOSITORY/httpunit-1.5.2/jars/js.jar"/>
-	<classpathentry kind="var" path="REPOSITORY/httpunit-1.5.2/jars/Tidy.jar"/>
 	<classpathentry kind="lib" path="build/web/WEB-INF/lib/jsf-api.jar"/>
-	<classpathentry kind="var" path="REPOSITORY/jakarta-tomcat-4.1.31/common/lib/activation.jar"/>
-	<classpathentry kind="var" path="REPOSITORY/jakarta-tomcat-4.1.31/common/lib/mail.jar"/>
-	<classpathentry kind="var" path="REPOSITORY/jakarta-tomcat-4.1.31/common/lib/servlet.jar"/>
 	<classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-collections-3.1.jar"/>
 	<classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-fileupload-1.0.jar"/>
-	<classpathentry kind="var" path="REPOSITORY/commons-logging-1.0.4/commons-logging.jar"/>
-	<classpathentry kind="var" path="REPOSITORY/commons-logging-1.0.4/commons-logging-api.jar"/>
+	<classpathentry kind="var" path="TOMCAT_5_5/common/lib/servlet-api.jar"/>
+	<classpathentry kind="var" path="TOMCAT_5_5/common/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-beanutils-1.6.jar"/>
+	<classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-digester-1.5.jar"/>
+	<classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="/jpivot_repository/httpunit-1.5.2/lib/httpunit.jar"/>
+	<classpathentry kind="lib" path="/jpivot_repository/junit-3.8.1/junit.jar"/>
 	<classpathentry kind="output" path="build/web/WEB-INF/classes"/>
 </classpath>

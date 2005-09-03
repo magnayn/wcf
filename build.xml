@@ -10,10 +10,13 @@
   <property name="dist.home"     value="${basedir}/dist"/>
   <property name="src.home"      value="${basedir}/src"/>
 
-  <property name="jdepend.home"  value="${repository.home}/jdepend-2.7-tb"/>
+  <property name="repository.home"      value="${basedir}/../jpivot_repository"/>
+
+  <property name="jdepend.home"  value="${repository.home}/jdepend-2.9.1"/>
   <property name="httpunit.home" value="${repository.home}/httpunit-1.5.2"/>
   <property name="catalina.home" value="${repository.home}/jakarta-tomcat-4.1.31"/>
-  <property name="xalan.home"    value="${repository.home}/xalan-j_2_6_0"/>
+  <property name="xalan.home"    value="${repository.home}/xalan-j_2_7_0"/>
+  <property name="junit.home"    value="${repository.home}/junit-3.8.1"/>
 
 <!-- ==================== File and Directory Names ======================== -->
 
@@ -60,7 +63,9 @@
   <path id="junit.classpath">
     <path refid="compile.classpath"/>
     <pathelement location="${build.home}/web/WEB-INF/classes"/>
-    <pathelement location="${build.home}/junit/classes"/>
+    <fileset dir="${junit.home}">
+      <include name="*.jar"/>
+    </fileset>
     <pathelement location="${httpunit.home}/lib/httpunit.jar"/>
     <pathelement location="${httpunit.home}/jars/js.jar"/>
     <pathelement location="${httpunit.home}/jars/Tidy.jar"/>
@@ -70,16 +75,19 @@
   <path id="jdepend.classpath">
     <path refid="compile.classpath"/>
     <!-- pathelement location="${build.home}/web/WEB-INF/classes"/ -->
-    <pathelement location="${jdepend.home}/lib/jdepend.jar"/>
+    <fileset dir="${jdepend.home}/lib">
+      <include name="*.jar"/>
+    </fileset>
   </path>
 
-  <!-- classpath for xdoclet -->
+  <!-- classpath for xdoclet: not used
   <path id="xdoclet.classpath">
-    <path refid="compile.classpath"/>
+    <path refid="compile.classpath"/>  -->
     <!-- pathelement location="${build.home}/web/WEB-INF/classes"/ -->
-    <pathelement location="${xdoclet.home}/lib/xdoclet.jar"/>
+  <!--  <pathelement location="${xdoclet.home}/lib/xdoclet.jar"/>
     <pathelement location="${xdoclet.home}/samples/lib/log4j.jar"/>
-  </path>
+  </path>  -->
+	
 
 <!-- ==================== Prepare Target ================================== -->
 
@@ -116,7 +124,7 @@
       </filterset>
     </copy>
 
-    <!-- Copy external dependencies as required -->
+    <!-- Copy external dependencies as required  -->
     <mkdir  dir="${build.home}/web/WEB-INF/lib"/>
     <copy  todir="${build.home}/web/WEB-INF/lib" flatten="true">
       <fileset dir="${repository.home}">
@@ -126,8 +134,8 @@
         <include name="jakarta-taglibs-standard-1.0.6/lib/saxpath.jar"/>
         <include name="jakarta-regexp-1.2/*.jar"/>
 
-        <include name="commons-digester-1.5/commons-digester.jar"/>
-        <include name="commons-collections-3.1/commons-collections-3.1.jar"/>
+        <include name="commons-digester-1.5/*.jar"/>
+        <include name="commons-collections-3.1/*.jar"/>
         <include name="commons-beanutils-1.7.0/*.jar"/>
         <include name="commons-logging-1.0.4/*.jar"/>
         <include name="commons-fileupload-1.0/*.jar"/>
@@ -163,7 +171,8 @@
 
   <target name="compile" depends="prepare" description="Compile Java sources">
 
-    <!-- Compile Java classes as necessary -->
+    <!-- Compile Java classes as necessary 
+    depends="prepare" -->
     <mkdir dir="${build.home}/web/WEB-INF/classes"/>
     <mkdir dir="${build.home}/web/WEB-INF/lib"/>
     <javac destdir="${build.home}/web/WEB-INF/classes"
@@ -218,9 +227,12 @@
 
   </target>
 
-<!-- ==================== Dist Target ===================================== -->
+<!-- ==================== Dist Target ===================================== 
+ Did have tests,jdepend,changelog as dependencies, but they are Tonbeller specific
+ and not distributed.
+ -->
 
-  <target name="dist" depends="clean,compile,tests,jdepend,javadoc,userdoc,changelog,archives" description="Create binary distribution"/>
+  <target name="dist" depends="clean,compile,javadoc,userdoc,archives" description="Create binary distribution"/>
 
 <!-- ==================== Delta Target ===================================== -->
 
@@ -248,7 +260,7 @@
       </fileset>
     </copy>
 
-    <java jar="${xalan.home}/bin/xalan.jar" fork="true">
+    <java jar="${xalan.home}/xalan.jar" fork="true">
       <jvmarg value="-Duser.language=en"/>
       <jvmarg value="-Duser.region=US"/>
       <arg value="-in"/>
@@ -343,6 +355,15 @@
 
 
 <!-- ==================== JUnit Tests =================================== -->
+
+	<!--
+	     ======================================================================
+	     requires in $ANT_HOME/lib
+	       junit.jar
+	       bcel-5.1 from jakarta.apache.org
+	       http://ant-contrib.sourceforge.net/
+	     ======================================================================
+	-->
 
 
   <target name="tests" description="JUnit Tests" depends="runtests,checktests"/>
