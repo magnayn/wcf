@@ -245,7 +245,7 @@ public class RendererTag extends TagSupport {
     parameters.put("renderId", renderId);
     parameters.put("context", context.getRequest().getContextPath());
     // Some FOP-PDF versions require a complete URL, not a path
-    //parameters.put("contextUrl", createContextURLValue(context));
+    parameters.put("contextUrl", createContextURLValue(context));
 
     // add token to control page flow
     RequestToken tok = RequestToken.instance(context.getSession());
@@ -255,6 +255,10 @@ public class RendererTag extends TagSupport {
   /** generates the context URL stylesheet parameter */
   private String createContextURLValue(RequestContext context) throws MalformedURLException {
 
+    if (context.getRequest() == null) {
+        return "UNDEFINED";
+    }
+    
     URL url = new URL((context.getRequest()).getRequestURL().toString());
 
     StringBuffer c = new StringBuffer();
