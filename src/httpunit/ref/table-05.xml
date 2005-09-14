@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form method="post" action="tabledemo.jsp">
-<table border="1" cellspacing="0" cellpadding="2">
+<form method="post" action="tabledemo.jsp"> <table border="1" cellspacing="0" cellpadding="2">
 <tr>
 <th colspan="2" class="xform-title">
 <table border="0" cellspacing="0" cellpadding="0">

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form method="post" action="tabledemo.jsp">
-<table border="1" cellspacing="0" cellpadding="2">
+<form method="post" action="tabledemo.jsp"> <table border="1" cellspacing="0" cellpadding="2">
 <tr>
 <th colspan="8" class="xtable-title">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -41,19 +40,19 @@
 <input type="hidden"/>
 </td>
 <td align="left" class="xtable-data">Hello World: 2</td>
-<td align="left" class="xtable-data">04/16/2003</td>
-<td align="right" class="xtable-data">688.31</td>
-<td align="right" class="xtable-data">888</td>
+<td align="left" class="xtable-data">02/03/2002</td>
+<td align="right" class="xtable-data">181.51</td>
+<td align="right" class="xtable-data">912</td>
 <td align="right" class="xtable-data">
-<a>913</a>
+<a>884</a>
 </td>
 <td class="xtable-data">
 <a>
-<img src="wcf/table/sort-ac.png" border="0"/>
+<img src="wcf/table/sort-dn.png" border="0"/>
 </a> </td>
 <td align="left" class="xtable-data">
 <a>
-<img src="wcf/table/sort-ac.png" border="0"/> Text 42</a>
+<img src="wcf/table/sort-ac.png" border="0"/> Text 13</a>
 </td>
 </tr>
 <tr>
@@ -62,19 +61,19 @@
 <input type="hidden"/>
 </td>
 <td align="left" class="xtable-data">Hello World: 3</td>
-<td align="left" class="xtable-data">04/02/2003</td>
-<td align="right" class="xtable-data">43.14</td>
-<td align="right" class="xtable-data">410</td>
+<td align="left" class="xtable-data">02/04/2002</td>
+<td align="right" class="xtable-data">229.86</td>
+<td align="right" class="xtable-data">596</td>
 <td align="right" class="xtable-data">
-<a>276</a>
+<a>948</a>
 </td>
 <td class="xtable-data">
 <a>
-<img src="wcf/table/sort-ac.png" border="0"/>
+<img src="wcf/table/sort-dn.png" border="0"/>
 </a> </td>
 <td align="left" class="xtable-data">
 <a>
-<img src="wcf/table/sort-dn.png" border="0"/> Text 7</a>
+<img src="wcf/table/sort-ac.png" border="0"/> Text 88</a>
 </td>
 </tr>
 <tr>
@@ -83,11 +82,11 @@
 <input type="hidden"/>
 </td>
 <td align="left" class="xtable-data">Hello World: 4</td>
-<td align="left" class="xtable-data">03/23/2003</td>
-<td align="right" class="xtable-data">61.99</td>
-<td align="right" class="xtable-data">827</td>
+<td align="left" class="xtable-data">02/05/2002</td>
+<td align="right" class="xtable-data">568.18</td>
+<td align="right" class="xtable-data">249</td>
 <td align="right" class="xtable-data">
-<a>250</a>
+<a>168</a>
 </td>
 <td class="xtable-data">
 <a>
@@ -95,7 +94,7 @@
 </a> </td>
 <td align="left" class="xtable-data">
 <a>
-<img src="wcf/table/sort-dn.png" border="0"/> Text 49</a>
+<img src="wcf/table/sort-ac.png" border="0"/> Text 73</a>
 </td>
 </tr>
 <tr>
@@ -104,19 +103,19 @@
 <input type="hidden"/>
 </td>
 <td align="left" class="xtable-data">Hello World: 5</td>
-<td align="left" class="xtable-data">03/24/2003</td>
-<td align="right" class="xtable-data">35.40</td>
-<td align="right" class="xtable-data">537</td>
+<td align="left" class="xtable-data">02/06/2002</td>
+<td align="right" class="xtable-data">117.69</td>
+<td align="right" class="xtable-data">594</td>
 <td align="right" class="xtable-data">
-<a>775</a>
+<a>762</a>
 </td>
 <td class="xtable-data">
 <a>
-<img src="wcf/table/sort-dn.png" border="0"/>
+<img src="wcf/table/sort-ac.png" border="0"/>
 </a> </td>
 <td align="left" class="xtable-data">
 <a>
-<img src="wcf/table/sort-dn.png" border="0"/> Text 46</a>
+<img src="wcf/table/sort-ac.png" border="0"/> Text 65</a>
 </td>
 </tr>
 <tr>

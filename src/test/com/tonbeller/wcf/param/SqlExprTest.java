@@ -66,7 +66,7 @@ public class SqlExprTest extends TestCase {
     assertEquals("(C IN ('a', 'b') OR C IS NULL)", sg.generate(ex));
     
     // 3 or more number
-    ex.setSqlValues(new Object[]{new Double(12),new Integer(0), new Double(Double.NaN), new BigDecimal(1234)});
+    ex.setSqlValues(new Object[]{new Double(12),new Integer(0), new Double(Double.NaN), new BigDecimal(1234.0)});
     assertEquals("C IN (12.0, 0, NaN, 1234)", sg.generate(ex));
   }
   

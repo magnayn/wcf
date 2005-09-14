@@ -12,6 +12,7 @@
  */
 package com.tonbeller.wcf.table;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.Random;
 
@@ -28,13 +29,15 @@ public class TestModel extends AbstractTableModel {
   public TestModel() {
     int N = 20;
     rows = new TableRow[N];
+    DecimalFormat df = new DecimalFormat("00");
     for (int i = 0; i < N; i++) {
       DefaultCell h1 = new DefaultCell("/", new Integer(rnd.nextInt(1000)), null);
       DefaultCell h2 = new DefaultCell("/", null, nextImg());
       DefaultCell h3 = new DefaultCell("/", "Text " + rnd.nextInt(100), nextImg());
+      String s = "2002-02-" + df.format(i + 1);
       Object[] values = new Object[] {
         "Hello World: " + i,
-        new Date(1050595143591L + rnd.nextInt()),
+        java.sql.Date.valueOf(s),
         new Double((double)rnd.nextInt(10000) / (double)rnd.nextInt(100) ),
         new Integer(rnd.nextInt(1000)),
         h1, h2, h3

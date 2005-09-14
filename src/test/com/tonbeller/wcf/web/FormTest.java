@@ -44,7 +44,7 @@ public class FormTest extends HttpUnitTestCase {
 
   public void testRequiredField() throws Exception {
     wc.sendRequest(new GetMethodWebRequest(servletUrl + "/multicolumn.jsp"));
-    utils.submitButton("form01", "ok");
+    utils.submitButton("form01", "multicolumnForm.ok");
     check("form-required");
   }
 
