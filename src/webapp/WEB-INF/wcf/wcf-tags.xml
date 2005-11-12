@@ -3,19 +3,19 @@
 <!DOCTYPE taglib [
 
 <!ENTITY id.attr
-"<attr rtexpr='false' required='true' name='id' type='String'>
+"<attr rtexpr='true' required='true' name='id' type='String'>
   <descr lang='de'>Name des Session Attributes, das durch dieses Tag erzeugt wird</descr>
   <descr lang='en'>Name of the Session Attribute that is created by this tag</descr>
 </attr>">
 
 <!ENTITY visible.attr
-"<attr rtexpr='false' required='false' name='visible' type='boolean'>
+"<attr rtexpr='true' required='false' name='visible' type='boolean'>
   <descr lang='de'>Entscheidet, ob die Komponenente sichtbar ist oder nicht. Das WCF Render Tag zeigt eine Komponente mit visible == false nicht an</descr>
   <descr lang='en'>Sets the visible property of the component. The WCF Render tag will not show a component whose visible flag is false</descr>
 </attr>">
 
 <!ENTITY validate.attr
-"<attr rtexpr='false' required='false' name='validate' type='boolean'>
+"<attr rtexpr='true' required='false' name='validate' type='boolean'>
   <descr lang='de'>wenn true, werden die Benutzereingaben automatisch uebernommen und geprüft,
    auch wenn der Button einer anderen Komponente abgeschickt wurde.
    Dazu müssen allerdings beide Komponenten im selben HTML Formular liegen.</descr>
@@ -25,13 +25,13 @@
 </attr>">
 
 <!ENTITY bundle.attr
-"<attr type='String' rtexpr='false' required='false' name='bundle'>
+"<attr type='String' rtexpr='true' required='false' name='bundle'>
   <descr lang='en'>ResourceBundle for i18n replacements. If a text- or attributenode in xml starts with 'fmt:' the remaining text will be interpreted as key into the resource bundle.</descr>
   <descr lang='de'>ResourceBundle für i18n Ersetzungen. Wenn ein Text- oder Attributnode mit 'fmt:' beginnt wird der Rest als Key für das ResourceBundle interpretiert.</descr>
 </attr>">
 
 <!ENTITY xmluri.attr
-"<attr type='String' rtexpr='false' required='true' name='xmlUri'>
+"<attr type='String' rtexpr='true' required='true' name='xmlUri'>
   <descr lang='en'>
     Path of an XML config file that describes the HTML form, relative to the application context.
     There may be different form descriptions for different Locales, the
@@ -54,7 +54,7 @@
 </attr>">
 
 <!ENTITY role.attr
-"<attr rtexpr='false' required='false' name='role' type='String'>
+"<attr rtexpr='true' required='false' name='role' type='String'>
   <descr lang='de'>
     Name einer Rolle, optional mit vorangestelltem '!'.
     Beispiel role='tomcat' erlaubt allen Mitgliedern der Rolle 'tomcat' den Zugriff,
@@ -70,32 +70,32 @@
 <!-- toolbar -->
 
 <!ENTITY tbid.attr
-"<attr rtexpr='false' required='true' name='id' type='String'>
+"<attr rtexpr='true' required='true' name='id' type='String'>
   <descr lang='de'>ID des Buttons, der Button kann in EL durch <tt>TOOLBAR_ID.buttons.BUTTON_ID</tt> angesprochen werden</descr>
   <descr lang='en'>ID of the button. The button may be accessed in EL as <tt>TOOLBAR_ID.buttons.BUTTON_ID</tt></descr>
 </attr>">
 
 <!ENTITY visibleref.attr
-"<attr type='String' rtexpr='false' required='false' name='visibleRef'>
+"<attr type='String' rtexpr='true' required='false' name='visibleRef'>
   <descr lang='en'>Either <code>true</code>, <code>false</code> or an EL expression that evaluates to a boolean property. The button will be visible only, if that property is true</descr>
   <descr lang='de'><code>true</code>, <code>false</code> oder ein EL Ausdruck eines boolean property. Der Button wird nur dann angezeigt, wenn das property true ist.</descr>
 </attr>">
 
 
 <!ENTITY tbimg.attr
-"<attr type='String' rtexpr='false' required='true' name='img'>
+"<attr type='String' rtexpr='true' required='true' name='img'>
   <descr lang='en'>Name of the image to use. The generated URLs are <tt>APPCONTEXT/wcf/toolbar/IMG-up.png</tt> and <tt>APPCONTEXT/wcf/toolbar/IMG-down.png</tt></descr>
   <descr lang='de'>Name der Bilddatei. Die erzeugten URLs sind <tt>APPCONTEXT/wcf/toolbar/IMG-up.png</tt> und <tt>APPCONTEXT/wcf/toolbar/IMG-down.png</tt></descr>
 </attr>">
 
 <!ENTITY radiogroup.attr
-"<attr type='String' rtexpr='false' required='false' name='radioGroup'>
+"<attr type='String' rtexpr='true' required='false' name='radioGroup'>
   <descr lang='en'>Name of a radio group. At most one button of a group may be pressed.</descr>
   <descr lang='de'>Name einer 'Radio Group'. Höchstens ein Button einer Gruppe kann gedrückt sein.</descr>
 </attr>">
 
 <!ENTITY tooltip.attr
-"<attr type='String' rtexpr='false' required='false' name='tooltip'>
+"<attr type='String' rtexpr='true' required='false' name='tooltip'>
   <descr lang='en'>name of the tooltip in the toolbars ResourceBundle</descr>
   <descr lang='de'>Key im ResourceBundle des Toolbars für den Tooltip dieses Buttons</descr>
 </attr>">
@@ -265,12 +265,12 @@
 
     </descr>
 
-    <attr rtexpr="false" required="false" name="id" type="String">
+    <attr rtexpr="true" required="false" name="id" type="String">
       <descr lang="de">the renderId Stylesheet parameter</descr>
       <descr lang="en">der renderId Stylesheet Parameter</descr>
     </attr>
 
-    <attr rtexpr="false" required="true" name="ref" type="Component">
+    <attr rtexpr="true" required="true" name="ref" type="Component">
       <descr lang="en">
         Name of the Session Attribute that contains the Component to be rendered.
       </descr>
@@ -279,7 +279,7 @@
       </descr>
     </attr>
 
-    <attr type="String" rtexpr="false" required="true" name="xslUri">
+    <attr type="String" rtexpr="true" required="true" name="xslUri">
       <descr lang="en">
         Path of the XSLT stylesheet to use, relative to the application context.
         There may be different stylesheets for different Locales, the
@@ -301,7 +301,7 @@
       </descr>
     </attr>
 
-    <attr type="boolean" rtexpr="false" required="false" name="xslCache">
+    <attr type="boolean" rtexpr="true" required="false" name="xslCache">
       <descr lang="en">true, if the stylesheet shall be compiled once and then reused. This gives better
        performance but makes it difficult to develop the stylesheets. Use <code>true</code> for production
        and <code>false</code> for development</descr>
@@ -345,19 +345,19 @@
       <p />
       Genau eines der Attribute name oder test muss vorhanden sein.
     </descr>
-    <attr type="String" rtexpr="false" required="false" name="name">
+    <attr type="String" rtexpr="true" required="false" name="name">
       <descr lang="en">Name of the parameter</descr>
       <descr lang="de">Der Name des Parameters</descr>
     </attr>
-    <attr type="String" rtexpr="false" required="false" name="value">
+    <attr type="String" rtexpr="true" required="false" name="value">
       <descr lang="en">Value of the parameter. If value starts with '#{' its interpreted as EL expression, otherwise its taken literally</descr>
       <descr lang="de">Der Value des Parameters. Wenn der Wert mit '#{' beginnt, wird er als EL Ausdruck interpretiert. Andernfalls wird der literale Wert genommen</descr>
     </attr>
-    <attr type="String" rtexpr="false" required="false" name="scope">
+    <attr type="String" rtexpr="true" required="false" name="scope">
       <descr lang="en">The scope of the parameter, one of 'request' (default), 'session', 'application'.</descr>
       <descr lang="de">Die Lebensdauer des Parameters: 'request' (default), 'session', 'application'.</descr>
     </attr>
-    <attr type="String" rtexpr="false" required="false" name="test">
+    <attr type="String" rtexpr="true" required="false" name="test">
       <descr lang="en">if present, the tag evaluates its body only if the parameter is set</descr>
       <descr lang="de">wenn vorhanden, wird der body nur ausgewertet wenn der Parameter vorhanden ist</descr>
     </attr>
@@ -649,17 +649,17 @@
     &validate.attr;
     &role.attr;
     &bundle.attr;
-    <attr type="String" rtexpr="false" required="true" name="model">
+    <attr type="String" rtexpr="true" required="true" name="model">
       <descr lang="en">EL expression that resolves to the bean that shall be edited</descr>
       <descr lang="de">EL Ausdruck der die JavaBean bezeichnet, die editiert werden soll</descr>
     </attr>
 
-    <attr type="boolean" rtexpr="false" required="false" name="bookmarkable">
+    <attr type="boolean" rtexpr="true" required="false" name="bookmarkable">
       <descr lang="en">true|false indicating whether this form shall save its beans state. Default is false</descr>
       <descr lang="de">true|false, zeigt an ob der Zustand der bean gespeichert werden soll. Default ist false</descr>
     </attr>
 
-    <attr type="boolean" rtexpr="false" required="false" name="finishButton">
+    <attr type="boolean" rtexpr="true" required="false" name="finishButton">
       <descr lang="en">true|false indicating whether this form supports finish if it is not the last page of a wizard. Default is true</descr>
       <descr lang="de">true|false, zeigt an ob das Formular einen Fertigstellen-Button anbietet, auch wenn
                        dies nicht die letzte Seite in einem Wizard ist (vorzeitiges Beenden). Default ist true</descr>
@@ -739,11 +739,11 @@
   <tag body="tagdependent" class="com.tonbeller.wcf.form.ConfirmComponentTag" name="confirm">
     <descr lang="en">A confirmation dialog. Used by other Components, not stand-alone</descr>
     <descr lang="de">Ein Bestätigungsdialog. Wird von anderen Komponenten verwendet, nicht stand-alone nutzbar</descr>
-    <attr type="String" rtexpr="false" required="false" name="id">
+    <attr type="String" rtexpr="true" required="false" name="id">
       <descr lang="en">Name of the session attribute created by this tag. Defaults to "confirmForm"</descr>
       <descr lang="de">Name des Session Attributs das von diesem Tag erzeugt wird. Default ist "confirmForm"</descr>
     </attr>
-    <attr type="String" rtexpr="false" required="false" name="xmlUri">
+    <attr type="String" rtexpr="true" required="false" name="xmlUri">
       <descr lang="en">URI of the form XML. Defaults to "/WEB-INF/wcf/confirm.xml"</descr>
       <descr lang="de">URI of the form XML. Defaults to "/WEB-INF/wcf/confirm.xml"</descr>
     </attr>
@@ -764,39 +764,39 @@
     &visible.attr;
     &validate.attr;
     &role.attr;
-    <attr type="String" rtexpr="false" required="false" name="model">
+    <attr type="String" rtexpr="true" required="false" name="model">
       <descr lang="en">EL expression that resolves to a com.tonbeller.wcf.table.TableModel</descr>
       <descr lang="de">EL Ausdruck der ein com.tonbeller.wcf.table.TableModel bezeichnet</descr>
     </attr>
-    <attr type="String" rtexpr="false" required="false" name="selmode">
+    <attr type="String" rtexpr="true" required="false" name="selmode">
       <descr lang="en">Row selection mode: href, single, multi or none</descr>
       <descr lang="de">Zeilen-Auswahlmodus: href, single, multi oder none</descr>
     </attr>
-    <attr type="boolean" rtexpr="false" required="false" name="closable">
+    <attr type="boolean" rtexpr="true" required="false" name="closable">
       <descr lang='en'>Either <code>true</code>, <code>false</code> or an EL expression that evaluates to a boolean property. The close button will be visible only, if that property is true</descr>
       <descr lang='de'><code>true</code>, <code>false</code> oder ein EL Ausdruck eines boolean property. Die "Schließe-Tabelle"-Schaltfläche wird nur dann angezeigt, wenn das property true ist</descr>
     </attr>
-    <attr type="boolean" rtexpr="false" required="false" name="editable">
+    <attr type="boolean" rtexpr="true" required="false" name="editable">
       <descr lang='en'>"true" if the user shall hide columns etc</descr>
       <descr lang='de'>"true" wenn der Anwender Spalten ausblenden kann</descr>
     </attr>
-    <attr type="boolean" rtexpr="false" required="false" name="sortable">
+    <attr type="boolean" rtexpr="true" required="false" name="sortable">
       <descr lang='en'>Either <code>true</code>, <code>false</code> or an EL expression that evaluates to a boolean property. The sorting function will be activated, if that property is true</descr>
       <descr lang='de'><code>true</code>, <code>false</code> oder ein EL Ausdruck eines boolean property. Die Sortierfunktion wird aktiviert, wenn das property true ist</descr>
     </attr>
-    <attr type="boolean" rtexpr="false" required="false" name="pagable">
+    <attr type="boolean" rtexpr="true" required="false" name="pagable">
       <descr lang='en'>Either <code>true</code>, <code>false</code> or an EL expression that evaluates to a boolean property. The paging function will be activated, if that property is true</descr>
       <descr lang='de'><code>true</code>, <code>false</code> oder ein EL Ausdruck eines boolean property. Die Blätterfunktion wird aktiviert, wenn das property true ist</descr>
     </attr>
-    <attr type="boolean" rtexpr="false" required="false" name="colHeaders">
+    <attr type="boolean" rtexpr="true" required="false" name="colHeaders">
       <descr lang='en'>Either <code>true</code>, <code>false</code> or an EL expression that evaluates to a boolean property. Column headers will be shown, if that property is true</descr>
       <descr lang='de'><code>true</code>, <code>false</code> oder ein EL Ausdruck eines boolean property. Spaltenüberschriften werden angezeigt, wenn das property true ist</descr>
     </attr>
-    <attr type="int" rtexpr="false" required="false" name="pagesize">
+    <attr type="int" rtexpr="true" required="false" name="pagesize">
       <descr lang="en">Maximum row count which will be displayed for a single page. The paging function must be active (pagable=true)</descr>
       <descr lang="de">Maximale Zeilenzahl die pro Seite angezeigt werden soll. Die Blätterfunktion muss aktiviert sein (pagable=true)</descr>
     </attr>
-    <attr type="String" rtexpr="false" required="false" name="editForm">
+    <attr type="String" rtexpr="true" required="false" name="editForm">
       <descr lang='en'>DEPRECATED - use editable. set to context relative URI the XML file describing the table properties form to allow users to hide columns</descr>
       <descr lang='de'>DEPRECATED - use editable. Context relative URI einer Formularbeschreibung in XML, mit dem die Benutzer die Einstellungen der Tabelle aendern koennen</descr>
     </attr>
@@ -816,11 +816,11 @@
     &validate.attr;
     &role.attr;
     &xmluri.attr;
-    <attr type="boolean" rtexpr="false" required="false" name="closable">
+    <attr type="boolean" rtexpr="true" required="false" name="closable">
       <descr lang='en'>set to <code>true</code> make the component closeable</descr>
       <descr lang='de'><code>true</code> damit die Komponente einen close-button bekommt</descr>
     </attr>
-    <attr type="String" rtexpr="false" required="true" name="table">
+    <attr type="String" rtexpr="true" required="true" name="table">
       <descr lang="en">EL expression that resolves to a &lt;wcf:table ...&gt;</descr>
       <descr lang="de">EL Ausdruck der ein &lt;wcf:table ...&gt; referenziert</descr>
     </attr>
@@ -863,11 +863,11 @@
     &visible.attr;
     &validate.attr;
     &role.attr;
-    <attr type="String" rtexpr="false" required="false" name="bundle">
+    <attr type="String" rtexpr="true" required="false" name="bundle">
       <descr lang="en">ResourceBundle for tooltips</descr>
       <descr lang="de">ResourceBundle für Tooltips</descr>
     </attr>
-    <attr type="boolean" rtexpr="false" required="false" name="globalButtonIds">
+    <attr type="boolean" rtexpr="true" required="false" name="globalButtonIds">
       <descr lang="en">@DEPRECATED - do not use. Workaround for a bug in earlier versions that prevented multiple toolbars to have buttons with the same id</descr>
       <descr lang="en">@DEPRECATED - do not use. Workaround for a bug in earlier versions that prevented multiple toolbars to have buttons with the same id</descr>
     </attr>
@@ -889,7 +889,7 @@
   <tag body="empty" class="com.tonbeller.wcf.toolbar.ToolSeparatorTag" name="separator">
     <descr lang="en">Adds space between toolbar buttons</descr>
     <descr lang="de">Fügt eine Lücke zwischen Toolbar Buttons ein</descr>
-    <attr type="String" rtexpr="false" required="false" name="size">
+    <attr type="String" rtexpr="true" required="false" name="size">
       <descr lang="en">width in pixel</descr>
       <descr lang="de">Breite in pixeln</descr>
     </attr>
@@ -911,7 +911,7 @@
     &visibleref.attr;
     &role.attr;
 
-    <attr type="String" rtexpr="false" required="true" name="model">
+    <attr type="String" rtexpr="true" required="true" name="model">
       <descr lang="en">EL expression that evaluates to a boolean property</descr>
       <descr lang="de">EL Ausdruck eines boolean JavaBean Properties</descr>
     </attr>
@@ -934,7 +934,7 @@
       <descr lang="en">the <tt>href</tt> attribute of the hyperlink. "{0}" is replaced with the context, "{1}" with a random string.</descr>
       <descr lang="de">das <tt>href</tt> Attribut des hyperlinks.  Dabei wird "{0}" durch den Kontextpfad ersetzt, "{1}" durch einen zufaelligen String</descr>
     </attr>
-    <attr type="String" rtexpr="false" required="false" name="target">
+    <attr type="String" rtexpr="true" required="false" name="target">
       <descr lang="en">the <tt>target</tt> attribute of the hyperlink</descr>
       <descr lang="de">das <tt>target</tt> Attribut des hyperlinks</descr>
     </attr>
@@ -952,7 +952,7 @@
     &tooltip.attr;
     &visibleref.attr;
     &role.attr;
-    <attr type="String" rtexpr="false" required="false" name="pressed">
+    <attr type="String" rtexpr="true" required="false" name="pressed">
       <descr lang="en">inital state</descr>
       <descr lang="de">Initialer Zustand des Buttons</descr>
     </attr>
@@ -980,15 +980,15 @@
     &visibleref.attr;
     &role.attr;
 
-    <attr type="String" rtexpr="false" required="false" name="action">
+    <attr type="String" rtexpr="true" required="false" name="action">
       <descr lang="en">either "revert" or "validate"</descr>
       <descr lang="de">entweder "revert" oder "validate"</descr>
     </attr>
-    <attr type="String" rtexpr="false" required="true" name="forward">
+    <attr type="String" rtexpr="true" required="true" name="forward">
       <descr lang="en">URI of the JSP to display if validation succeeds</descr>
       <descr lang="de">URI der JSP die bei erfolgreicher Validierung angezeigt werden soll</descr>
     </attr>
-    <attr type="String" rtexpr="false" required="true" name="form">
+    <attr type="String" rtexpr="true" required="true" name="form">
       <descr lang="en">EL expression that evaluates to the form to validate</descr>
       <descr lang="de">EL Ausdruck der das Formular bezeichnet</descr>
     </attr>
@@ -1011,7 +1011,7 @@
     &visible.attr;
     &validate.attr;
     &role.attr;
-    <attr type="String" rtexpr="false" required="false" name="model">
+    <attr type="String" rtexpr="true" required="false" name="model">
       <descr lang="en">EL expression that resolves to a com.tonbeller.wcf.tree.TreeModel</descr>
       <descr lang="de">EL expression that resolves to a com.tonbeller.wcf.tree.TreeModel</descr>
     </attr>
@@ -1032,7 +1032,7 @@
     &visible.attr;
     &validate.attr;
     &role.attr;
-    <attr type="String" rtexpr="false" required="false" name="model">
+    <attr type="String" rtexpr="true" required="false" name="model">
       <descr lang="en">EL expression that resolves to a com.tonbeller.wcf.catedit.CategoryModel</descr>
       <descr lang="de">EL expression that resolves to a com.tonbeller.wcf.catedit.CategoryModel</descr>
     </attr>
@@ -1063,15 +1063,15 @@
     </descr>
 
     &id.attr;
-    <attr type="String" rtexpr="false" required="true" name="httpParam">
+    <attr type="String" rtexpr="true" required="true" name="httpParam">
       <descr lang="en">name of the HTTP parameter</descr>
       <descr lang="de">Name des HTTP Parameters</descr>
     </attr>
-    <attr type="String" rtexpr="false" required="false" name="prefix">
+    <attr type="String" rtexpr="true" required="false" name="prefix">
       <descr lang="en">Prefix</descr>
       <descr lang="de">Prefix</descr>
     </attr>
-    <attr type="String" rtexpr="false" required="false" name="suffix">
+    <attr type="String" rtexpr="true" required="false" name="suffix">
       <descr lang="en">Suffix</descr>
       <descr lang="de">Suffix</descr>
     </attr>
@@ -1093,11 +1093,11 @@
      ein Formular, so wird der Tree seine Selektion lesen, wenn im Formular der OK button
      gedrückt wird.</descr>
 
-    <attr type="String" rtexpr="false" required="true" name="form1">
+    <attr type="String" rtexpr="true" required="true" name="form1">
       <descr lang="en">Form 1</descr>
       <descr lang="de">Form 1</descr>
     </attr>
-    <attr type="String" rtexpr="false" required="true" name="form2">
+    <attr type="String" rtexpr="true" required="true" name="form2">
       <descr lang="en">Form 2</descr>
       <descr lang="de">Form 2</descr>
     </attr>
@@ -1133,7 +1133,7 @@
     &role.attr;
     &xmluri.attr;
 
-    <attr type="String" rtexpr="false" required="true" name="logDir">
+    <attr type="String" rtexpr="true" required="true" name="logDir">
 
       <descr lang="en">
         Name of a directory relative to <tt>user.home</tt> or - in case of missing write permissions -
@@ -1189,7 +1189,7 @@
       zu unterbinden. Muss zusammen mit dem TokenFilter verwendet werden.
     </descr>
 
-    <attr type="boolean" rtexpr="false" required="false" name="clear">
+    <attr type="boolean" rtexpr="true" required="false" name="clear">
       <descr lang="en">Instead of producing the HTML hidden field, the token is cleared and browser back button is allowed (once!)</descr>
       <descr lang="de">Anstelle des HTML hidden field wird das Token gelöscht und einmalig ein Browser Back zugelassen</descr>
     </attr>
@@ -1221,11 +1221,11 @@ or w/o form
       out and thus not visible, but you will see it if you choose "view source"
       in your browser.
     </descr>
-    <attr type="String" rtexpr="false" required="false" name="format">
+    <attr type="String" rtexpr="true" required="false" name="format">
       <descr lang="en">output format: either "html" or "text" (default = "html")</descr>
       <descr lang="de">Ausgabeformat: entweder "html" oder "text" (default = "html")</descr>
     </attr>
-    <attr type="boolean" rtexpr="false" required="false" name="clear">
+    <attr type="boolean" rtexpr="true" required="false" name="clear">
       <descr lang="en">clears the status line after output (default = true!)</descr>
       <descr lang="de">Löscht die Statuszeile nach der Ausgabe (default = true!)</descr>
     </attr>
@@ -1265,7 +1265,7 @@ or w/o form
       links generated on previous pages are invalidated.
     </descr>
     &id.attr;
-    <attr type="String" rtexpr="false" required="false" name="hideIf">
+    <attr type="String" rtexpr="true" required="false" name="hideIf">
       <descr lang="en">EL expression. If the EL returns true, no links will be rendererd.</descr>
       <descr lang="de">EL expression. If the EL returns true, no links will be rendererd.</descr>
     </attr>
@@ -1719,13 +1719,13 @@ or w/o form
       <descr lang="en">clears the stack before adding this page</descr>
       <descr lang="de">Leert den Stack bevor diese Seite hinzugefügt wird</descr>
     </attr>
-    <attr type="String" rtexpr="false" required="false" name="varStatus">
+    <attr type="String" rtexpr="true" required="false" name="varStatus">
       <descr lang="en">Name of the JSTL LoopTagStatus Object. See details in JSTL documentation</descr>
       <descr lang="de">Name der JSTL LoopTagStatus Variablen. Diese Variable enthält Properties zum aktuellen Iterationsdurchlauf,
         wie <tt>index</tt> (0-basiserter Zaehler), <tt>count</tt> (1-basierter Zaehler), <tt>first, last</tt> boolean flags fuer ersten und letzten Durchlauf
         und einige andere. Details finden Sie in der JSTL Dokumentation</descr>
     </attr>
-    <attr type='String' rtexpr='false' required='false' name='bundle'>
+    <attr type='String' rtexpr='true' required='false' name='bundle'>
       <descr lang='en'>ResourceBundle for i18n replacements</descr>
       <descr lang='de'>ResourceBundle für i18n Ersetzungen</descr>
     </attr>
