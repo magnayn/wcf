@@ -248,7 +248,7 @@
       </fileset>
     </copy>
 
-    <java jar="${xalan.home}/xalan.jar" fork="true">
+    <java jar="${xalan.home}/bin/xalan.jar" fork="true">
       <jvmarg value="-Duser.language=en"/>
       <jvmarg value="-Duser.region=US"/>
       <arg value="-in"/>
@@ -262,11 +262,10 @@
   </target>
 
   <target name="changelog" description="creates CVS Changelog">
-    <mkdir dir="${build.home}"/>
-    <mkdir dir="${dist.home}/docs"/>
-    <cvschangelog dir="${src.home}" destfile="${build.home}/changelog.xml" daysinpast="300" />
-    <style in="${build.home}/changelog.xml"
-           out="${dist.home}/docs/changelog.html"
+    <mkdir dir="${build.home}/docs"/>
+    <cvschangelog dir="${src.home}" destfile="${build.home}/docs/changelog.xml" daysinpast="300" />
+    <style in="${build.home}/docs/changelog.xml"
+           out="${build.home}/docs/changelog.html"
            style="${ant.home}/etc/changelog.xsl">
       <param name="title" expression="WCF ChangeLog"/>
       <param name="module" expression="/wcf/src"/>
