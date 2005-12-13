@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId">
+    <wb-module deploy-name="wcf">
+        <module-type module-type-id="jst.web">
+            <version>2.3</version>
+            <property name="context-root" value="wcf"/>
+            <property name="java-output-path" value="/build/classes/"/>
+        </module-type>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java"/>
+        <wb-resource deploy-path="/" source-path="/src/webapp"/>
+        <wb-resource deploy-path="/" source-path="/build/web"/>
+    </wb-module>
+</project-modules>
+
