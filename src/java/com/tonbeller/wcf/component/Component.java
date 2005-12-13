@@ -12,6 +12,8 @@
  */
 package com.tonbeller.wcf.component;
 
+import java.util.Map;
+
 import com.tonbeller.wcf.controller.RequestListener;
 
 
@@ -34,4 +36,9 @@ public interface Component extends RequestListener, Renderable, FormListener, Vi
    */
   void setNextView(String uri);
   
+  /**
+   * @param httpParams map of http parameters that may identify a RequestListener of this component
+   * @return true if this component is listening to a http request with <code>httpParams</code>
+   */
+  boolean isListeningTo(Map httpParams);
 }

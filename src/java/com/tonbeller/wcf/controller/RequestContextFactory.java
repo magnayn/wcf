@@ -22,7 +22,12 @@ import com.tonbeller.wcf.convert.Converter;
 import com.tonbeller.wcf.format.Formatter;
 
 /**
- * creates a RequestContext from request / response
+ * creates a RequestContext from request / response.
+ * SPI interface only. Use RequestContextFactoryFinder to create a context.
+ * 
+ * @see RequestContextFactoryFinder#createContext(HttpServletRequest, HttpServletResponse, boolean)
+ * @see RequestContext#instance()
+ * 
  * @author av
  */
 public interface RequestContextFactory {

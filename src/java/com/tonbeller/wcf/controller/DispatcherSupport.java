@@ -12,6 +12,7 @@
  */
 package com.tonbeller.wcf.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -165,6 +166,25 @@ public class DispatcherSupport implements Dispatcher {
       RequestListener listener = (RequestListener) it.next();
       listener.request(context);
     }
+  }
+
+  /**
+   * returns the leaf RequestListeners that would be invoked for a http request
+   * containing <code>httpParams</code>
+   */
+  public List findMatchingListeners(Map httpParams) {
+    List candidates = findAll(httpParams);
+    List result = new ArrayList();
+    for (Iterator it = candidates.iterator(); it.hasNext();) {
+      Object obj = it.next();
+      if (obj instanceof Dispatcher) {
+        Dispatcher d = (Dispatcher) obj;
+        result.addAll(d.findMatchingListeners(httpParams));
+      } else {
+        result.add(obj);
+      }
+    }
+    return result;
   }
 
 }

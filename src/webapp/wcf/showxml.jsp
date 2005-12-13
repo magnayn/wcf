@@ -11,7 +11,7 @@
 ]>
 <%@ page
   session="true"
-  contentType="text/xml; charset=ISO-8859-1"
+  contentType="text/xml; charset=UTF-8" pageEncoding="ISO-8859-1"
   import="javax.servlet.http.*" %>
 
 <%@ taglib prefix="wcf" uri="http://www.tonbeller.com/wcf" %>

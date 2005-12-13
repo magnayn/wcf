@@ -2,23 +2,23 @@
 
 <!-- DOCTYPE xform SYSTEM "wcf.dtd" -->
 
-<xform style="twocolumn">
+<xform style="twocolumn" bundle="com.tonbeller.resources">
 
   <!-- Logging API -->
-  <label label="Version" modelReference="logVersion"/>
+  <label label="fmt:logdemo.version" modelReference="logVersion"/>
 
   <!-- Log level -->
-  <label label="Filter" modelReference="logLevel"/>
+  <label label="fmt:logdemo.filter" modelReference="logLevel"/>
 
   <!-- Log file name -->
-  <textField id="logFile" type="string" modelReference="logFile" label="Log File" value="" title="Path to log file on server" size="60"/>
+  <textField id="logFile" type="string" modelReference="logFile" label="fmt:logdemo.logfile" value="" title="fmt:logdemo.lftitle" size="60"/>
 
   <!-- Configuration names -->
-  <listBox1 id="logConfs" modelReference="logConf" label="Settings" handler="com.tonbeller.wcf.log.LogItems"/>
+  <listBox1 id="logConfs" modelReference="logConf" label="fmt:logdemo.settings" handler="com.tonbeller.wcf.log.LogItems"/>
 
   <buttons>
-    <button id="$id.revert" action="revert" label="Revert" handler="com.tonbeller.wcf.form.ButtonHandler"/>
-    <button id="$id.ok" action="validate" label="OK"  handler="com.tonbeller.wcf.form.ButtonHandler"/>
+    <button id="$id.revert" action="revert" label="fmt:logdemo.reset" handler="com.tonbeller.wcf.form.ButtonHandler"/>
+    <button id="$id.ok" action="validate" label="fmt:logdemo.apply" handler="com.tonbeller.wcf.form.ButtonHandler"/>
   </buttons>
 
 </xform>

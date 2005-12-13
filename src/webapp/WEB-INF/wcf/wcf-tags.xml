@@ -311,12 +311,6 @@
         Empfohlen: <code>true</code> für produktiven Einsatz und <code>false</code> während
         der Entwicklung</descr>
     </attr>
-    <attr type="String" rtexpr="true" required="false" name="bundle">
-      <descr lang='en'>ResourceBundle for i18n replacements. If a text- or attributenode in xml starts with 
-        'fmt:' the remaining text will be interpreted as key into the resource bundle.</descr>
-      <descr lang='de'>ResourceBundle für i18n Ersetzungen. Wenn ein Text- oder Attributnode mit 'fmt:' beginnt
-        wird der Rest als Key für das ResourceBundle interpretiert.</descr>
-    </attr>
     <example><![CDATA[
 <wcf:tree id="tree01"/>
 <wcf:render ref="#{tree01}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true">
@@ -668,7 +662,7 @@
     <example><![CDATA[
 <jsp:useBean id="testbean" class="com.tonbeller.wcf.form.TestBean" scope="session" />
 <wcf:form id="formcomp" xmlUri="/WEB-INF/formdemo.xml" model="#{testbean}"/>
-<form action="formdemo.jsp" method="post" id="form01">
+<form action="formdemo.jsp" method="POST" id="form01">
   <wcf:render ref="#{formcomp}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true"/>
 </form>
 ]]></example>
@@ -1107,7 +1101,7 @@
 <wcf:tree id="tree01"/>
 <wcf:connect form1="#{formcomp}" form2="#{tree01}"/>
 
-<form action="formdemo.jsp" method="post" id="form01">
+<form action="formdemo.jsp" method="POST" id="form01">
   <wcf:render ref="#{formcomp}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true"/>
   <wcf:render ref="#{tree01}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true">
     <wcf:renderParam name="border" value="1"/>
@@ -1151,7 +1145,7 @@
     </attr>
     <example><![CDATA[
 <wcf:logform id="logdemo" xmlUri="/WEB-INF/logdemo.xml" logDir=".wcf/logging"/>
-<form action="logdemo.jsp" method="post" id="logform">
+<form action="logdemo.jsp" method="POST" id="logform">
   <wcf:render ref="logdemo" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true"/>
 </form>
     ]]></example>
@@ -1577,7 +1571,7 @@ or w/o form
       <descr lang="de">Initiale Sortierung</descr>
     </attr>
     <example><![CDATA[
-<form action="my.jsp" method="post">
+<form action="my.jsp" method="POST">
   <wcf:sqlTable id="mytable" maxRows="200" orderBy="CUSTOMER" descending="true">
     <sql:query var="result" maxRows="${mytable.maxRows}" startRow="${mytable.startRow}">
       SELECT   ...
@@ -1770,7 +1764,7 @@ or w/o form
       xxx is the charset that is configured in the CharsetFilter.
     </descr>
     <descr lang="de">
-      setzt den content-type der response und haengt ";charset=xxx" an, 
+      setzt den content-type der response und haengt ";charset=xxx" an,
       wobe xxx der charset des CharsetFilter ist.
     </descr>
     <attr type='String' rtexpr='true' required='true' name='type'>
@@ -1779,7 +1773,7 @@ or w/o form
     </attr>
     <example><![CDATA[
 <wcf:contentType type="text/html"/>
-will set the content-type to 
+will set the content-type to
   "text/hmtl; charset=UTF-8"
 if UTF-8 is configured in the CharsetFilter.
     ]]></example>

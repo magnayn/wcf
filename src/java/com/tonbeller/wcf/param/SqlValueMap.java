@@ -13,6 +13,7 @@
 package com.tonbeller.wcf.param;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,7 +25,10 @@ import java.util.Set;
  * <p />
  * In a wcf:form xml definition, e.g. you can set the modelReference
  * attribute to "sqlValue.foo". Then the user will be able to
- * change the sqlValue of the SessionParam named "foo".
+ * change the sqlValue of the SessionParam named "foo". 
+ * <p/>
+ * If you put a value into the map, the corresponding SqlParam
+ * will be created.
  * 
  * @author av
  */
@@ -49,7 +53,7 @@ public class SqlValueMap implements Map {
   }
 
   public boolean containsKey(Object key) {
-    return pool.containsKey(key);
+    return pool.getParam(String.valueOf(key)) != null;
   }
 
   public boolean containsValue(Object value) {
@@ -61,7 +65,10 @@ public class SqlValueMap implements Map {
   }
 
   public void putAll(Map t) {
-    throw new UnsupportedOperationException();
+    for (Iterator it = t.entrySet().iterator(); it.hasNext();) {
+      Map.Entry e = (Entry) it.next();
+      this.put(e.getKey(), e.getValue());
+    }
   }
 
   public Set entrySet() {
@@ -80,14 +87,14 @@ public class SqlValueMap implements Map {
   }
 
   public Object remove(Object key) {
-    SessionParam p = (SessionParam) pool.remove(key);
+    SessionParam p = (SessionParam) pool.removeParam(String.valueOf(key));
     if (p == null)
       return null;
     return p.getSqlValue();
   }
 
   public Object put(Object key, Object value) {
-    SessionParam p = (SessionParam) pool.get(key);
+    SessionParam p = (SessionParam) pool.getParam(String.valueOf(key));
     if (p == null)
       p = new SessionParam();
     Object ret = p.getSqlValue();

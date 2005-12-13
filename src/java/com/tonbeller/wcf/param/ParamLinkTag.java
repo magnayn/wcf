@@ -52,6 +52,10 @@ public class ParamLinkTag extends TagSupport {
   // shall we generate a token to disallow browser-back button?
   boolean token;
 
+  /**
+   * null if no anchors are rendered, i.e. only text is displayed
+   * @see ParamLinkGroupTag#isRenderActions() 
+   */
   ClickHandler clickHandler;
 
   /**
@@ -132,6 +136,7 @@ public class ParamLinkTag extends TagSupport {
 
   public int doStartTag() throws JspException {
     try {
+      clickHandler = null;
       groupTag = (ParamLinkGroupTag) findAncestorWithClass(this, ParamLinkGroupTag.class);
       if (groupTag == null)
         throw new JspException("ParamLinkTag must be used inside a ParamLinkGroupTag");
@@ -198,11 +203,13 @@ public class ParamLinkTag extends TagSupport {
    * @param p
    */
   public void addParam(SessionParam p) {
-    clickHandler.addParam(p);
+    if (clickHandler != null)
+      clickHandler.addParam(p);
   }
 
   public void addAction(Action a) {
-    clickHandler.addAction(a);
+    if (clickHandler != null)
+      clickHandler.addAction(a);
   }
 
   public int doEndTag() throws JspException {
@@ -215,6 +222,7 @@ public class ParamLinkTag extends TagSupport {
     } catch (IOException e) {
       logger.error(null, e);
     }
+    clickHandler = null;
     return super.doEndTag();
   }
 

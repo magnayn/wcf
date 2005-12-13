@@ -38,7 +38,7 @@ public abstract class RequestContext {
   public abstract Converter getConverter();
   public abstract Formatter getFormatter();
 
-  private static ThreadLocal instance = new ThreadLocal();
+  private static ThreadLocalStack instanceStack = new ThreadLocalStack();
 
   private static final String RESPONSE_COMPLETE_KEY = RequestContext.class.getName() + ".responseComplete";
 
@@ -49,24 +49,38 @@ public abstract class RequestContext {
   
   /**
    * returns the RequestContext associated with the current thread / request
+   * @throws EmptyThreadLocalStackException if there is no instance set via #setInstance()
+   * @see RequestContextFactoryFinder#createContext(HttpServletRequest, HttpServletResponse, boolean)
    */
-  public static RequestContext instance() {
-    return (RequestContext) instance.get();
+  public static RequestContext instance() throws EmptyThreadLocalStackException {
+    return (RequestContext) instanceStack.peek(true);
+  }
+  
+  /**
+   * returns the RequestContext associated with the current thread / request
+   * @param 
+   * @see RequestContextFactoryFinder#createContext(HttpServletRequest, HttpServletResponse, boolean)
+   */
+  public static RequestContext instance(boolean failIfEmpty) throws EmptyThreadLocalStackException {
+    return (RequestContext) instanceStack.peek(failIfEmpty);
   }
 
   /**
-   * set the thread local instance. The context
-   * will be returned by {@link #instance()}
+   * pushes a thread local instance. The context
+   * will be returned by {@link #instance()}. This method is public for test purpose only.
    */
   public static void setInstance(RequestContext context) {
-    instance.set(context);
+    instanceStack.push(context);
   }
 
   /**
-   * invalidate context after request processing is complete
+   * invalidate context after request processing is complete. This must be called exactly
+   * as many times RequestContextFactoryFinder.createContext is called.
+   * <p />
+   * @see RequestContextFactoryFinder#createContext(HttpServletRequest, HttpServletResponse, boolean)
    */
   public void invalidate() {
-    instance.set(null);
+    instanceStack.pop();
   }
 
   /**

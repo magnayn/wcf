@@ -138,25 +138,39 @@ public class RequestFilter implements Filter {
         else
           filterChain.doFilter(request, response);
       } catch (Exception e) {
-        logger.error(null, e);
-        if (errorJSP != null) {
-          try {
-            logger.error("redirecting to error page " + errorJSP, e);
-            request.setAttribute("javax.servlet.jsp.jspException", e);
-            request.getRequestDispatcher(errorJSP).forward(request, response);
-          } catch (Exception e2) {
-            // there was an error displaying the error page. We
-            // ignore the second error and display the original error
-            // instead
-            throw e;
-          }
-        } else
-          throw e;
+        handleException(e);
       }
     }
 
     public void recursiveRequest() throws Exception {
-      filterChain.doFilter(request, response);
+      try {
+        filterChain.doFilter(request, response);
+      } catch (Exception e) {
+        handleException(e);
+      }
+    }
+    
+    private void handleException(Exception e) throws Exception {
+      logger.error("exeption", e);
+      logger.error("cause", JDK13Utils.getCause(e));
+      
+      // avoid endless recursion in BEA (exception in error page)
+      if (isErrorPage())
+        throw e;
+      
+      if (errorJSP != null) {
+        try {
+          logger.info("redirecting to error page " + errorJSP);
+          request.setAttribute("javax.servlet.jsp.jspException", e);
+          request.getRequestDispatcher(errorJSP).forward(request, response);
+        } catch (Exception e2) {
+          // there was an error displaying the error page. We
+          // ignore the second error and display the original error
+          // instead
+          throw e;
+        }
+      } else
+        throw e;
     }
 
     public void showBusyPage(boolean redirect) throws Exception {
@@ -175,6 +189,12 @@ public class RequestFilter implements Filter {
       if (busyJSP == null)
         return false;
       return request.getRequestURI().endsWith(busyJSP);
+    }
+    
+    public boolean isErrorPage() {
+      if (errorJSP == null)
+        return false;
+      return request.getRequestURI().endsWith(errorJSP);
     }
 
     /**

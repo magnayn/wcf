@@ -77,12 +77,19 @@ public class UrlUtils {
    * @param pattern
    */
   public static boolean matchPattern(String uri, String pattern) {
-    if (pattern.equals("/"))
+    if (pattern.equals("/*"))
       return true;
-    else if (pattern.startsWith("*.")) {
+    
+    if (pattern.equals(uri))
+      return true;
+    
+    if (pattern.startsWith("*.")) {
       if (uri.endsWith(pattern.substring(2)))
         return true;
-    } else if (pattern.endsWith("/*")) {
+      return false;
+    } 
+
+    if (pattern.endsWith("/*")) {
       String prefix = pattern.substring(0, pattern.length() - 2);
       if (!uri.startsWith(prefix))
         return false;
@@ -96,6 +103,7 @@ public class UrlUtils {
       char c = uri.charAt(prefix.length());
       return c == '/';
     }
+    
     return false;
   }
 

@@ -12,6 +12,9 @@
  */
 package com.tonbeller.wcf.controller;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Fires events to listeners depending on parameters in the HttpServletRequest.
  * <ul>
@@ -54,5 +57,11 @@ public interface Dispatcher extends RequestListener {
    * @throws Exception the exception from listeners
    */
   void request(RequestContext context) throws Exception;
+
+  /**
+   * returns the list of leaf RequestListeners that would be
+   * invoked for a request with the given parameters.
+   */
+  List findMatchingListeners(Map httpParams);
   
 }

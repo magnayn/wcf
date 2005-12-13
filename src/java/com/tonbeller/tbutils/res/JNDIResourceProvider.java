@@ -18,6 +18,7 @@ public class JNDIResourceProvider implements ResourceProvider {
   Context context = null;
   boolean disabled = false;
   private static Logger logger = Logger.getLogger(JNDIResourceProvider.class);
+  public static final String JNDI_NULL = "jndi.null";
 
   public String getString(String key) {
     if (disabled)
@@ -28,10 +29,24 @@ public class JNDIResourceProvider implements ResourceProvider {
         context = (Context) initCtx.lookup("java:comp/env");
       }
       Object obj = context.lookup(key);
-      if (obj == null)
+      if (obj == null) {
+        if (logger.isInfoEnabled())
+          logger.info("key is null: " + key);
         return null;
-      return obj.toString();
+      }
+      String str = obj.toString();
+      
+      // there MUST be a value in web.xml
+      if (JNDI_NULL.equals(str)) {
+        if (logger.isInfoEnabled())
+          logger.info("key is jndi.null: " + key);
+        return null;
+      }
+      
+      return str;
     } catch (NameNotFoundException e) {
+      if (logger.isInfoEnabled())
+        logger.info("key not found: " + key);
       return null;
     } catch (NoInitialContextException e) {
       logger.warn("JNDI Context not found, assuming test environment");

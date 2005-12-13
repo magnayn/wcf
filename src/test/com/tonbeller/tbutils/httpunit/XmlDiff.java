@@ -67,6 +67,17 @@ public class XmlDiff {
   }
   
   public static class IntegerLeadingZerosEqualsComparator implements EqualsComparator {
+    
+    private String delimiter;
+    
+    public IntegerLeadingZerosEqualsComparator(String delimiter) {
+      this.delimiter = delimiter;
+    }
+
+    public IntegerLeadingZerosEqualsComparator() {
+      this("/");
+    }
+    
     // xxxx/0000123/0004 is equal to xxxx/123/4 
     // 000123 is equal to 123
     public boolean equals(Object o1, Object o2) {
@@ -78,8 +89,8 @@ public class XmlDiff {
         return i1 == i2;
       } catch (NumberFormatException e) {
         // Format with slashes, check each substring
-        StringTokenizer st1 = new StringTokenizer(((String)o1).trim(), "/");
-        StringTokenizer st2 = new StringTokenizer(((String)o2).trim(), "/");
+        StringTokenizer st1 = new StringTokenizer(((String)o1).trim(), delimiter);
+        StringTokenizer st2 = new StringTokenizer(((String)o2).trim(), delimiter);
         if( st1.countTokens() != st2.countTokens())
           return false;
         
@@ -246,6 +257,11 @@ public class XmlDiff {
     // compare child elements
     List childs1 = getChildren(e1);
     List childs2 = getChildren(e2);
+    if (ignoreWhitespace) {
+      removeEmpty(childs1);
+      removeEmpty(childs2);
+    }
+    
     if (childs1.size() != childs2.size()) {
       System.out.println("Children count of " + n1 + " differ: " + childs1.size() + " != "
           + childs2.size());
@@ -260,6 +276,21 @@ public class XmlDiff {
         return false;
     }
     return true;
+  }
+
+  /**
+   * removes Text nodes containing whitespace
+   */
+  private void removeEmpty(List nodes) {
+    for (Iterator it = nodes.iterator(); it.hasNext(); ) {
+      Node n = (Node) it.next();
+      if (n.getNodeType() != Node.TEXT_NODE)
+        continue;
+      Text t = (Text)n;
+      String s = t.getData();
+      if (s.trim().length() == 0)
+        it.remove();
+    }
   }
 
   public boolean equals(Text t1, Text t2) {

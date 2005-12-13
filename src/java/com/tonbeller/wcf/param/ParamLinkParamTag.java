@@ -14,8 +14,6 @@ package com.tonbeller.wcf.param;
 
 import javax.servlet.jsp.JspException;
 
-import org.apache.log4j.Logger;
-
 /**
  * Tag nested inside a ParamLinkTag. Adds a new SqlSessionParam to the parent tag.
  * 
@@ -29,7 +27,7 @@ public class ParamLinkParamTag extends ParamLinkNestedTag {
   String mdxValue;
   String textValue;
 
-  private static Logger logger = Logger.getLogger(ParamLinkParamTag.class);
+  //private static Logger logger = Logger.getLogger(ParamLinkParamTag.class);
 
   public int doStartTag() throws JspException {
     ParamLinkTag link = getParamLinkTag();

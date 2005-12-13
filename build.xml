@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<project name="WCF - WebComponent Framework" default="dist" basedir=".">
+<project name="WCF - WebComponent Framework" default="build" basedir=".">
 
 <!-- ===================== Property Definitions =========================== -->
 
@@ -9,6 +9,7 @@
   <property name="build.home"    value="${basedir}/build"/>
   <property name="dist.home"     value="${basedir}/dist"/>
   <property name="src.home"      value="${basedir}/src"/>
+  <property name="viewcvs"       value="http://cvs.sourceforge.net/viewcvs.py/jpivot"/>
 
   <property name="repository.home"      value="${basedir}/../jpivot_repository"/>
 
@@ -60,34 +61,20 @@
   </path>
 
   <!-- classpath for junit tests -->
-  <path id="junit.classpath">
+  <path id="test.classpath">
     <path refid="compile.classpath"/>
     <pathelement location="${build.home}/web/WEB-INF/classes"/>
+    <pathelement location="${build.home}/junit/classes"/>
     <fileset dir="${junit.home}">
+      <include name="*.jar"/>
+    </fileset>
+    <fileset dir="${jdepend.home}/lib">
       <include name="*.jar"/>
     </fileset>
     <pathelement location="${httpunit.home}/lib/httpunit.jar"/>
     <pathelement location="${httpunit.home}/jars/js.jar"/>
     <pathelement location="${httpunit.home}/jars/Tidy.jar"/>
   </path>
-
-  <!-- classpath for jdepend -->
-  <path id="jdepend.classpath">
-    <path refid="compile.classpath"/>
-    <!-- pathelement location="${build.home}/web/WEB-INF/classes"/ -->
-    <fileset dir="${jdepend.home}/lib">
-      <include name="*.jar"/>
-    </fileset>
-  </path>
-
-  <!-- classpath for xdoclet: not used
-  <path id="xdoclet.classpath">
-    <path refid="compile.classpath"/>  -->
-    <!-- pathelement location="${build.home}/web/WEB-INF/classes"/ -->
-  <!--  <pathelement location="${xdoclet.home}/lib/xdoclet.jar"/>
-    <pathelement location="${xdoclet.home}/samples/lib/log4j.jar"/>
-  </path>  -->
-	
 
 <!-- ==================== Prepare Target ================================== -->
 
@@ -142,6 +129,7 @@
 
         <include name="jakarta-log4j-1.2.8/dist/lib/log4j-1.2.8.jar"/>
         <include name="jsf-1_1/lib/jsf-api.jar"/>
+        <include name="pdfbox-0.7.2/lib/PDFBox-0.7.2.jar"/>
       </fileset>
     </copy>
 
@@ -163,6 +151,7 @@
   <target name="clean"
    description="Delete old build and dist directories">
     <delete dir="${build.home}"/>
+    <delete dir="${basedir}/.deployables"/>
     <delete dir="${dist.home}"/>
     <delete dir="${basedir}/src/webapp/WEB-INF/classes"/>
   </target>
@@ -171,7 +160,7 @@
 
   <target name="compile" depends="prepare" description="Compile Java sources">
 
-    <!-- Compile Java classes as necessary 
+    <!-- Compile Java classes as necessary
     depends="prepare" -->
     <mkdir dir="${build.home}/web/WEB-INF/classes"/>
     <mkdir dir="${build.home}/web/WEB-INF/lib"/>
@@ -203,7 +192,7 @@
     <jar jarfile="${dist.home}/${app.name}.war" basedir="${build.home}/web"/>
 
     <!-- create source archive including CVS metadata directories -->
-    <zip destfile="${dist.home}/${app.name}-${app.version}-src.zip" update="false" duplicate="fail">
+    <zip destfile="${dist.home}/${app.name}-src.zip" update="false" duplicate="fail">
       <zipfileset dir="${src.home}" defaultexcludes="false" prefix="src"/>
       <fileset dir="${basedir}" defaultexcludes="false" includes="build.xml"/>
     </zip>
@@ -223,16 +212,15 @@
       <include name="com/tonbeller/tbutils/**"/>
     </jar>
 
-    <jar jarfile="${basedir}/${app.name}-${app.version}.zip" basedir="${dist.home}"/>
-
   </target>
 
-<!-- ==================== Dist Target ===================================== 
+<!-- ==================== Dist Target =====================================
  Did have tests,jdepend,changelog as dependencies, but they are Tonbeller specific
  and not distributed.
  -->
 
-  <target name="dist" depends="clean,compile,javadoc,userdoc,archives" description="Create binary distribution"/>
+  <target name="build" depends="compile,archives" description="build w/o tests"/>
+  <target name="dist" depends="clean,compile,tests,jdepend,javadoc,userdoc,archives" description="build everything"/>
 
 <!-- ==================== Delta Target ===================================== -->
 
@@ -274,14 +262,15 @@
   </target>
 
   <target name="changelog" description="creates CVS Changelog">
+    <mkdir dir="${build.home}"/>
     <mkdir dir="${dist.home}/docs"/>
-    <cvschangelog dir="${src.home}" destfile="${build.home}/changelog.xml" daysinpast="90" />
+    <cvschangelog dir="${src.home}" destfile="${build.home}/changelog.xml" daysinpast="300" />
     <style in="${build.home}/changelog.xml"
            out="${dist.home}/docs/changelog.html"
            style="${ant.home}/etc/changelog.xsl">
       <param name="title" expression="WCF ChangeLog"/>
-      <param name="module" expression="wcf/src"/>
-      <param name="cvsweb" expression="http://linux.tonbeller.com/viewcvs/"/>
+      <param name="module" expression="/wcf/src"/>
+      <param name="cvsweb" expression="${viewcvs}"/>
     </style>
   </target>
 
@@ -366,7 +355,7 @@
 	-->
 
 
-  <target name="tests" description="JUnit Tests" depends="runtests,checktests"/>
+  <target name="tests" description="JUnit Tests" depends="compile,runtests,checktests"/>
 
   <target name="runtests" description="JUnit Tests" depends="tests.compile,install,tests.junit,remove"/>
 
@@ -379,7 +368,7 @@
        deprecation="${compile.deprecation}"
           optimize="${compile.optimize}">
       <src path="${src.home}/test"/>
-      <classpath refid="junit.classpath"/>
+      <classpath refid="test.classpath"/>
     </javac>
     <copy  todir="${build.home}/junit/classes">
       <fileset dir="${src.home}/test">
@@ -397,7 +386,7 @@
       <jvmarg value="-Dhttpunit.recordmode=${httpunit.recordmode}"/>
       <!-- must be set in TOMCAT too -->
       <jvmarg value="-Dcom.tonbeller.environment=test"/>
-      <classpath refid="junit.classpath"/>
+      <classpath refid="test.classpath"/>
       <formatter type="xml"/>
       <batchtest todir="${build.home}/junit/logs">
         <fileset dir="${src.home}/test">
@@ -424,7 +413,7 @@
   <target name="jdepend" description="Design Quality Metrics" depends="compile">
     <mkdir dir="${build.home}/jdepend"/>
     <java classname="jdepend.xmlui.JDepend" fork="true">
-      <classpath refid="jdepend.classpath"/>
+      <classpath refid="test.classpath"/>
       <jvmarg value="-Duser.language=en"/>
       <jvmarg value="-Duser.region=US"/>
       <arg value="-file"/>

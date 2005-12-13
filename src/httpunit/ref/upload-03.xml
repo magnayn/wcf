@@ -49,7 +49,7 @@
 </td>
 </tr>
 <tr>
-<td colspan="2" class="xform-error">nad is not a valid date, expected mm/dd/yyyy</td>
+<td colspan="2" class="xform-error">nad is not a valid Date/Time. Expected was mm/dd/yyyy</td>
 </tr>
 <tr>
 <td class="xform-label">Date:</td>

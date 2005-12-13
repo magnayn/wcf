@@ -101,10 +101,10 @@ public class FormComponent extends XmlComponent implements FormListener, WizardP
           getDocument(), bean);
       return success;
     } catch (ConvertException e) {
-      logger.error("exception caught", e);
+      logger.error(null, e);
       throw new SoftException(e);
     } catch (FormatException e) {
-      logger.info("invalid user input", e);
+      logger.info("invalid user input: " + e.getMessage());
       haveError = true;
       return false;
     }

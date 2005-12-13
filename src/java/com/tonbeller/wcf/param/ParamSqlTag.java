@@ -10,6 +10,12 @@ import org.apache.log4j.Logger;
 
 import com.tonbeller.wcf.expr.ExprUtils;
 
+/**
+ * outputs SQL for a {@link SessionParam}.
+ * 
+ * @author av
+ * @since Dec 1, 2005
+ */
 public class ParamSqlTag extends TagSupport {
   String paramName;
   String qname;

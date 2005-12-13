@@ -32,6 +32,12 @@ public class FormDocument {
    */
   public static void replaceI18n(RequestContext context, Document dom, String bundle)
       throws MissingResourceException {
+
+    String bundleAttr = dom.getDocumentElement().getAttribute("bundle");
+    if (bundleAttr.length() > 0) {
+      bundle = bundleAttr;
+    }
+
     if (bundle != null) {
       Locale loc = context.getLocale();
       ResourceBundle resb = ResourceBundle.getBundle(bundle, loc);

@@ -24,6 +24,7 @@ import com.tonbeller.wcf.component.Component;
 import com.tonbeller.wcf.component.ComponentSupport;
 import com.tonbeller.wcf.controller.RequestContext;
 import com.tonbeller.wcf.controller.RequestListener;
+import com.tonbeller.wcf.form.FormDocument;
 import com.tonbeller.wcf.selection.SelectionModel;
 import com.tonbeller.wcf.utils.ResourceLocator;
 import com.tonbeller.wcf.utils.SoftException;
@@ -78,6 +79,10 @@ public class EditableTableComponent extends ComponentSupport implements ITableCo
       throw new SoftException(e);
     }
     Document doc = XmlUtils.parse(url);
+    
+    //In replaceI18n(...) wird geprüft, ob "bundle"-Attribut vorhanden
+    FormDocument.replaceI18n(context, doc, null);
+    
     TablePropertiesFormComponent formComp = new TablePropertiesFormComponent(id + ".form", null, doc, table);
     formComp.setVisible(false);
     formComp.setCloseable(true);

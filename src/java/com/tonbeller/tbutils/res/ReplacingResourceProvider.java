@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 public class ReplacingResourceProvider implements ResourceProvider {
   ResourceProvider decoree;
+  int maxRecurse = 10;
+  
   // matches "${xxx}"
   Pattern pattern = Pattern.compile("\\$\\{([a-zA-Z0-9_\\.]+)\\}");
 
@@ -25,8 +27,18 @@ public class ReplacingResourceProvider implements ResourceProvider {
   public Collection keySet() {
     return decoree.keySet();
   }
+  
+  public String replace(String s) {
+    return replace(s, maxRecurse);
+  }
+  
+  public class RecursionOverflowException extends RuntimeException {
+    RecursionOverflowException(String s) {
+      super(s);
+    }
+  }
 
-  private String replace(String s) {
+  private String replace(String s, int recurseLevel) {
     if (s == null)
       return null;
 
@@ -49,8 +61,13 @@ public class ReplacingResourceProvider implements ResourceProvider {
         // append replacement string
         String key = m.group(1);
         String val = decoree.getString(key);
-        if (val != null)
+        if (val != null) {
+          if (recurseLevel > 0)
+            val = replace(val, recurseLevel - 1);
+          else
+            throw new RecursionOverflowException(val);
           sb.append(val);
+        }
         else
           sb.append(s.substring(m.start(), m.end()));
       }
@@ -67,5 +84,14 @@ public class ReplacingResourceProvider implements ResourceProvider {
   public String getName() {
     return getClass().getName();
   }
+
+  public int getMaxRecurse() {
+    return maxRecurse;
+  }
+
+  public void setMaxRecurse(int maxRecurse) {
+    this.maxRecurse = maxRecurse;
+  }
+
 
 }

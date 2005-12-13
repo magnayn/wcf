@@ -12,6 +12,8 @@
  */
 package com.tonbeller.wcf.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 /**
@@ -27,4 +29,9 @@ public abstract class Controller implements RequestListener {
   public abstract void removeRequestListener(RequestListener l);
   public abstract void setNextView(String uri);
   public abstract String getNextView();
+
+  /**
+   * returns all registered RequestListeners
+   */
+  public abstract List getRootListeners();
 }

@@ -12,10 +12,11 @@ import java.util.MissingResourceException;
  * @author av
  */
 public class Resources {
-  private ResourceProvider provider;
+  private ReplacingResourceProvider provider;
   private Locale locale;
   private File home;
   private PersistentResourceProvider persistentProvider;
+  
   static final String PERSISTENT_PROPERTIES = "persistent.properties";
 
   /**
@@ -70,13 +71,13 @@ public class Resources {
   }
   
   Resources(CompositeResourceProvider compositeProvider, Locale locale, File home) {
-    this.provider = compositeProvider;
     this.locale = locale;
     this.home = home;
     File persistentProperties = new File(home, PERSISTENT_PROPERTIES);
     this.persistentProvider = new FilePersistentResourceProvider(persistentProperties);
     // make persistentProvider the first one to look into
     compositeProvider.add(0, persistentProvider);
+    this.provider = new ReplacingResourceProvider(compositeProvider);
   }
 
   /**
@@ -271,5 +272,34 @@ public class Resources {
    */
   public void dump(Dumper d) {
     provider.dump(d);
+  }
+  
+  /**
+   * scans <code>s</code> for resource keys and replaces the keys by their values.
+   * <p />
+   * <code>s</code> may contain resource keys in $-notation like ant, for example 
+   * <code>${java.io.tmpdir}</code>.
+   * If the property exists, its replaced by its value, e.g. <code>/tmp</code>.
+   * If the property does not exsist, the string is not changed, e.g. it remains
+   * <code>${java.io.tmpdir}</code>. A literal <code>${</code> 
+   * is written as <code>$${</code> (like ant), i.e. <code>$${</code> is
+   * replaced by <code>${</code>
+   * <p />
+   * Example:
+   * <pre>
+   *   Resources res = Resources.instance();
+   *   String s = res.replace("${java.io.tmpdir}/mylogs");
+   *   // s = "c:\\temp/mylogs" for example
+   *   File myLogs = new File(s);
+   * </pre>
+   * <p />
+   * Property values are replaced automatically, e.g. if the properties file contains
+   * <pre>
+   * mylogs = ${java.io.tmpdir}/mylogs
+   * </pre>
+   * then <code>Resources.instance().getString("mylogs")</code> will return "c:\\temp/mylogs".
+   */
+  public String replace(String s) {
+    return provider.replace(s);
   }
 }

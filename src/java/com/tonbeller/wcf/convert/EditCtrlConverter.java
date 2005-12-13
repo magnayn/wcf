@@ -88,7 +88,7 @@ public class EditCtrlConverter extends NodeConverterBase {
         XoplonNS.setAttribute(element, "value", inputValue[0]);
         throw e;
       } catch (FormatException e) {
-        logger.info("inivalid user input", e);
+        logger.info("invalid user input: " + e.getMessage());
         XoplonNS.setAttribute(element, "error", e.getMessage());
         XoplonNS.setAttribute(element, "value", inputValue[0]);
         throw e;

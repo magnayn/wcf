@@ -64,13 +64,6 @@ public abstract class HttpUnitTestBase extends TestCase {
       result.append("=");
       result.append(URLEncoder.encode(paramValue, "ISO-8859-1"));
 
-      /*
-       appendProperty(result, "jdbc.driver");
-       appendProperty(result, "jdbc.url");
-       appendProperty(result, "jdbc.user");
-       appendProperty(result, "jdbc.password");
-       */
-
       return result.toString();
     } catch (UnsupportedEncodingException e) {
       logger.error("exception caught", e);
@@ -299,7 +292,10 @@ public abstract class HttpUnitTestBase extends TestCase {
   }
 
   protected WebResponse showPage(String page) throws MalformedURLException, IOException, SAXException {
-    WebRequest req = new GetMethodWebRequest(getServletUrl() + "/" + page);
+    // doppelter slash in URL ist immer falsch
+    if (!page.startsWith("/"))
+      page = "/" + page;
+    WebRequest req = new GetMethodWebRequest(getServletUrl() + page);
     return wc.sendRequest(req);
   }
 

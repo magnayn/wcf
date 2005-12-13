@@ -8,7 +8,7 @@
  * You must accept the terms of that agreement to use this software.
  * ====================================================================
  *
- * 
+ *
  */
 package com.tonbeller.wcf.form;
 
@@ -52,7 +52,6 @@ public class FormComponentTag extends ComponentTag {
     try {
 
       Document doc = parseDocument(context, getXmlUri());
-      replaceI18n(context, doc);
 
       // find the bean model
       Object bean = null;
@@ -73,7 +72,7 @@ public class FormComponentTag extends ComponentTag {
     }
   }
 
-  /** 
+  /**
    * if this is used inside a wizard tag, then its registered with the wizard.
    */
   private void registerWithWizard(FormComponent fc) {
@@ -95,14 +94,12 @@ public class FormComponentTag extends ComponentTag {
 
     Locale loc = context.getLocale(); // Default: browser setting
     URL url = ResourceLocator.getResource(context.getServletContext(), loc, xmlUri);
-    return XmlUtils.parse(url);
-  }
 
-  /**
-   * replaces attr value "fmt:xxx" with string for key "xxx" from resource bundle.
-   */
-  protected void replaceI18n(RequestContext context, Document dom) throws MissingResourceException {
-    FormDocument.replaceI18n(context, dom, getBundle());
+    Document document = XmlUtils.parse(url); 
+    //In replaceI18n(...) wird geprüft, ob "bundle"-Attribut vorhanden
+    FormDocument.replaceI18n(context, document, getBundle());
+
+    return document;
   }
 
   public String getXmlUri() {
@@ -132,7 +129,7 @@ public class FormComponentTag extends ComponentTag {
   public boolean isFinishButton() {
     return finishButton;
   }
-  
+
   public void setFinishButton(boolean finishButton) {
     this.finishButton = finishButton;
   }
@@ -140,5 +137,5 @@ public class FormComponentTag extends ComponentTag {
   public String getBundle() {
     return bundle;
   }
-  
+
 }

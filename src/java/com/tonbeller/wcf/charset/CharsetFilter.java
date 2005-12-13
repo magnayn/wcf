@@ -24,7 +24,6 @@ import com.tonbeller.tbutils.res.Resources;
  */
 public class CharsetFilter implements Filter {
 
-  private static final String WEBKEY = CharsetFilter.class.getName();
   private static final Logger logger = Logger.getLogger(CharsetFilter.class);
   private static final String ISO88591 = "iso-8859-1";
   private static final String UTF8 = "utf-8";

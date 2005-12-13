@@ -23,6 +23,7 @@ import org.w3c.dom.Document;
 import com.tonbeller.wcf.component.Component;
 import com.tonbeller.wcf.component.ComponentTag;
 import com.tonbeller.wcf.controller.RequestContext;
+import com.tonbeller.wcf.form.FormDocument;
 import com.tonbeller.wcf.utils.ResourceLocator;
 import com.tonbeller.wcf.utils.XmlUtils;
 
@@ -48,6 +49,9 @@ public class TablePropertiesFormTag extends ComponentTag {
 
       URL url = ResourceLocator.getResource(context.getServletContext(), context.getLocale(), xmlUri);
       Document doc = XmlUtils.parse(url);
+
+      //In replaceI18n(...) wird geprüft, ob "bundle"-Attribut vorhanden
+      FormDocument.replaceI18n(context, doc, null);
 
       // find the bean model
       TableComponent tc = (TableComponent) context.getModelReference(table);

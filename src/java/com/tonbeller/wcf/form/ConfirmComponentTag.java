@@ -53,6 +53,10 @@ public class ConfirmComponentTag extends ComponentTag {
       URL url = ResourceLocator.getResource(context.getServletContext(), context.getLocale(),
           xmlUri1);
       Document doc = XmlUtils.parse(url);
+      
+      //In replaceI18n(...) wird geprüft, ob "bundle"-Attribut vorhanden
+      FormDocument.replaceI18n(context, doc, null);
+      
       // create the component
       return new ConfirmComponent(id, null, doc);
     } catch (MalformedURLException e) {

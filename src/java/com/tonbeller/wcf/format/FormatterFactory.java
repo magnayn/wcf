@@ -38,12 +38,19 @@ public class FormatterFactory {
    * returns a new instance
    */
   public static Formatter instance(Locale locale) {
-    String s =  Resources.instance().getOptionalString("wcf.formatter.config.xml", "config.xml");
-    URL configXml = Formatter.class.getResource(s);
-    return instance(locale, configXml);
+    URL defaultXml = Formatter.class.getResource("config.xml");
+    Formatter formatter = new Formatter();
+    fillFormatter(formatter, locale, defaultXml);
+    String s = Resources.instance().getOptionalString("wcf.formatter.config.xml", null);
+    if (s != null) {
+      URL analyseXml = Formatter.class.getResource(s);
+      fillFormatter(formatter, locale, analyseXml);
+    }
+
+    return formatter;
   }
 
-  public static Formatter instance(Locale locale, URL configXml) {
+  private static void fillFormatter(Formatter formatter, Locale locale, URL configXml) {
 
     if (locale == null)
       locale = Locale.getDefault();
@@ -51,7 +58,6 @@ public class FormatterFactory {
     URL rulesXml = Formatter.class.getResource("rules.xml");
     Digester digester = DigesterLoader.createDigester(rulesXml);
     digester.setValidating(false);
-    Formatter formatter = new Formatter();
     digester.push(formatter);
     try {
       digester.parse(new InputSource(configXml.toExternalForm()));
@@ -63,7 +69,6 @@ public class FormatterFactory {
       throw new SoftException(e);
     }
     formatter.setLocale(locale);
-    return formatter;
   }
 
 

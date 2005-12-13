@@ -6,7 +6,7 @@
          javax.servlet.*, javax.servlet.http.*"
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<%@ taglib uri="http://www.tonbeller.com/wcf" prefix="wcf" %>
+<%@ taglib uri="/WEB-INF/wcf/wcf-tags.tld" prefix="wcf" %>
 
 <html>
 <head>

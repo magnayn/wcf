@@ -13,6 +13,7 @@
 package com.tonbeller.wcf.component;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -268,10 +269,16 @@ public abstract class ComponentSupport
   public boolean isAutoValidate() {
     return autoValidate;
   }
+  
   /**
    * @param autoValidate The autoValidate to set.
    */
   public void setAutoValidate(boolean autoValidate) {
     this.autoValidate = autoValidate;
+  }
+  
+  public boolean isListeningTo(Map httpParams) {
+    List list = dispatcher.findMatchingListeners(httpParams);
+    return !list.isEmpty();
   }
 }

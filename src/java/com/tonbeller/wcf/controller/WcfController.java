@@ -12,6 +12,7 @@
  */
 package com.tonbeller.wcf.controller;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -69,5 +70,9 @@ public class WcfController extends Controller {
       RequestListener l = (RequestListener) it.next();
       l.request(context);
     }
+  }
+
+  public List getRootListeners() {
+    return Collections.unmodifiableList(requestListeners);
   }
 }

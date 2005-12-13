@@ -24,7 +24,8 @@ public class PageStack {
   public static final String WEBKEY = "wcfPageStack";
   Stack stack = new Stack();
   
-  private PageStack() {
+  // test only
+  PageStack() {
   }
 
   public static synchronized PageStack instance(HttpSession session) {
@@ -40,6 +41,19 @@ public class PageStack {
     while (stack.contains(page)) 
       stack.pop();
     stack.push(page);
+  }
+
+  /**
+   * returns the n-th Page. 
+   * @param n nuber of pages back (0 = current page, 1 = previous page etc)
+   * @return null if n > number of pages, Page else.
+   */
+  public Page peek(int n) {
+    // reverse order
+    n = stack.size() - n - 1;
+    if (n < 0)
+      return null;
+    return (Page)stack.get(n);
   }
   
   public Iterator iterator() {

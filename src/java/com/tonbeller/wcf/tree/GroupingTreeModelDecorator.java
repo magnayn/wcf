@@ -118,7 +118,7 @@ public class GroupingTreeModelDecorator extends TreeModelDecorator {
     super.getDecoree().addTreeModelChangeListener(listener);
 
     // label format
-    RequestContext ctx = RequestContext.instance();
+    RequestContext ctx = RequestContext.instance(false);
     if (ctx != null) {
       Resources res = ctx.getResources(GroupingTreeModelDecorator.class);
       String fmt = res.getString("tree.group.label");

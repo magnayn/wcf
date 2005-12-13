@@ -1,5 +1,5 @@
 <%@ page session="true" contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="wcf" uri="http://www.tonbeller.com/wcf" %>
+<%@ taglib prefix="wcf" uri="/WEB-INF/wcf/wcf-tags.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <html>

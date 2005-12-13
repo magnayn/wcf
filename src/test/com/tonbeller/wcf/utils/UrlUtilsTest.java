@@ -23,7 +23,9 @@ public class UrlUtilsTest extends TestCase {
     assertFalse(UrlUtils.matchPattern("/", "*.jsp"));
 
     assertTrue(UrlUtils.matchPattern("/", "/"));
-    assertTrue(UrlUtils.matchPattern("/a/b.jsp", "/"));
+    assertTrue(UrlUtils.matchPattern("/", "/*"));
+    assertFalse(UrlUtils.matchPattern("/a/b.jsp", "/"));
+    assertTrue(UrlUtils.matchPattern("/a/b.jsp", "/*"));
 
     assertTrue(UrlUtils.matchPattern("/", "/*"));
     assertTrue(UrlUtils.matchPattern("/a/b.jsp", "/*"));

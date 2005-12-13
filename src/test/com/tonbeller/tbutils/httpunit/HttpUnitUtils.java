@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import junit.framework.Assert;
 
 import org.jaxen.JaxenException;
 import org.jaxen.dom.DOMXPath;
+import org.pdfbox.ExtractText;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.Text;
@@ -65,6 +67,8 @@ public class HttpUnitUtils {
   XmlDiff xmlDiff;
   FileDiff fileDiff;
 
+  String htmlLogFileEncoding = "utf-8";
+
   /**
    * Constructor
    * @param wc
@@ -96,9 +100,9 @@ public class HttpUnitUtils {
   }
 
   public Element getNth(Node root, DOMXPath xpath, int nth) throws JaxenException, SAXException {
-    if(root==null)
+    if (root == null)
       root = wc.getCurrentPage().getDOM();
-    
+
     List list = xpath.selectNodes(root);
     Assert.assertTrue("getNth: " + list.size() + ">" + nth, list.size() > nth);
     return (Element) list.get(nth);
@@ -150,7 +154,7 @@ public class HttpUnitUtils {
    * klickt auf den <code>nth</code>-ten  &lt;input type="submit" ... &gt; oder &lt;input type="image" ... &gt; einer Tabellenzelle
    */
   public WebResponse submitCell(String formID, String tableID, int row, int col, int nth)
-    throws JaxenException, IOException, SAXException {
+      throws JaxenException, IOException, SAXException {
     Node root = getCellNode(tableID, row, col);
     return submitXPath(formID, root, xpSubmit, nth);
   }
@@ -158,25 +162,25 @@ public class HttpUnitUtils {
   /**
    * klickt auf den durch <code>xpath</code> selektierten Submit Button auf der Seite
    */
-  public WebResponse submitXPath(String formID, DOMXPath xpath, int nth)
-    throws JaxenException, IOException, SAXException {
+  public WebResponse submitXPath(String formID, DOMXPath xpath, int nth) throws JaxenException,
+      IOException, SAXException {
     return submitXPath(formID, wc.getCurrentPage().getDOM(), xpath, nth);
   }
 
   /**
    * klickt auf den durch <code>xpath</code> selektierten Submit Button auf der Seite
    */
-  public WebResponse submitXPath(String formID, String xpath, int nth)
-    throws JaxenException, IOException, SAXException {
+  public WebResponse submitXPath(String formID, String xpath, int nth) throws JaxenException,
+      IOException, SAXException {
     DOMXPath dx = new DOMXPath(xpath);
     return submitXPath(formID, wc.getCurrentPage().getDOM(), dx, nth);
   }
-  
+
   /**
    * klickt auf den durch <code>xpath</code> selektierten Submit Button in root
    */
   public WebResponse submitXPath(String formID, Node root, DOMXPath xpath, int nth)
-    throws JaxenException, IOException, SAXException {
+      throws JaxenException, IOException, SAXException {
     Element button = getNth(root, xpath, nth);
     String name = button.getAttribute("name");
     WebForm wf = getForm(formID);
@@ -184,7 +188,8 @@ public class HttpUnitUtils {
     return wf.submit(sb);
   }
 
-  public WebResponse submitButton(String formID, String buttonName) throws IOException, SAXException {
+  public WebResponse submitButton(String formID, String buttonName) throws IOException,
+      SAXException {
     WebForm wf = getForm(formID);
     SubmitButton sb = wf.getSubmitButton(buttonName);
     return wf.submit(sb);
@@ -193,17 +198,19 @@ public class HttpUnitUtils {
   /**
    * presses the first button in the form whose name attribute contains <code>namePart</code>
    */
-  public void submitByNamePart(String formId, String namePart) throws JaxenException, IOException, SAXException {
-    submitXPath(formId, "//input[contains(@name,'"+namePart+"')]", 0);
+  public void submitByNamePart(String formId, String namePart) throws JaxenException, IOException,
+      SAXException {
+    submitXPath(formId, "//input[contains(@name,'" + namePart + "')]", 0);
   }
 
   /**
    * presses the first button in the form whose value attribute contains <code>valuePart</code>
    */
-  public void submitByValuePart(String formId, String valuePart) throws JaxenException, IOException, SAXException {
-    submitXPath(formId, "//input[contains(@value,'"+valuePart+"')]", 0);
+  public void submitByValuePart(String formId, String valuePart) throws JaxenException,
+      IOException, SAXException {
+    submitXPath(formId, "//input[contains(@value,'" + valuePart + "')]", 0);
   }
-  
+
   /* -------------------------------------- anchors ------------------------------------- */
 
   private HTMLElementPredicate matchLink = new HTMLElementPredicate() {
@@ -217,31 +224,33 @@ public class HttpUnitUtils {
   /**
    * folgt dem <code>nth</code> Anchor einer Tabellenzelle
    */
-  public WebResponse followCell(String tableID, int row, int col, int nth)
-    throws JaxenException, IOException, SAXException {
+  public WebResponse followCell(String tableID, int row, int col, int nth) throws JaxenException,
+      IOException, SAXException {
     return followXPath(getCellNode(tableID, row, col), xpAnchor, nth);
   }
 
   /**
    * folgt dem <code>nth</code>-ten Anchor auf der Seite, der von <code>xpath</code> selektiert wird.
    */
-  public WebResponse followXPath(DOMXPath xpath, int nth)
-    throws JaxenException, IOException, SAXException {
+  public WebResponse followXPath(DOMXPath xpath, int nth) throws JaxenException, IOException,
+      SAXException {
     return followXPath(wc.getCurrentPage().getDOM(), xpath, nth);
   }
 
   /**
    * folgt dem <code>nth</code>-ten Anchor unterhalb von root, der von <code>xpath</code> selektiert wird.
    */
-  public WebResponse followXPath(Node root, DOMXPath xpath, int nth)
-    throws JaxenException, IOException, SAXException {
+  public WebResponse followXPath(Node root, DOMXPath xpath, int nth) throws JaxenException,
+      IOException, SAXException {
     Element anchor = (Element) getNth(root, xpath, nth);
     String href = anchor.getAttribute("href");
     WebResponse wr = wc.getCurrentPage();
     WebLink link = wr.getFirstMatchingLink(matchLink, href);
     return link.click();
   }
-  public WebResponse followXPath(String xpath, int i) throws JaxenException, IOException, SAXException {
+
+  public WebResponse followXPath(String xpath, int i) throws JaxenException, IOException,
+      SAXException {
     return followXPath(new DOMXPath(xpath), i);
   }
 
@@ -260,14 +269,8 @@ public class HttpUnitUtils {
    * @throws JaxenException
    * @throws SAXException
    */
-  public void setCheckBox(
-    String formID,
-    String tableID,
-    int row,
-    int col,
-    int nth,
-    boolean checked)
-    throws JaxenException, SAXException {
+  public void setCheckBox(String formID, String tableID, int row, int col, int nth, boolean checked)
+      throws JaxenException, SAXException {
     Element cb = (Element) getNth(getCellNode(tableID, row, col), xpCheckbox, nth);
     String name = cb.getAttribute("name");
     String value = cb.getAttribute("value");
@@ -277,14 +280,8 @@ public class HttpUnitUtils {
       this.removeParameterValue(formID, name, value);
   }
 
-  public void assertChecked(
-    String formID,
-    String tableID,
-    int row,
-    int col,
-    int nth,
-    boolean checked)
-    throws JaxenException, SAXException {
+  public void assertChecked(String formID, String tableID, int row, int col, int nth,
+      boolean checked) throws JaxenException, SAXException {
     Element cb = (Element) getNth(getCellNode(tableID, row, col), xpCheckbox, nth);
     String name = cb.getAttribute("name");
     String value = cb.getAttribute("value");
@@ -311,7 +308,7 @@ public class HttpUnitUtils {
    * @throws SAXException
    */
   public void setRadioButton(String formID, String tableID, int row, int col, int nth)
-    throws JaxenException, SAXException {
+      throws JaxenException, SAXException {
     Element cb = (Element) getNth(getCellNode(tableID, row, col), xpRadio, nth);
     String name = cb.getAttribute("name");
     String value = cb.getAttribute("value");
@@ -324,12 +321,12 @@ public class HttpUnitUtils {
 
   /**
    * Selectiert eine Option eines Select Elements.
-   * Ermittelt das <code>nth</code>-te &lt;select ...&gt; Eingabefeld in der 
-   * der durch <code>tableID</code>, <code>row</code>, <code>col</code> identifizierten Tabellenzelle. 
-   * Das Select Element muss zu dem Formular mit <code>formID</code> gehoeren 
-   * (d.h. die Tabelle muss in diesem Formular liegen). Selektiert dann die 
+   * Ermittelt das <code>nth</code>-te &lt;select ...&gt; Eingabefeld in der
+   * der durch <code>tableID</code>, <code>row</code>, <code>col</code> identifizierten Tabellenzelle.
+   * Das Select Element muss zu dem Formular mit <code>formID</code> gehoeren
+   * (d.h. die Tabelle muss in diesem Formular liegen). Selektiert dann die
    * <code>optindex</code> option.
-   * 
+   *
    * @param formID id Attribut des HTML form Elements
    * @param tableID id Attribut des HTML table Elements
    * @param row 0 basierter Index der Tabellenzeile
@@ -340,7 +337,7 @@ public class HttpUnitUtils {
    * @throws SAXException
    */
   public void setSelect1(String formID, String tableID, int row, int col, int nth, int optind)
-    throws JaxenException, SAXException {
+      throws JaxenException, SAXException {
     Element select = (Element) getNth(getCellNode(tableID, row, col), xpSelect, nth);
     String name = select.getAttribute("name");
     List options = xpOption.selectNodes(select);
@@ -352,7 +349,7 @@ public class HttpUnitUtils {
   }
 
   public void setSelect1(String formID, String tableID, int row, int col, int nth, String optText)
-    throws JaxenException, SAXException {
+      throws JaxenException, SAXException {
     Element select = (Element) getNth(getCellNode(tableID, row, col), xpSelect, nth);
     String name = select.getAttribute("name");
     List options = xpOption.selectNodes(select);
@@ -372,12 +369,12 @@ public class HttpUnitUtils {
 
   /**
    * Setzt Eingabe in ein Textfeld.
-   * Ermittelt das <code>nth</code>-te &lt;input type="text" ...&gt; Eingabefeld in der 
-   * der durch <code>tableID</code>, <code>row</code>, <code>col</code> identifizierten Tabellenzelle. 
-   * Das input Element muss zu dem Formular mit <code>formID</code> gehoeren 
-   * (d.h. die Tabelle muss in diesem Formular liegen). Traegt dann 
+   * Ermittelt das <code>nth</code>-te &lt;input type="text" ...&gt; Eingabefeld in der
+   * der durch <code>tableID</code>, <code>row</code>, <code>col</code> identifizierten Tabellenzelle.
+   * Das input Element muss zu dem Formular mit <code>formID</code> gehoeren
+   * (d.h. die Tabelle muss in diesem Formular liegen). Traegt dann
    * <code>value</code> dort ein.
-   * 
+   *
    * @param formID id Attribut des HTML form Elements
    * @param tableID id Attribut des HTML table Elements
    * @param row 0 basierter Index der Tabellenzeile
@@ -388,7 +385,7 @@ public class HttpUnitUtils {
    * @throws SAXException
    */
   public void setTextInput(String formID, String tableID, int row, int col, int nth, String value)
-    throws JaxenException, SAXException {
+      throws JaxenException, SAXException {
     Element input = (Element) getNth(getCellNode(tableID, row, col), xpTextInput, nth);
     String name = input.getAttribute("name");
     WebForm wf = getForm(formID);
@@ -397,12 +394,12 @@ public class HttpUnitUtils {
 
   /**
    * Setzt Eingabe in ein Passwortfeld.
-   * Ermittelt das <code>nth</code>-te &lt;input type="password" ...&gt; Eingabefeld in der 
-   * der durch <code>tableID</code>, <code>row</code>, <code>col</code> identifizierten Tabellenzelle. 
-   * Das input Element muss zu dem Formular mit <code>formID</code> gehoeren 
-   * (d.h. die Tabelle muss in diesem Formular liegen). Traegt dann 
+   * Ermittelt das <code>nth</code>-te &lt;input type="password" ...&gt; Eingabefeld in der
+   * der durch <code>tableID</code>, <code>row</code>, <code>col</code> identifizierten Tabellenzelle.
+   * Das input Element muss zu dem Formular mit <code>formID</code> gehoeren
+   * (d.h. die Tabelle muss in diesem Formular liegen). Traegt dann
    * <code>value</code> dort ein.
-   * 
+   *
    * @param formID id Attribut des HTML form Elements
    * @param tableID id Attribut des HTML table Elements
    * @param row 0 basierter Index der Tabellenzeile
@@ -413,7 +410,7 @@ public class HttpUnitUtils {
    * @throws SAXException
    */
   public void setPassword(String formID, String tableID, int row, int col, int nth, String value)
-    throws JaxenException, SAXException {
+      throws JaxenException, SAXException {
     Element input = (Element) getNth(getCellNode(tableID, row, col), xpPassword, nth);
     String name = input.getAttribute("name");
     WebForm wf = getForm(formID);
@@ -425,7 +422,7 @@ public class HttpUnitUtils {
    * @see #setTextInput
    */
   public void setTextArea(String formID, String tableID, int row, int col, int nth, String value)
-    throws JaxenException, SAXException {
+      throws JaxenException, SAXException {
     Element input = (Element) getNth(getCellNode(tableID, row, col), xpTextArea, nth);
     String name = input.getAttribute("name");
     WebForm wf = getForm(formID);
@@ -461,17 +458,31 @@ public class HttpUnitUtils {
   }
 
   /**
-   * Schreibt die aktuelle Seite als HTML Datei ins Log Verzeichnis
+   * Schreibt die aktuelle Seite als HTML Datei ins Log Verzeichnis,
+   * verwendet dabei htmlLogFileEncoding
+   *
    * @param fileName Dateiname ohne .html Extension
    * @throws IOException
    */
   public void saveHTML(String fileName) throws IOException {
-    saveTextFile(fileName + ".html");
+    saveTextFile(fileName + ".html", htmlLogFileEncoding);
+  }
+
+  private void saveTextFile(String fileName, String encoding) throws IOException {
+    File f = new File(getLogDir(), fileName);
+    createParentDir(f);
+    FileOutputStream fos = new FileOutputStream(f);
+    OutputStreamWriter osw = new OutputStreamWriter(fos, encoding);
+    try {
+      osw.write(wc.getCurrentPage().getText());
+    } finally {
+      osw.close();
+    }
   }
 
   /**
    * Schreibt die aktuelle Seite als Textdatei ins Log Verzeichnis
-   * @param fileName Dateiname 
+   * @param fileName Dateiname
    * @throws IOException
    */
   public void saveTextFile(String fileName) throws IOException {
@@ -481,10 +492,10 @@ public class HttpUnitUtils {
     w.write(wc.getCurrentPage().getText());
     w.close();
   }
-  
+
   /**
    * Schreibt die aktuelle Seite binär ins Log Verzeichnis
-   * @param fileName Dateiname 
+   * @param fileName Dateiname
    * @throws IOException
    */
   public void saveBinFile(String fileName) throws IOException {
@@ -498,9 +509,9 @@ public class HttpUnitUtils {
       try {
         in = wc.getCurrentPage().getInputStream();
         int c;
-        while((c=in.read())>=0)
+        while ((c = in.read()) >= 0)
           out.write(c);
-        
+
       } finally {
         if (in != null)
           in.close();
@@ -523,7 +534,7 @@ public class HttpUnitUtils {
    * @throws TransformerException
    */
   public void saveXML(String fileName, String xslName, String id, Node root)
-    throws TransformerException {
+      throws TransformerException {
     Transformer trans = getTransformer(xslName);
     trans.setParameter("id", id);
     File f = new File(getLogDir(), fileName + ".xml");
@@ -544,9 +555,9 @@ public class HttpUnitUtils {
     createParentDir(f);
     trans.transform(new DOMSource(root), new StreamResult(f));
   }
-  
-  public void check(String fileName, String xslName, String nodeId)
-    throws IOException, JaxenException, SAXException, TransformerException {
+
+  public void check(String fileName, String xslName, String nodeId) throws IOException,
+      JaxenException, SAXException, TransformerException {
     saveHTML(fileName);
     saveXML(fileName, xslName, nodeId, wc.getCurrentPage().getDOM());
     Assert.assertTrue(fileName, equalsXML(fileName));
@@ -572,6 +583,24 @@ public class HttpUnitUtils {
    */
   public boolean equalsFile(String fileName) throws IOException {
     return equalsFile(fileName, null);
+  }
+
+  /**
+   * Erzeugt aus einer PDF-Datei eine Textdatei und vergleicht diese mit der Referenz.
+   */
+  public boolean equalsPdfFile(String fileName, FileDiffHandler handler) throws Exception {
+    if (isRecordMode())
+      return true;
+    if (!fileName.endsWith(".pdf"))
+      throw new RuntimeException("Error: pdf file name expected " + fileName);
+
+    String textName = fileName.substring(0, fileName.length() - 4) + ".txt";
+    File pdfFile = new File(getLogDir(), fileName);
+    File textFile = new File(getLogDir(), textName);
+
+    ExtractText.main(new String[] { pdfFile.getAbsolutePath(), textFile.getAbsolutePath()});
+
+    return equalsFile(textName, handler);
   }
 
   /**
@@ -614,19 +643,27 @@ public class HttpUnitUtils {
     this.wc = wc;
     return oldWc;
   }
-  
+
   /**
-   * @return den Fragement Identifier der aktuellen URL oder null 
+   * @return den Fragement Identifier der aktuellen URL oder null
    */
   public String getFragmentIdentifier() {
     String url = wc.getCurrentPage().getURL().toExternalForm();
     int pos = url.indexOf('#');
-    if(pos<0)
+    if (pos < 0)
       return null;
     return url.substring(pos + 1);
   }
 
   public XmlDiff getXmlDiff() {
     return xmlDiff;
+  }
+
+  public String getHtmlLogFileEncoding() {
+    return htmlLogFileEncoding;
+  }
+
+  public void setHtmlLogFileEncoding(String htmlLogFileEncoding) {
+    this.htmlLogFileEncoding = htmlLogFileEncoding;
   }
 }

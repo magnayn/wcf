@@ -35,13 +35,13 @@ public class FormatterTest extends TestCase {
     en = FormatterFactory.instance(Locale.ENGLISH);
     de = FormatterFactory.instance(Locale.GERMAN);
   }
-  
+
   public void testString() {
     assertEquals("123", de.parse("string", "123", null));
     assertEquals("123", de.format("string", "123", null));
     assertEquals("", de.format("string", null, null));
   }
-  
+
   public void testInteger() {
     assertEquals(new Integer(123), de.parse("int", "123", null));
     try {
@@ -51,7 +51,7 @@ public class FormatterTest extends TestCase {
     catch (FormatException e) {
     }
   }
-  
+
 
   public void testDouble() {
     FormatHandler h = en.getHandler("double");
@@ -59,14 +59,23 @@ public class FormatterTest extends TestCase {
     h = de.getHandler("double");
     assertEquals(new Double(123.45), h.parse("123,45", null));
     assertEquals("123,45", h.format(new Double(123.45), null));
-  }  
-  
-  
+  }
+
+  public void testNaNDouble() {
+    FormatHandler h = en.getHandler("nandouble");
+    assertEquals(new Double(123.45), h.parse("123.45", null));
+    h = de.getHandler("nandouble");
+    assertEquals(new Double(123.45), h.parse("123,45", null));
+    assertEquals("123,45", h.format(new Double(123.45), null));
+    assertEquals(new Double(Double.NaN), h.parse("", null));
+    assertEquals("", h.format(new Double(Double.NaN), null));
+  }
+
   public void testDate() {
     GregorianCalendar gc = new GregorianCalendar(2000, Calendar.AUGUST, 12);
     assertEquals("08/12/2000", en.format("date", gc.getTime(), null));
   }
-  
+
 
   public void testRegex() {
     assertEquals("abc@de.com", de.parse("email", "abc@de.com", null));
@@ -77,6 +86,6 @@ public class FormatterTest extends TestCase {
     catch (FormatException e) {
     }
   }
-  
+
 
 }

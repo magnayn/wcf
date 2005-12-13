@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<xform style="twocolumn">
+<xform style="twocolumn" bundle="com.tonbeller.wcf.form.resources">
   <title value="?">
     <imgButton id="confirm.cancel" src="wcf/form/cancel.png" label="fmt:confirm.cancel"/>
   </title>
