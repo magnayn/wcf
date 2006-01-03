@@ -115,6 +115,10 @@
   </page>
 
   <page title="News" id="news">
+    <h3>Bugfixes</h3>
+      see <a href="changelog.html">changelog</a>
+
+    <h3>Supports BEA and WebSphere</h3>
 
     <h3>New reusable Tabbed Pane component</h3>
       see example.
