@@ -1,12 +1,7 @@
+# where to find the external libraries
+repository.home=../jpivot_repository
 
-# These settings allow the source to build and tests to run
+# tomcat manager
+manager.username=manager
+manager.password=manager
 
-jboss.home=C:/jboss-4.0.2
-
-catalina.home=C:/Source/jakarta-tomcat-5.5.9
-
-manager.username=tomcat
-manager.password=tomcat
-
-xmla.uri=http://localhost:8080/mondrian/xmla
-xmla.catalog=MondrianFoodMart

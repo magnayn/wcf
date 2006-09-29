@@ -1,27 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry output=".deployables/wcf/WEB-INF/classes" kind="src" path="src/java"/>
-	<classpathentry output=".deployables/wcf/WEB-INF/classes" kind="src" path="src/test"/>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="src" path="src/test"/>
 	<classpathentry sourcepath="JRE_SRC" kind="var" path="JRE_LIB"/>
-	<classpathentry kind="lib" path="build/web/WEB-INF/lib/jakarta-regexp-1.2.jar"/>
-	<classpathentry kind="lib" path="build/web/WEB-INF/lib/jaxen-full.jar"/>
-	<classpathentry kind="lib" path="build/web/WEB-INF/lib/jstl.jar"/>
-	<classpathentry kind="lib" path="build/web/WEB-INF/lib/log4j-1.2.8.jar"/>
-	<classpathentry kind="lib" path="build/web/WEB-INF/lib/saxpath.jar"/>
-	<classpathentry kind="lib" path="build/web/WEB-INF/lib/standard.jar"/>
-	<classpathentry kind="lib" path="build/web/WEB-INF/lib/jsf-api.jar"/>
-	<classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-collections-3.1.jar"/>
-	<classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-fileupload-1.0.jar"/>
-  <classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-logging.jar"/>
-  <classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-logging-api.jar"/>
-  <classpathentry kind="lib" path="build/web/WEB-INF/lib/PDFBox-0.7.2.jar"/>
-	<classpathentry kind="output" path="build/classes"/>
 	<classpathentry kind="var" path="TOMCAT_5_5/common/lib/servlet-api.jar"/>
 	<classpathentry kind="var" path="TOMCAT_5_5/common/lib/jsp-api.jar"/>
-	<classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-beanutils-1.6.jar"/>
-	<classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-digester-1.5.jar"/>
-	<classpathentry kind="lib" path="build/web/WEB-INF/lib/commons-logging-1.0.4.jar"/>
 	<classpathentry kind="lib" path="/jpivot_repository/httpunit-1.5.2/lib/httpunit.jar"/>
 	<classpathentry kind="lib" path="/jpivot_repository/junit-3.8.1/junit.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="output" path="build/web/WEB-INF/classes"/>
 </classpath>
