@@ -4,7 +4,6 @@
 
 <!-- ===================== Property Definitions =========================== -->
 
-  <property file="build.properties"/>
   <property file="${user.home}/build.properties"/>
 
   <property name="build.home"    value="${basedir}/build"/>
@@ -40,7 +39,8 @@
 
   <property name="compile.debug"       value="true"/>
   <property name="compile.deprecation" value="false"/>
-  <property name="compile.optimize"    value="true"/>
+  <property name="compile.source"      value="1.4"/>
+  <property name="compile.target"      value="1.4"/>
 
 
 <!-- ==================== Classpath Settings =========================== -->
@@ -126,7 +126,8 @@
         <include name="commons-collections-3.1/*.jar"/>
         <include name="commons-beanutils-1.7.0/*.jar"/>
         <include name="commons-logging-1.0.4/*.jar"/>
-        <include name="commons-fileupload-1.0/*.jar"/>
+        <include name="commons-fileupload-1.1.1/*.jar"/>
+        <include name="commons-io-1.2/*.jar"/>
 
         <include name="jakarta-log4j-1.2.8/dist/lib/log4j-1.2.8.jar"/>
         <include name="jsf-1_1/lib/jsf-api.jar"/>
@@ -168,7 +169,9 @@
     <javac destdir="${build.home}/web/WEB-INF/classes"
              debug="${compile.debug}"
        deprecation="${compile.deprecation}"
-          optimize="${compile.optimize}">
+          optimize="${compile.optimize}"
+            source="${compile.source}"
+            target="${compile.target}">
 
        <src path="${src.home}/java"/>
        <classpath refid="compile.classpath"/>
@@ -208,6 +211,7 @@
 
     <jar jarfile="${dist.home}/web/WEB-INF/lib/wcf.jar" basedir="${build.home}/web/WEB-INF/classes">
       <include name="com/tonbeller/wcf/**"/>
+      <metainf file="${build.home}/web/WEB-INF/wcf/wcf-tags.tld" />
     </jar>
     <jar jarfile="${dist.home}/web/WEB-INF/lib/tbutils-wcf.jar" basedir="${build.home}/web/WEB-INF/classes">
       <include name="com/tonbeller/tbutils/**"/>
@@ -345,14 +349,14 @@
 
 <!-- ==================== JUnit Tests =================================== -->
 
-	<!--
-	     ======================================================================
-	     requires in $ANT_HOME/lib
-	       junit.jar
-	       bcel-5.1 from jakarta.apache.org
-	       http://ant-contrib.sourceforge.net/
-	     ======================================================================
-	-->
+  <!--
+       ======================================================================
+       requires in $ANT_HOME/lib
+         junit.jar
+         bcel-5.1 from jakarta.apache.org
+         http://ant-contrib.sourceforge.net/
+       ======================================================================
+  -->
 
 
   <target name="tests" description="JUnit Tests" depends="compile,runtests,checktests"/>
@@ -366,7 +370,9 @@
     <javac destdir="${build.home}/junit/classes"
              debug="${compile.debug}"
        deprecation="${compile.deprecation}"
-          optimize="${compile.optimize}">
+          optimize="${compile.optimize}"
+            source="${compile.source}"
+            target="${compile.target}">
       <src path="${src.home}/test"/>
       <classpath refid="test.classpath"/>
     </javac>
