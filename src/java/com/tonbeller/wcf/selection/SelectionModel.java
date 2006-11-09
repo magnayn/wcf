@@ -31,6 +31,10 @@ public interface SelectionModel extends SingleSelectionModel {
   static final int SINGLE_SELECTION_HREF = 3;
   /** use image buttons that look like checkboxes */
   static final int MULTIPLE_SELECTION_BUTTON = 4;
+  /** hyperlinks */
+  static final int MULTIPLE_SELECTION_HREF = 5;
+  /** use image buttons that look like checkboxes */
+  static final int SINGLE_SELECTION_BUTTON = 6;
   
   int getMode();
   void setMode(int mode);

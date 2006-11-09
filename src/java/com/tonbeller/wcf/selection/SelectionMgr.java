@@ -90,27 +90,33 @@ public class SelectionMgr implements FormListener, RenderListener {
 
     int selMode = selectionModel.getMode();
 
-    if (selMode == SelectionModel.SINGLE_SELECTION_HREF) {
+    if (selMode == SelectionModel.SINGLE_SELECTION_HREF || selMode == SelectionModel.MULTIPLE_SELECTION_HREF) {
       if (readOnly) {
         if (selectionModel.contains(obj))
           parent.setAttribute("style", "selected");
       } else {
         String id = DomUtils.randomId();
         parent.setAttribute("hrefId", id);
-        dispatcher.addRequestListener(id, null, new HREFSelectHandler(obj));
+        if (selMode == SelectionModel.SINGLE_SELECTION_HREF)
+          dispatcher.addRequestListener(id, null, new SingleSelectHandler(obj));
+        else 
+            dispatcher.addRequestListener(id, null, new MultipleSelectHandler(obj));
         if (selectionModel.contains(obj))
           parent.setAttribute("style", "selected");
       }
     }
 
-    else if (selMode == SelectionModel.MULTIPLE_SELECTION_BUTTON) {
+    else if (selMode == SelectionModel.SINGLE_SELECTION_BUTTON || selMode == SelectionModel.MULTIPLE_SELECTION_BUTTON) {
       if (readOnly) {
         if (selectionModel.contains(obj))
           parent.setAttribute("style", "selected");
       } else {
         String id = DomUtils.randomId();
         parent.setAttribute("buttonId", id);
-        dispatcher.addRequestListener(id, null, new ButtonSelectHandler(obj));
+        if (selMode == SelectionModel.SINGLE_SELECTION_BUTTON)
+          dispatcher.addRequestListener(id, null, new SingleSelectHandler(obj));
+        else
+          dispatcher.addRequestListener(id, null, new MultipleSelectHandler(obj));
         if (selectionModel.contains(obj))
           parent.setAttribute("selected", "true");
       }
@@ -206,10 +212,10 @@ public class SelectionMgr implements FormListener, RenderListener {
   }
 
   /** single selection via href hyperlink */
-  class HREFSelectHandler implements RequestListener {
+  class SingleSelectHandler implements RequestListener {
     private Object node;
 
-    HREFSelectHandler(Object node) {
+    SingleSelectHandler(Object node) {
       this.node = node;
     }
 
@@ -220,10 +226,10 @@ public class SelectionMgr implements FormListener, RenderListener {
   }
 
   /** multiple selection via image buttons */
-  class ButtonSelectHandler implements RequestListener {
+  class MultipleSelectHandler implements RequestListener {
     private Object node;
 
-    ButtonSelectHandler(Object node) {
+    MultipleSelectHandler(Object node) {
       this.node = node;
     }
 

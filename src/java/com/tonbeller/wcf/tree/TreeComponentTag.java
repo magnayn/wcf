@@ -17,13 +17,14 @@ import javax.servlet.jsp.JspException;
 import com.tonbeller.wcf.component.Component;
 import com.tonbeller.wcf.component.ComponentTag;
 import com.tonbeller.wcf.controller.RequestContext;
+import com.tonbeller.wcf.selection.SelectionModel;
 
 /**
  * TreeComponent
  * @author av
  */
 public class TreeComponentTag extends ComponentTag {
-  String model;
+  String model, selectionModel;
   
   public Component createComponent(RequestContext context) throws JspException {
     // find the model
@@ -31,7 +32,12 @@ public class TreeComponentTag extends ComponentTag {
       TreeModel tm = (TreeModel)context.getModelReference(model);
       if (tm == null)
         throw new JspException("model \"" + model + "\" not found");
-      return new TreeComponent(getId(), null, tm);
+      TreeComponent tc = new TreeComponent(getId(), null, tm);
+      if (selectionModel != null) {
+        SelectionModel sm = (SelectionModel)context.getModelReference(selectionModel);
+        tc.setSelectionModel(sm);
+      }
+      return tc;
     }
     
     // create testdata
@@ -50,4 +56,11 @@ public class TreeComponentTag extends ComponentTag {
     this.model = model;
   }
 
+  /**
+   * Sets the selectionModel.
+   * @param model The selectionModel to set
+   */
+  public void setSelectionModel(String selectionModel) {
+    this.selectionModel = selectionModel;
+  }
 }

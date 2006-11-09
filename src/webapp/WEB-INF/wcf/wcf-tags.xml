@@ -1017,6 +1017,10 @@
       <descr lang="en">EL expression that resolves to a com.tonbeller.wcf.tree.TreeModel</descr>
       <descr lang="de">EL expression that resolves to a com.tonbeller.wcf.tree.TreeModel</descr>
     </attr>
+    <attr type="String" rtexpr="true" required="false" name="selectionModel">
+      <descr lang="en">EL expression that resolves to a com.tonbeller.wcf.selection.SelectionModel</descr>
+      <descr lang="de">EL expression that resolves to a com.tonbeller.wcf.selection.SelectionModel</descr>
+    </attr>
     <example><![CDATA[
 <wcf:tree id="tree01"/>
 <wcf:render ref="#{tree01}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true">
