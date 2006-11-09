@@ -3,6 +3,7 @@ package com.tonbeller.tbutils.res;
 import java.io.File;
 import java.text.MessageFormat;
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 import java.util.MissingResourceException;
 
@@ -16,6 +17,7 @@ public class Resources {
   private Locale locale;
   private File home;
   private PersistentResourceProvider persistentProvider;
+  private CompositeResourceProvider compositeProvider;
   
   static final String PERSISTENT_PROPERTIES = "persistent.properties";
 
@@ -73,6 +75,7 @@ public class Resources {
   Resources(CompositeResourceProvider compositeProvider, Locale locale, File home) {
     this.locale = locale;
     this.home = home;
+    this.compositeProvider = compositeProvider;
     File persistentProperties = new File(home, PERSISTENT_PROPERTIES);
     this.persistentProvider = new FilePersistentResourceProvider(persistentProperties);
     // make persistentProvider the first one to look into
@@ -90,7 +93,7 @@ public class Resources {
     String s = provider.getString(key);
     if (s == null)
       return defaultValue;
-    return s;
+    return s.trim();
   }
   
   /**
@@ -101,7 +104,7 @@ public class Resources {
     String s = provider.getString(key);
     if (s == null)
       throw new MissingResourceException("missing resource for " + key, this.getClass().getName(), key);
-    return s;
+    return s.trim();
   }
 
   /**
@@ -301,5 +304,14 @@ public class Resources {
    */
   public String replace(String s) {
     return provider.replace(s);
+  }
+  
+  /**
+   * returns the list of {@link ResourceProvider}'s that this instance
+   * searches for properties. The list may be modified.
+   * @see ResourceProvider
+   */
+  public List getProviders() {
+    return compositeProvider.getProviders();
   }
 }

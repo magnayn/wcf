@@ -44,9 +44,9 @@ public class PageStackTag extends LoopTagSupport {
       stack.clear();
     if (page != null && s != null) {
       String path = addContextPath(page);
-      Page page = new Page(pageId, path, s);
-      page.setRequestToken(RequestToken.instance(pageContext.getSession()));
-      stack.setCurrentPage(page);
+      Page curPg = new Page(pageId, path, page, s);
+      curPg.setRequestToken(RequestToken.instance(pageContext.getSession()));
+      stack.setCurrentPage(curPg);
     }
     iter = stack.iterator();
   }

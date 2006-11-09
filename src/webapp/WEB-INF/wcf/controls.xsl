@@ -66,10 +66,29 @@
 </xsl:template>
 
 <xsl:template mode="ctrl" match="textField">
-  <input type="text" name="{@id}" value="{@value}">
-    <xsl:apply-templates select="@maxlength"/>
-    <xsl:call-template name="stdattrs"/>
-  </input>
+  <xsl:choose >
+    <xsl:when test="@calendar">
+      <table>
+        <tr>
+          <td>
+            <input type="text" name="{@id}" value="{@value}">
+              <xsl:apply-templates select="@maxlength"/>
+              <xsl:call-template name="stdattrs"/>
+            </input>
+          </td>
+          <td>
+            <img src="{$context}/{@src}" onclick="jscalendarPopUpCalendar(this,document.getElementById('{@id}'), '{@calendar}')"/>  
+          </td>
+        </tr>
+      </table>
+    </xsl:when>
+    <xsl:otherwise> 
+      <input type="text" name="{@id}" value="{@value}">
+        <xsl:apply-templates select="@maxlength"/>
+        <xsl:call-template name="stdattrs"/>
+      </input>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:apply-templates/>
 </xsl:template>
 

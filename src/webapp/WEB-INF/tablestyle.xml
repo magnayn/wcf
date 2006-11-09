@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xtable-component>
+  <xtr>
+    <xth class="class-1">class-1</xth>
+    <xth>xtable-heading</xth>
+  </xtr>
+  <xtr>
+    <xtd class="class-2">class-2</xtd>
+    <xtd>xtable-data</xtd>
+  </xtr>
+</xtable-component>
+

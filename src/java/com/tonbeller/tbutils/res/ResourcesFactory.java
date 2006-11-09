@@ -230,7 +230,7 @@ public class ResourcesFactory {
       } catch (FileNotFoundException e) {
         // ignore
         if (logger.isInfoEnabled())
-          logger.info("property file not found: " + f.getAbsolutePath());
+          logger.info("optional property file not found: " + f.getAbsolutePath());
       } catch (IOException e) {
         logger.error("error loading " + f.getAbsolutePath(), e);
       } finally {
@@ -266,7 +266,7 @@ public class ResourcesFactory {
       } catch (MissingResourceException e) {
         // ignore
         if (logger.isInfoEnabled())
-          logger.info("resource bundle not found: " + bundles[i]);
+          logger.info("optional resource bundle not found: " + bundles[i]);
       }
     }
   }

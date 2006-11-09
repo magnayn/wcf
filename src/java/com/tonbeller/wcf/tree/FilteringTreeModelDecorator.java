@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * uses a <code>NodeFilter</code> to select the visible nodes
  */
-public class FilteringTreeModelDecorator implements TreeModel {
+public class FilteringTreeModelDecorator implements TreeModel, DecoratedTreeModel {
   TreeModel decoree;
   NodeFilter filter;
   

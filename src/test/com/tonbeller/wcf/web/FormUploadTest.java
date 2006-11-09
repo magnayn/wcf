@@ -37,37 +37,37 @@ public class FormUploadTest extends HttpUnitTestCase {
   private void runTests() throws Exception {
     check("upload-01", "form01");
     WebForm wf = wc.getCurrentPage().getFormWithID("form01");
-
+    String id = "uploadcomp"; 
     // ********* test valid input ****************
-    wf.setParameter("string", "--ÄÖÜß--");
-    wf.setParameter("int", "12");
-    wf.setParameter("double", "123.456");
-    wf.setParameter("date", "12/31/2003");
-    wf.setParameter("password", "xxxx");
-    wf.setParameter("textarea", "some\nmulti\nline\ntext\n");
-    wf.setParameter("checkbox1", "x");
-    wf.setParameter("checkbox2", "x");
-    wf.setParameter("list1", "list1.1");
-    wf.setParameter("listN", new String[] { "listN.1", "listN.4"});
-    wf.setParameter("group1", "radio1");
-    wf.submit(wf.getSubmitButtonWithID("formcomp.validate"));
+    wf.setParameter(id + ".string", "--ÄÖÜß--");
+    wf.setParameter(id + ".int", "12");
+    wf.setParameter(id + ".double", "123.456");
+    wf.setParameter(id + ".date", "12/31/2003");
+    wf.setParameter(id + ".password", "xxxx");
+    wf.setParameter(id + ".textarea", "some\nmulti\nline\ntext\n");
+    wf.setParameter(id + ".checkbox1", "x");
+    wf.setParameter(id + ".checkbox2", "x");
+    wf.setParameter(id + ".list1", id + ".list1.1");
+    wf.setParameter(id + ".listN", new String[] { id + ".listN.1", id + ".listN.4"});
+    wf.setParameter("group1", id + ".radio1");
+    wf.submit(wf.getSubmitButtonWithID("uploadcomp.validate"));
     check("upload-02", "form01");
 
     // ******** test invalid input *************
     wf = wc.getCurrentPage().getFormWithID("form01");
-    wf.setParameter("int", "nan");
-    wf.setParameter("double", "nan");
-    wf.setParameter("date", "nad");
-    wf.submit(wf.getSubmitButtonWithID("formcomp.ok"));
+    wf.setParameter(id + ".int", "nan");
+    wf.setParameter(id + ".double", "nan");
+    wf.setParameter(id + ".date", "nad");
+    wf.submit(wf.getSubmitButtonWithID("uploadcomp.ok"));
     check("upload-03", "form01");
-    wf.submit(wf.getSubmitButtonWithID("formcomp.revert"));
+    wf.submit(wf.getSubmitButtonWithID("uploadcomp.revert"));
     check("upload-04", "form01");
 
     // ******** test upload *************
     UploadFileSpec fileSpec = new UploadFileSpec("uploadtest.txt", getClass().getResourceAsStream(
         "uploadtest.txt"), "text/plain");
-    wf.setParameter("fileUpload1", new UploadFileSpec[] { fileSpec});
-    wf.submit(wf.getSubmitButtonWithID("formcomp.validate"));
+    wf.setParameter(id + ".fileUpload1", new UploadFileSpec[] { fileSpec});
+    wf.submit(wf.getSubmitButtonWithID("uploadcomp.validate"));
     check("upload-05", "uploadInfo");
   }
 

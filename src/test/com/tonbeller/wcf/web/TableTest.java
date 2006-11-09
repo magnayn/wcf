@@ -98,4 +98,14 @@ public class TableTest extends HttpUnitTestCase {
     wc.sendRequest(new GetMethodWebRequest(servletUrl + "/undecorated-table.jsp"));
     check("table-undecorated-01");
   }
+  
+  public void testTableStyle() throws Exception {
+    wc.sendRequest(new GetMethodWebRequest(servletUrl + "/tablestyle.jsp"));
+    check("tablestyle-01");
+  }
+  
+  public void testTableReadOnly() throws Exception {
+    wc.sendRequest(new GetMethodWebRequest(servletUrl + "/tabledemo2.jsp"));
+    check("table-readonly");
+  }
 }

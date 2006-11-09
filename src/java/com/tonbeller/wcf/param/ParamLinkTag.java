@@ -8,7 +8,7 @@
  * You must accept the terms of that agreement to use this software.
  * ====================================================================
  *
- * 
+ *
  */
 package com.tonbeller.wcf.param;
 
@@ -35,7 +35,7 @@ import com.tonbeller.wcf.utils.DomUtils;
  * produces an &lt;a href="..." &gt; hyperlink.
  * Stores a list of SessionParam instances. If the user clicks on
  * the hyperlink, all these parameters will be added to the SessionParamPool.
- * 
+ *
  * @author av
  */
 public class ParamLinkTag extends TagSupport {
@@ -54,14 +54,14 @@ public class ParamLinkTag extends TagSupport {
 
   /**
    * null if no anchors are rendered, i.e. only text is displayed
-   * @see ParamLinkGroupTag#isRenderActions() 
+   * @see ParamLinkGroupTag#isRenderActions()
    */
   ClickHandler clickHandler;
 
   /**
    * Actions may be added to the link. They are executed
    * when the user clicks on the link.
-   * 
+   *
    * @author av
    */
   public interface Action {
@@ -72,7 +72,7 @@ public class ParamLinkTag extends TagSupport {
    * invokes a Method with the signature
    * <p>
    * methodName(RequestContext context) throws Exception;
-   * 
+   *
    * @author av
    */
   public static class InvokeMethodAction implements Action {
@@ -145,7 +145,7 @@ public class ParamLinkTag extends TagSupport {
         return EVAL_BODY_INCLUDE;
 
       String id = DomUtils.randomId();
-      clickHandler = new ClickHandler(page);
+      clickHandler = new ClickHandler(evalString(page));
       groupTag.getDispatcher().addRequestListener(groupTag.getId(), id, clickHandler);
 
       Resources res = Resources.instance(ParamLinkTag.class);

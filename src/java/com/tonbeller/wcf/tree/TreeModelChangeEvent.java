@@ -17,25 +17,39 @@ import java.util.EventObject;
 /**
  * informs listeners about changes in the tree model.
  * If identityChanged == true, then the identity of the nodes
- * has changed, which means - for example - that the selection 
+ * have changed, which means - for example - that the selection 
  * will be cleared.
  *  
  * @author av
  */
 public class TreeModelChangeEvent extends EventObject {
   boolean identityChanged;
-    
+  Object subtree;
+
   public TreeModelChangeEvent(TreeModel source, boolean identityChanged) {
     super(source);
     this.identityChanged = identityChanged;
   }
-  
+
+  public TreeModelChangeEvent(TreeModel source, Object subtree, boolean identityChanged) {
+    super(source);
+    this.identityChanged = identityChanged;
+    this.subtree = subtree;
+  }
+
   public TreeModel getTreeModel() {
-    return (TreeModel)getSource();
+    return (TreeModel) getSource();
   }
 
   public boolean isIdentityChanged() {
     return identityChanged;
   }
 
+  /**
+   * changes are restricted to the returned node and its descendants. If null, 
+   * changes affect the whole tree.
+   */
+  public Object getSubtree() {
+    return subtree;
+  }
 }

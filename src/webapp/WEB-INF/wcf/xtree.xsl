@@ -122,6 +122,9 @@
 
         <!-- expand/collapse button -->
         <xsl:choose>
+          <xsl:when test="@state='bounded'">
+            <input border="0" type="image" name="{@id}.unbound" src="{$context}/wcf/tree/unbound.png" width="9" height="9"/>
+          </xsl:when>
           <xsl:when test="@state='expanded'">
             <input border="0" type="image" name="{@id}.collapse" src="{$context}/wcf/tree/collapse.png" width="9" height="9"/>
           </xsl:when>

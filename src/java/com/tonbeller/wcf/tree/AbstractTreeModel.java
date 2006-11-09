@@ -24,6 +24,10 @@ public abstract class AbstractTreeModel implements TreeModel {
     changeSupport.fireModelChanged(identityChanged);
   }
 
+  public void fireModelChanged(boolean identityChanged, Object parent) {
+    changeSupport.fireModelChanged(identityChanged, parent);
+  }
+
   public void fireModelChanged() {
     changeSupport.fireModelChanged(false);
   }

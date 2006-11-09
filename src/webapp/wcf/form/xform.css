@@ -18,7 +18,7 @@ td.xform-close-button {
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
   font-size: 0.8em;
   text-align: left;
-  vertical-align: center;
+  vertical-align: middle;
 }
 
 td.xform-error, 

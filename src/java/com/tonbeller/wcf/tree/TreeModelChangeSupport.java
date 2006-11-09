@@ -24,13 +24,21 @@ public class TreeModelChangeSupport {
     this.source = source;
   }
 
-  public void fireModelChanged(boolean identityChanged) {
+  public void fireModelChanged(boolean identityChanged, Object root) {
     if (listeners.size() > 0) {
-      TreeModelChangeEvent event = new TreeModelChangeEvent(source, identityChanged);
-      List copy = (List)listeners.clone();
+      TreeModelChangeEvent event = new TreeModelChangeEvent(source, root, identityChanged);
+      List copy = (List) listeners.clone();
       for (Iterator it = copy.iterator(); it.hasNext();)
-         ((TreeModelChangeListener) it.next()).treeModelChanged(event);
+        ((TreeModelChangeListener) it.next()).treeModelChanged(event);
     }
+  }
+
+  public void fireModelChanged(TreeModelChangeEvent event) {
+    fireModelChanged(event.isIdentityChanged(), event.getSubtree());
+  }
+
+  public void fireModelChanged(boolean identityChanged) {
+    fireModelChanged(identityChanged, null);
   }
 
   public void addTreeModelChangeListener(TreeModelChangeListener l) {

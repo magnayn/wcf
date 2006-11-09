@@ -20,9 +20,35 @@ import javax.servlet.http.HttpSession;
  * provides access to the dispatcher and next view
  */
 public abstract class Controller implements RequestListener {
+  private static final Controller NULL_CONTROLLER = new Controller() {
+    public void addRequestListener(RequestListener l) {
+    }
 
+    public String getNextView() {
+      return null;
+    }
+
+    public List getRootListeners() {
+      return null;
+    }
+
+    public void removeRequestListener(RequestListener l) {
+    }
+
+    public void setNextView(String uri) {
+    }
+
+    public void request(RequestContext context) throws Exception {
+    }
+  };
   public static Controller instance(HttpSession session) {
-    return WcfController.instance(session);
+    try {
+      return WcfController.instance(session);
+    } catch (IllegalStateException e) {
+      // session already invalidated
+      return NULL_CONTROLLER;
+      
+    }
   }
   
   public abstract void addRequestListener(RequestListener l);

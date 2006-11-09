@@ -52,7 +52,7 @@
     -->
 
     <dt><a href="tabledemo.jsp">tabledemo</a></dt>
-    <dd>Testpage for the WCF table component</dd>
+    <dd>Testpage for the WCF table component. <a href="tabledemo2.jsp">Simple + Read Only Version</a></dd>
 
     <dt><a href="tableform.jsp">tableform</a></dt>
     <dd>A WCF table component inside a form</dd>
@@ -69,11 +69,13 @@
     <dd>Testpage for Toolbar</dd>
 
     <dt><a href="treedemo.jsp">Tree Component</a></dt>
-    <dd>Testpage for WCF Tree Component. See
-      <a href="treedemo2.jsp">Tree Node Grouping Test</a> for
-      intermediate levels to prevent the user from opening
-      too large amount of children.
-      See also <a href="treedemo3.jsp?init=true">Move Tree Nodes via Cut/Paste</a>.
+    <dd>Testpage for WCF Tree Component. 
+      <ul>
+        <li>See <a href="treedemo2.jsp">Tree Node Grouping Test</a> for
+            virtual levels to prevent the user from opening too large amount of children.</li>
+        <li>See also <a href="treedemo3.jsp?init=true">Move Tree Nodes via Cut/Paste</a>.</li>
+        <li>See also <a href="treedemo4.jsp?init=true">Tree Nodes with lazy selection expansion</a>.</li>
+      </ul>
     </dd>
 
     <dt><a href="treeform.jsp">Tree inside a form</a></dt>
@@ -110,6 +112,9 @@
 
     <dt><a href="charenc.jsp">character encodings</a></dt>
     <dd>Test character encodings - requires CharacterEncodingFilter setup in web.xml</dd>
+
+    <dt><a href="popup.jsp">popup menu</a></dt>
+    <dd>Test for wcf.popup menu package</dd>
 
 </body>
 </html>

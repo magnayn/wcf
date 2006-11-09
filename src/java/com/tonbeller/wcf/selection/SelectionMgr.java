@@ -48,6 +48,7 @@ public class SelectionMgr implements FormListener, RenderListener {
   List selectionHandlers = new ArrayList();
   Dispatcher dispatcher = new DispatcherSupport();
   TitleProvider titleProvider = null;
+  boolean readOnly;
 
   private static Logger logger = Logger.getLogger(SelectionMgr.class);
 
@@ -81,7 +82,7 @@ public class SelectionMgr implements FormListener, RenderListener {
    * if selection is enabled adds a checkbox or radiobutton element to the parent.
    */
   public void renderButton(Element parent, Object obj) {
-    
+
     if (!selectionModel.isSelectable(obj)) {
       DomUtils.appendNbsp(parent);
       return;
@@ -90,19 +91,29 @@ public class SelectionMgr implements FormListener, RenderListener {
     int selMode = selectionModel.getMode();
 
     if (selMode == SelectionModel.SINGLE_SELECTION_HREF) {
-      String id = DomUtils.randomId();
-      parent.setAttribute("hrefId", id);
-      dispatcher.addRequestListener(id, null, new HREFSelectHandler(obj));
-      if (selectionModel.contains(obj))
-        parent.setAttribute("style", "selected");
+      if (readOnly) {
+        if (selectionModel.contains(obj))
+          parent.setAttribute("style", "selected");
+      } else {
+        String id = DomUtils.randomId();
+        parent.setAttribute("hrefId", id);
+        dispatcher.addRequestListener(id, null, new HREFSelectHandler(obj));
+        if (selectionModel.contains(obj))
+          parent.setAttribute("style", "selected");
+      }
     }
-    
+
     else if (selMode == SelectionModel.MULTIPLE_SELECTION_BUTTON) {
-      String id = DomUtils.randomId();
-      parent.setAttribute("buttonId", id);
-      dispatcher.addRequestListener(id, null, new ButtonSelectHandler(obj));
-      if (selectionModel.contains(obj))
-        parent.setAttribute("selected", "true");
+      if (readOnly) {
+        if (selectionModel.contains(obj))
+          parent.setAttribute("style", "selected");
+      } else {
+        String id = DomUtils.randomId();
+        parent.setAttribute("buttonId", id);
+        dispatcher.addRequestListener(id, null, new ButtonSelectHandler(obj));
+        if (selectionModel.contains(obj))
+          parent.setAttribute("selected", "true");
+      }
     }
 
     // create button element
@@ -116,10 +127,12 @@ public class SelectionMgr implements FormListener, RenderListener {
         button = RadioButton.addRadioButton(parent);
         RadioButton.setGroupId(button, groupId);
         RadioButton.setId(button, buttonId);
+        RadioButton.setDisabled(button, readOnly);
         selectionHandlers.add(new SelectionHandler(obj, button, radioConv));
       } else {
         button = CheckBox.addCheckBox(parent);
         CheckBox.setId(button, buttonId);
+        CheckBox.setDisabled(button, readOnly);
         selectionHandlers.add(new SelectionHandler(obj, button, checkConv));
       }
 
@@ -222,7 +235,7 @@ public class SelectionMgr implements FormListener, RenderListener {
       selectionModel.fireSelectionChanged(context);
     }
   }
-  
+
   /**
    * if set creates title attribute
    */
@@ -235,6 +248,14 @@ public class SelectionMgr implements FormListener, RenderListener {
    */
   public void setTitleProvider(TitleProvider provider) {
     titleProvider = provider;
+  }
+
+  public boolean isReadOnly() {
+    return readOnly;
+  }
+
+  public void setReadOnly(boolean readOnly) {
+    this.readOnly = readOnly;
   }
 
 }

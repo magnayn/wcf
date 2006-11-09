@@ -37,7 +37,7 @@ public abstract class I18nReplacer {
   
   public static I18nReplacer instance(final ResourceBundle resb) {
     return new I18nReplacer() {
-      protected String replace(String key) {
+      protected String internalReplace(String key) {
         try {
           return resb.getString(key);
         } catch (MissingResourceException e) {
@@ -50,7 +50,7 @@ public abstract class I18nReplacer {
 
   public static I18nReplacer instance(final com.tonbeller.tbutils.res.Resources res) {
     return new I18nReplacer() {
-      protected String replace(String key) {
+      protected String internalReplace(String key) {
         try {
           return res.getString(key);
         } catch (MissingResourceException e) {
@@ -60,7 +60,14 @@ public abstract class I18nReplacer {
     };
   }
   
-  protected abstract String replace(String key);
+  protected abstract String internalReplace(String key);
+  
+  public String replace(String value) {
+    if (value.startsWith(PREFIX)) {
+      return internalReplace(value.substring(4));
+    }
+    return value;
+  }
   
   public void replaceAll(Node root) {
     if (root.getNodeType() == Node.ELEMENT_NODE) {
@@ -71,7 +78,7 @@ public abstract class I18nReplacer {
         Attr attr = (Attr) atts.item(i);
         String value = attr.getValue();
         if (value.startsWith(PREFIX)) {
-          value = replace(value.substring(4));
+          value = internalReplace(value.substring(4));
           attr.setValue(value);
         }
       }
@@ -80,7 +87,7 @@ public abstract class I18nReplacer {
       Text text = (Text) root;
       String data = text.getData();
       if (data.startsWith(PREFIX)) {
-        data = replace(data.substring(4));
+        data = internalReplace(data.substring(4));
         text.setData(data);
       }
     }

@@ -57,6 +57,7 @@ public class GroupingTreeModelDecorator extends TreeModelDecorator {
     this.mapParent2Children = new HashMap();
     initialize(labelProvider, limit);
   }
+
   /**
    * creates a GroupingTreeModel using HashMap's
    * 
@@ -65,21 +66,22 @@ public class GroupingTreeModelDecorator extends TreeModelDecorator {
    * @param decoree the tree model
    * @param limit number of children that will not divided into groups
    */
-  public GroupingTreeModelDecorator(Comparator nodeComparator, LabelProvider labelProvider, TreeModel decoree, int limit) {
+  public GroupingTreeModelDecorator(Comparator nodeComparator, LabelProvider labelProvider,
+      TreeModel decoree, int limit) {
     super(decoree);
     Comparator comp = new GroupComparator(nodeComparator);
     this.mapChild2Parent = new TreeMap(comp);
     this.mapParent2Children = new TreeMap(comp);
     initialize(labelProvider, limit);
   }
-  
+
   class GroupComparator implements Comparator {
     Comparator nodeComparator;
-    
+
     public GroupComparator(Comparator nodeComparator) {
       this.nodeComparator = nodeComparator;
     }
-    
+
     public int compare(Object o1, Object o2) {
 
       // compare NULL placeholder object
@@ -89,28 +91,41 @@ public class GroupingTreeModelDecorator extends TreeModelDecorator {
         return -1;
       else if (o2 == NULL)
         return 1;
-      
+
       // Group node involved?
       if (o1 instanceof Group) {
         if (o2 instanceof Group)
-          return ((Group)o1).compareTo(o2);
+          return ((Group) o1).compareTo(o2);
         return 1;
-      }
-      else if (o2 instanceof Group)
+      } else if (o2 instanceof Group)
         return -1;
-      
+
       // other nodes
       return nodeComparator.compare(o1, o2);
     }
   };
-  
-  TreeModelChangeListener listener = new TreeModelChangeListener() {
 
+  TreeModelChangeListener listener = new TreeModelChangeListener() {
     public void treeModelChanged(TreeModelChangeEvent event) {
-      mapChild2Parent.clear();
-      mapParent2Children.clear();
+      if (event.getSubtree() != null) {
+        invalidateSubtree(event.getSubtree());
+      } else {
+        mapChild2Parent.clear();
+        mapParent2Children.clear();
+      }
     }
+
   };
+  
+  private void invalidateSubtree(Object parent) {
+    Object[] children = (Object[]) mapParent2Children.remove(parent);
+    if (children != null) {
+      for (int i = 0; i < children.length; i++) {
+        mapChild2Parent.remove(children[i]);
+        invalidateSubtree(children[i]);
+      }
+    }
+  }
 
   private void initialize(LabelProvider labelProvider, int limit) {
     this.limit = limit;
@@ -144,7 +159,7 @@ public class GroupingTreeModelDecorator extends TreeModelDecorator {
       args[1] = labelProvider.getLabel(children[children.length - 1]);
       label = format.format(args, new StringBuffer(), null).toString();
     }
-    
+
     public String toString() {
       return label;
     }
@@ -167,7 +182,7 @@ public class GroupingTreeModelDecorator extends TreeModelDecorator {
     // no need for grouping
     if (limit <= 0 || children.length <= limit) {
       updateCache(parent, children);
-      return children; 
+      return children;
     }
     // number of groups
     int groupCount = (children.length + limit - 1) / limit;
@@ -195,7 +210,7 @@ public class GroupingTreeModelDecorator extends TreeModelDecorator {
       return roots;
     return group(NULL, super.getRoots());
   }
-  
+
   public boolean hasChildren(Object node) {
     return node instanceof Group || super.hasChildren(node);
   }
@@ -226,7 +241,7 @@ public class GroupingTreeModelDecorator extends TreeModelDecorator {
   public int getLimit() {
     return limit;
   }
-  
+
   public void setLimit(int limit) {
     this.limit = limit;
     fireModelChanged(false);

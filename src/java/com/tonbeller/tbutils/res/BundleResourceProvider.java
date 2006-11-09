@@ -14,7 +14,7 @@ public class BundleResourceProvider implements ResourceProvider {
   private ResourceBundle resb;
   private String name;
 
-  BundleResourceProvider(String name, ResourceBundle resb) {
+  public BundleResourceProvider(String name, ResourceBundle resb) {
     this.name = name;
     this.resb = resb;
   }

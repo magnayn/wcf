@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blockquote>Selected: Item 1 <p/>PopUp 0: <a onmouseover="cssdropdown.dropit(this, event, 'wcfbaffae79')">popup 0</a>
+<a style="padding-left: 0em">Item 1</a>
+<a style="padding-left: 0em">
+<img border="0" src="/wcf/wcf/tree/accept.png"/> Item 2</a>
+</blockquote>

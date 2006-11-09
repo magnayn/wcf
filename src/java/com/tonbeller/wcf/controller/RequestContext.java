@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 
 import com.tonbeller.tbutils.res.Resources;
 import com.tonbeller.wcf.convert.Converter;
+import com.tonbeller.wcf.expr.ExprContext;
 import com.tonbeller.wcf.format.Formatter;
 
 /**
@@ -29,7 +30,7 @@ import com.tonbeller.wcf.format.Formatter;
  *
  * @author av
  */
-public abstract class RequestContext {
+public abstract class RequestContext implements ExprContext {
   public abstract HttpServletRequest getRequest();
   public abstract HttpServletResponse getResponse();
   public abstract ServletContext getServletContext();

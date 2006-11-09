@@ -34,7 +34,6 @@ public interface Bookmarkable {
 
   /**
    * retrieves the state of this instance
-   * @param levelOfDetail TODO
    * @param levelOfDetail INTENSIONAL or EXTENSIONAL
    */
   Object getBookmarkState(int levelOfDetail);

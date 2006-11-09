@@ -75,6 +75,10 @@ public class TableComponent extends NestableComponentSupport implements ITableCo
 
       // validate other forms
       validate(context);
+      
+      // in read-only mode dont change selection
+      if (isReadOnly())
+        return;
 
       SelectionModel sm = getSelectionModel();
       if (isFirstSelectableRowSelected()) {
@@ -120,10 +124,8 @@ public class TableComponent extends NestableComponentSupport implements ITableCo
 
     public void request(RequestContext context) throws Exception {
       Scroller.enableScroller(context);
-
       // validate other forms
       validate(context);
-
       try {
         int page = Integer.parseInt(context.getParameter(gotoInputId));
         pager.setCurrentPage(page - 1);
@@ -133,6 +135,28 @@ public class TableComponent extends NestableComponentSupport implements ITableCo
     }
   }
 
+  String pageSizeButtonId;
+  String pageSizeInputId;
+
+  class PageSizeButtonHandler implements RequestListener {
+    public PageSizeButtonHandler() {
+    }
+
+    public void request(RequestContext context) throws Exception {
+      Scroller.enableScroller(context);
+      // validate other forms
+      validate(context);
+      try {
+        int ps = Integer.parseInt(context.getParameter(pageSizeInputId));
+        if (ps < 1)
+          ps = 1;
+        pager.setPageSize(ps);
+      } catch (NumberFormatException e) {
+        // ignore
+      }
+    }
+  }
+  
   TableModelChangeListener changeListener = new TableModelChangeListener() {
     public void tableModelChanged(TableModelChangeEvent event) {
       if (event.isIdentityChanged()) {
@@ -148,9 +172,12 @@ public class TableComponent extends NestableComponentSupport implements ITableCo
     selectButtonId = getId() + ".select";
     gotoButtonId = getId() + ".goto.button";
     gotoInputId = getId() + ".goto.input";
+    pageSizeButtonId = getId() + ".pageSize.button";
+    pageSizeInputId = getId() + ".pageSize.input";
     getDispatcher().addRequestListener(closeHandlerId, null, new CloseHandler());
     getDispatcher().addRequestListener(selectButtonId, null, new SelectButtonHandler());
     getDispatcher().addRequestListener(gotoButtonId, null, new GotoButtonHandler());
+    getDispatcher().addRequestListener(pageSizeButtonId, null, new PageSizeButtonHandler());
     getDispatcher().addRequestListener(null, null, dispatcher);
 
     // default chain for JSP scripting
@@ -410,7 +437,8 @@ public class TableComponent extends NestableComponentSupport implements ITableCo
 
   void renderPager(TableModel model, RequestContext context) {
     int pageCount = pager.getPageCount();
-    if (pageCount < 2)
+    
+    if (model.getRowCount() < 2)
       return;
 
     Element tr = tr();
@@ -453,6 +481,15 @@ public class TableComponent extends NestableComponentSupport implements ITableCo
       e.setAttribute("inputId", gotoInputId);
       e.setAttribute("value", "" + (currentPage + 1));
     }
+
+    // add "Rows / Page"
+    DomUtils.appendText(td, "\u00a0");
+    Element e = DomUtils.appendElement(td, "xgotopage");
+    String label = resources.getString("wcf.table.rowcnt.label");
+    e.setAttribute("label", label);
+    e.setAttribute("buttonId", pageSizeButtonId);
+    e.setAttribute("inputId", pageSizeInputId);
+    e.setAttribute("value", "" + pager.getPageSize());
   }
 
   private int countVisibleColumns(TableModel model) {
@@ -645,5 +682,13 @@ public class TableComponent extends NestableComponentSupport implements ITableCo
 
   public void setColHeaders(boolean title) {
     this.colHeaders = title;
+  }
+
+  public boolean isReadOnly() {
+    return selectionMgr.isReadOnly();
+  }
+
+  public void setReadOnly(boolean readOnly) {
+    selectionMgr.setReadOnly(readOnly);
   }
 }

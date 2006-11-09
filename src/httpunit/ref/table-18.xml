@@ -120,7 +120,7 @@
 </tr>
 <tr>
 <td colspan="8" class="xtable-data"> <input type="image" border="0" src="/wcf/wcf/table/page-first.png"/>
-<input type="image" border="0" src="/wcf/wcf/table/page-prev.png"/> Page 5/5  Goto Page <input type="text" maxlength="3" size="3"/> <input type="image" border="0" src="/wcf/wcf/table/gotopage.png"/>
+<input type="image" border="0" src="/wcf/wcf/table/page-prev.png"/> Page 5/5  Goto Page <input type="text" maxlength="3" size="3"/> <input type="image" border="0" src="/wcf/wcf/table/gotopage.png"/>  Rows/page <input type="text" maxlength="3" size="3"/> <input type="image" border="0" src="/wcf/wcf/table/gotopage.png"/>
 </td>
 </tr>
 </table>

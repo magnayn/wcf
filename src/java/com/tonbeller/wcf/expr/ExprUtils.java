@@ -12,6 +12,7 @@
  */
 package com.tonbeller.wcf.expr;
 
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.jsp.PageContext;
@@ -39,14 +40,24 @@ public class ExprUtils {
       throw new IllegalArgumentException("expr must end with \"}\"");
   }
 
-  public static Object getModelReference(final PageContext pageContext, String expr) {
-    ExprContext ec = new ExprContext() {
+  public static Object getModelReference(PageContext pageContext, String expr) {
+    ExprContext ec = getExprContextAdapter(pageContext);
+    return getModelReference(ec, expr);
+
+  }
+
+  public static ExprContext getExprContextAdapter(final PageContext pageContext) {
+    return new ExprContext() {
       public Object findBean(String name) {
         return pageContext.findAttribute(name);
       }
+      public void setBean(String name, Object bean) {
+        if (bean == null)
+          pageContext.removeAttribute(name);
+        else
+          pageContext.setAttribute(name, bean, PageContext.SESSION_SCOPE);
+      }
     };
-    return getModelReference(ec, expr);
-
   }
 
   public static Object getModelReference(ExprContext context, String expr) {
@@ -87,12 +98,27 @@ public class ExprUtils {
   }
 
   public static void setModelReference(ExprContext context, String expr, Object value) {
-    if (!isExpression(expr))
-      throw new IllegalArgumentException("expr must start with '#{'");
+    if (expr == null)
+      throw new NullPointerException("expr is null");
+
+    // plain "bean" expr?
+    if (!isExpression(expr)) {
+      context.setBean(expr, value);
+      return;
+    }
+
     if (!expr.endsWith("}"))
       throw new IllegalArgumentException("expr must end with '}'");
-    if (expr.indexOf('.') < 3)
-      throw new IllegalArgumentException("expr must contain a '.'");
+
+    // "#{bean}" expr?
+    if (expr.indexOf('.') < 0) {
+      // no bean, set session attribute
+      String name = expr.substring(2, expr.length()- 1);
+      context.setBean(name, value);
+      return;
+    }
+
+    // "#{bean.property.path}" expr
     try {
       int pos = expr.indexOf('.');
       String name = expr.substring(2, pos);
@@ -111,6 +137,24 @@ public class ExprUtils {
       logger.error("exception caught", e);
       throw new SoftException(e);
     }
+  }
+
+  public static PropertyDescriptor getPropertyDescriptor(ExprContext context, String expr) {
+    if (!ExprUtils.isExpression(expr) || !expr.endsWith("}") || expr.indexOf('.') < 0)
+      throw new IllegalArgumentException("'#{bean.property}' expected");
+
+      int pos = expr.indexOf('.');
+      String name = expr.substring(2, pos);
+      Object bean = context.findBean(name);
+      if (bean == null)
+        throw new IllegalArgumentException("bean \"" + name + "\" not found");
+      String path = expr.substring(pos + 1, expr.length() - 1);
+      try {
+        return PropertyUtils.getPropertyDescriptor(bean, path);
+      } catch (Exception e) {
+        logger.error(null, e);
+        return null;
+      }
   }
 
   /**

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form method="post" action="treedemo4.jsp"> <h2>initializing ...</h2>
+<table cellpadding="1" border="1" cellspacing="0">
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/expand.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> A</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/unbound.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input border="0" type="image" src="/wcf/wcf/tree/collapse.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[1] ...</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/unbound.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[1]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[1][3]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[1][4]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[1][5]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/unbound.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[2]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[2][3]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[2][4]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[2][5]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/unbound.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[3]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[3][3]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[3][4]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[3][5]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/unbound.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[4]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[4][3]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[4][4]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[4][5]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input border="0" type="image" src="/wcf/wcf/tree/collapse.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[5] ...</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input type="checkbox"/>
+<input type="hidden"/>
+<input border="0" type="image" src="/wcf/wcf/tree/unbound.png"/> B[5]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[5][3]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-odd">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[5][4]</td>
+</tr>
+<tr>
+<td nowrap="nowrap" class="tree-node-even">
+<input checked="checked" type="checkbox"/>
+<input type="hidden"/>
+<img src="/wcf/wcf/tree/leaf.png"/>
+<input border="0" type="image" src="/wcf/wcf/changeorder/cut.png" title="Select for move"/> B[5][5]</td>
+</tr>
+</table>
+</form>

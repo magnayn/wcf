@@ -15,7 +15,7 @@ package com.tonbeller.wcf.tree;
 /**
  * @author av
  */
-public class TreeModelDecorator implements TreeModel {
+public class TreeModelDecorator implements TreeModel, DecoratedTreeModel {
   private TreeModel decoree;
 
   public TreeModelDecorator() {

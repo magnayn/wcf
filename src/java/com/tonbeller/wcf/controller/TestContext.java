@@ -256,6 +256,14 @@ public class TestContext extends RequestContext {
     }
   }
 
+  public Object findBean(String name) {
+    return exprContext.findBean(name);
+  }
+
+  public void setBean(String name, Object bean) {
+    exprContext.setBean(name, bean);
+  }
+
   public void setLocale(Locale locale) {
   }
 

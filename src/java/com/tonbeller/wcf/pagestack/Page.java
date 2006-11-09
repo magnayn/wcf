@@ -20,23 +20,36 @@ import com.tonbeller.wcf.token.RequestToken;
 public class Page {
   String pageId;
   String page;
+  String relUri;
   String title;
 
   RequestToken requestToken;
   
-  public Page() {
-  }
-
   public Page(String page, String title) {
-    this(page, page, title);
+    this(page, page, page, title);
   }
 
-  public Page(String pageId, String page, String title) {
+  /**
+   * creates a Page instance that may be added to the PageStack.
+   * 
+   * @param pageId identifies the page. If a page is added with a pageId that already exists in the
+   * stack, the existing page and all pages above will be popped.
+   * 
+   * @param page the uri that will be rendered in href including the context name, e.g. /myapp/test.jsp
+   * 
+   * @param relUri the uri relative to the context name, e.g. /test.jsp
+   * 
+   * @param title the title to display
+   */
+  public Page(String pageId, String page, String relUri, String title) {
     if (pageId == null)
       pageId = page;
+    if (relUri == null)
+      relUri = page;
 
     this.pageId = pageId;
     this.page = page;
+    this.relUri = relUri;
     this.title = title;
   }
 
@@ -75,6 +88,14 @@ public class Page {
 
   void setRequestToken(RequestToken requestToken) {
     this.requestToken = requestToken;
+  }
+
+  public String getRelUri() {
+    return relUri;
+  }
+
+  public void setRelUri(String relUri) {
+    this.relUri = relUri;
   }
 
 }

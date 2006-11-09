@@ -11,6 +11,13 @@ import java.util.Locale;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMResult;
+import javax.xml.transform.dom.DOMSource;
 
 import junit.framework.TestCase;
 
@@ -45,6 +52,14 @@ public abstract class XmlTestCase extends TestCase {
     DocumentBuilder parser = dbf.newDocumentBuilder();
     InputStream is = getClass().getResourceAsStream(name);
     return parser.parse(is);
+  }
+  
+  public Document transform(String name, Document src) throws TransformerFactoryConfigurationError, TransformerException {
+    Transformer tf = TransformerFactory.newInstance().newTransformer();
+    DOMSource domsrc = new DOMSource(src);
+    DOMResult domres = new DOMResult();
+    tf.transform(domsrc, domres);
+    return (Document)domres.getNode();
   }
 
   /**

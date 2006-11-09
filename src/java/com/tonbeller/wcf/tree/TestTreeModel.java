@@ -12,13 +12,15 @@
  */
 package com.tonbeller.wcf.tree;
 
+import org.apache.log4j.Logger;
+
 /**
  * Created on 10.12.2002
  * 
  * @author av
  */
 public class TestTreeModel extends AbstractTreeModel {
-
+  private static final Logger logger = Logger.getLogger(TestTreeModel.class);
   private int[] childCount;
   Node[] roots;
 
@@ -93,24 +95,27 @@ public class TestTreeModel extends AbstractTreeModel {
   }
 
   public Object[] getRoots() {
+    logger.info("getRoots");
     return roots;
   }
 
   public boolean hasChildren(Object node) {
+    logger.info("hasChildren: " + node);
     return ((Node) node).hasChildren();
   }
 
-  public Object[] getChildren(Object obj) {
-    return ((Node) obj).getChildren();
+  public Object[] getChildren(Object node) {
+    logger.info("getChildren: " + node);
+    return ((Node) node).getChildren();
   }
 
   public Object getParent(Object node) {
+    logger.info("getParent: " + node);
     return ((Node) node).getParent();
   }
 
   public DeleteNodeModel getDeleteNodeModel() {
     NodeFilter nf = new NodeFilter() {
-
       public boolean accept(Object node) {
         return ((Node) node).getName().startsWith("A");
       }

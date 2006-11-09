@@ -136,6 +136,14 @@ public class RequestContextImpl extends RequestContext implements ExprContext {
     return null;
   }
 
+  public void setBean(String name, Object bean) {
+    HttpSession session = getSession();
+    if (bean == null)
+      session.removeAttribute(name);
+    else
+      session.setAttribute(name, bean);
+  }
+
   public boolean isUserInRole(String roleExpr) {
     if (roleExpr == null || roleExpr.length() == 0)
       return true;

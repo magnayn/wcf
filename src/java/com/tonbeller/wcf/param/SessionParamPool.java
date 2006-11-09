@@ -14,6 +14,7 @@ package com.tonbeller.wcf.param;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -134,19 +135,54 @@ public class SessionParamPool implements Map {
   public SessionParam getParam(String name) {
     return (SessionParam) map.get(name);
   }
-  
-  public void setParam(SessionParam p) {
-    map.put(p.getName(), p);
+
+  public SessionParam setParam(SessionParam p) {
+    return (SessionParam) map.put(p.getName(), p);
+  }
+
+  /**
+   * stores all SessionParam objects of c into the pool. Returns a Map
+   * that contains the previous value (or null) for the 
+   * modified parameter names.
+   * @see #popParams(Map) 
+   */
+  public Map pushParams(Collection c) {
+    Map memento = new HashMap();
+    for (Iterator it = c.iterator(); it.hasNext();) {
+      SessionParam param = (SessionParam) it.next();
+      SessionParam prev = setParam(param);
+      String name = param.getName();
+      if (!memento.containsKey(name))
+        memento.put(name, prev);
+    }
+    return memento;
+  }
+
+  /**
+   * restores the state of the pool that was modified
+   * by pushParams
+   * 
+   * @see #pushParams(Collection)
+   */
+  public void popParams(Map memento) {
+    for (Iterator it = memento.entrySet().iterator(); it.hasNext();) {
+      Map.Entry e = (Entry) it.next();
+      SessionParam p = (SessionParam) e.getValue();
+      if (p == null)
+        removeParam((String) e.getKey());
+      else
+        setParam(p);
+    }
   }
 
   public void removeParam(SessionParam p) {
     map.remove(p.getName());
   }
-  
+
   public SessionParam removeParam(String name) {
-    return (SessionParam)map.remove(name);
+    return (SessionParam) map.remove(name);
   }
-  
+
   /**
    * returns a map that maps parameter names to their sql values.
    */
@@ -201,6 +237,5 @@ public class SessionParamPool implements Map {
   public Object put(Object key, Object value) {
     return map.put(key, value);
   }
-
 
 }

@@ -7,6 +7,7 @@
 <title>WCF Testpage</title>
 <link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
 <script src="wcf/scroller.js" language="JavaScript1.2" type="text/javascript"></script>
+<wcf:calendar/>
 </head>
 <body bgcolor=white>
 

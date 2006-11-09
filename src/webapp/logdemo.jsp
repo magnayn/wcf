@@ -12,7 +12,7 @@
 
 <h2>WCF Logging</h2>
 
-<wcf:logform id="logdemo" xmlUri="/WEB-INF/logdemo.xml" logDir=".wcf/logging"/>
+<wcf:logform id="logdemo" xmlUri="/WEB-INF/logdemo.xml" logDir="wcf/logging"/>
 
 <form action="logdemo.jsp" method="post" id="logform">
   <wcf:render ref="logdemo" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true"/>

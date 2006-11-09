@@ -7,11 +7,11 @@ import java.util.Properties;
  * Adapter for Properties
  */
 
-class PropertyResourceProvider implements ResourceProvider {
+public class PropertyResourceProvider implements ResourceProvider {
   Properties props;
   String name;
 
-  PropertyResourceProvider(String name, Properties props) {
+  public PropertyResourceProvider(String name, Properties props) {
     this.props = props;
     this.name = name;
   }

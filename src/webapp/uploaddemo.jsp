@@ -10,13 +10,13 @@
 <body bgcolor=white>
 
 <jsp:useBean id="testbean" class="com.tonbeller.wcf.form.TestBean" scope="session" />
-<wcf:form id="formcomp" xmlUri="/WEB-INF/uploaddemo.xml" model="#{testbean}"/>
+<wcf:form id="uploadcomp" xmlUri="/WEB-INF/uploaddemo.xml" model="#{testbean}"/>
 
 
 <h2>WCF Test File Upload</h2>
 
 <form action="uploaddemo.jsp" method="post" id="form01" enctype="multipart/form-data">
-  <wcf:render ref="#{formcomp}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true"/>
+  <wcf:render ref="#{uploadcomp}" xslUri="/WEB-INF/wcf/wcf.xsl" xslCache="true"/>
 </form>
 
 <pre id='uploadInfo'>
@@ -24,7 +24,7 @@
 </pre>
 
 <p><a href="index.jsp">back to index</a>
-<br><a href="wcf/showxml.jsp?render=formcomp&amp;iehack=file.xml">show xml</a>
+<br><a href="wcf/showxml.jsp?render=uploadcomp&amp;iehack=file.xml">show xml</a>
 
 </body>
 </html>

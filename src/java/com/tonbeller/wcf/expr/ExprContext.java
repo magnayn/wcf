@@ -8,7 +8,7 @@
  * You must accept the terms of that agreement to use this software.
  * ====================================================================
  *
- * 
+ *
  */
 package com.tonbeller.wcf.expr;
 
@@ -16,5 +16,15 @@ package com.tonbeller.wcf.expr;
  * @author av
  */
 public interface ExprContext {
+  /**
+   * searches for bean in request, session, application contexts.
+   */
   public Object findBean(String name);
+
+  /**
+   * places bean into session context
+   * @param name name of the session attribute
+   * @param bean the bean. If null, the attribute will be removed.
+   */
+  public void setBean(String name, Object bean);
 }

@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -41,11 +43,13 @@ import org.xml.sax.SAXException;
  * @author av
  */
 public class XmlDiff {
-  
+
+  private IDiffListener diffListener = null;
+
   public interface EqualsComparator {
     boolean equals(Object o1, Object o2);
   }
-  
+
   public static class DefaultEqualsComparator implements EqualsComparator {
     public boolean equals(Object o1, Object o2) {
       return o1.equals(o2);
@@ -55,8 +59,8 @@ public class XmlDiff {
   public static class IntegerEqualsComparator implements EqualsComparator {
     public boolean equals(Object o1, Object o2) {
       try {
-        String s1 = ((String)o1).trim();
-        String s2 = ((String)o2).trim();
+        String s1 = ((String) o1).trim();
+        String s2 = ((String) o2).trim();
         int i1 = Integer.parseInt(s1);
         int i2 = Integer.parseInt(s2);
         return i1 == i2;
@@ -65,11 +69,11 @@ public class XmlDiff {
       }
     }
   }
-  
+
   public static class IntegerLeadingZerosEqualsComparator implements EqualsComparator {
-    
+
     private String delimiter;
-    
+
     public IntegerLeadingZerosEqualsComparator(String delimiter) {
       this.delimiter = delimiter;
     }
@@ -77,27 +81,27 @@ public class XmlDiff {
     public IntegerLeadingZerosEqualsComparator() {
       this("/");
     }
-    
+
     // xxxx/0000123/0004 is equal to xxxx/123/4 
     // 000123 is equal to 123
     public boolean equals(Object o1, Object o2) {
       try {
-        String s1 = ((String)o1).trim();
-        String s2 = ((String)o2).trim();
+        String s1 = ((String) o1).trim();
+        String s2 = ((String) o2).trim();
         int i1 = Integer.parseInt(s1);
         int i2 = Integer.parseInt(s2);
         return i1 == i2;
       } catch (NumberFormatException e) {
         // Format with slashes, check each substring
-        StringTokenizer st1 = new StringTokenizer(((String)o1).trim(), delimiter);
-        StringTokenizer st2 = new StringTokenizer(((String)o2).trim(), delimiter);
-        if( st1.countTokens() != st2.countTokens())
+        StringTokenizer st1 = new StringTokenizer(((String) o1).trim(), delimiter);
+        StringTokenizer st2 = new StringTokenizer(((String) o2).trim(), delimiter);
+        if (st1.countTokens() != st2.countTokens())
           return false;
-        
+
         XmlDiff.EqualsComparator ec = new XmlDiff.IntegerEqualsComparator();
-        while(st1.hasMoreTokens()) {
-          if(!ec.equals(st1.nextToken(), st2.nextToken()))
-            return false;  
+        while (st1.hasMoreTokens()) {
+          if (!ec.equals(st1.nextToken(), st2.nextToken()))
+            return false;
         }
         return true;
       }
@@ -108,16 +112,16 @@ public class XmlDiff {
     // Example: cust = ' 12' == cust = 12, perl pattern = s/[ ']+/ /g
     String regex;
     String replacement;
-    
+
     public RegularExpressionEqualsComparator(String regex, String replacement) {
       this.regex = regex;
       this.replacement = replacement;
     }
-    
+
     public boolean equals(Object o1, Object o2) {
       try {
-        String s1 = ((String)o1).replaceAll(regex,replacement);
-        String s2 = ((String)o2).replaceAll(regex,replacement);
+        String s1 = ((String) o1).replaceAll(regex, replacement);
+        String s2 = ((String) o2).replaceAll(regex, replacement);
         return s1.equals(s2);
       } catch (PatternSyntaxException e) {
         return o1.equals(o2);
@@ -125,9 +129,81 @@ public class XmlDiff {
     }
   }
 
+  /**
+   * Beinhaltet den IntegerLeadingZerosEquals-Comparator und
+   * ignoriert zusätzlich Date/Time-Konstrukte
+   */
+  public static class DateTimeIgnoreIntegerLeadingZerosEqualsComparator implements EqualsComparator {
+    private String pattern;
+    private String delimiter;
+
+    public DateTimeIgnoreIntegerLeadingZerosEqualsComparator() {
+      this("", "/");
+    }
+
+    public DateTimeIgnoreIntegerLeadingZerosEqualsComparator(String pattern, String delimiter) {
+      if (pattern != null)
+        this.pattern = pattern;
+      else
+        this.pattern = "";
+
+      if (delimiter != null)
+        this.delimiter = delimiter;
+      else
+        this.delimiter = "";
+    }
+
+    public boolean equals(Object o1, Object o2) {
+
+      // "15.12.2004 12:34 Demo" equals to "15.12.2005 12:35 Demo"
+      String str1 = ((String) o1).trim();
+      String str2 = ((String) o2).trim();
+      int len = pattern.length();
+
+      if ((str1.length() >= len) && (str2.length() >= len)) {
+        // may be a date/time fragment
+        try {
+          SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+          formatter.parse(str1.substring(0, len));
+          formatter.parse(str2.substring(0, len));
+
+          // date/time fragment found: ignore this part and check the rest
+          str1 = str1.substring(len);
+          str2 = str2.substring(len);
+          return str1.equals(str2);
+        } catch (ParseException pe) {
+          // not a valid date/time: try next comparator
+        }
+      }
+
+      // xxxx/0000123/0004 equals to xxxx/123/4 
+      // 000123 equals to 123
+      try {
+        String s1 = ((String) o1).trim();
+        String s2 = ((String) o2).trim();
+        int i1 = Integer.parseInt(s1);
+        int i2 = Integer.parseInt(s2);
+        return i1 == i2;
+      } catch (NumberFormatException e) {
+        // Format with slashes, check each substring
+        StringTokenizer st1 = new StringTokenizer(((String) o1).trim(), delimiter);
+        StringTokenizer st2 = new StringTokenizer(((String) o2).trim(), delimiter);
+        if (st1.countTokens() != st2.countTokens())
+          return false;
+
+        XmlDiff.EqualsComparator ec = new XmlDiff.IntegerEqualsComparator();
+        while (st1.hasMoreTokens()) {
+          if (!ec.equals(st1.nextToken(), st2.nextToken()))
+            return false;
+        }
+        return true;
+      }
+    }
+  }
+
   private boolean ignoreWhitespace;
   private String xslName;
-  
+
   // compares value of Text nodes
   private EqualsComparator textComparator = new DefaultEqualsComparator();
   // compares value of Attr nodes
@@ -135,6 +211,11 @@ public class XmlDiff {
 
   public XmlDiff(boolean ignoreWhitespace) {
     this.ignoreWhitespace = ignoreWhitespace;
+  }
+
+  public XmlDiff(boolean ignoreWhitespace, IDiffListener diffListener) {
+    this.ignoreWhitespace = ignoreWhitespace;
+    this.diffListener = diffListener;
   }
 
   static class XmlDiffException extends RuntimeException {
@@ -174,7 +255,7 @@ public class XmlDiff {
       }
 
       boolean b = equals(d1, d2);
-      if (!b) {
+      if (!b && diffListener == null) {
         System.out.println("\n\nXML Compare failed");
         System.out.println(u1.toExternalForm());
         print(d1);
@@ -183,7 +264,7 @@ public class XmlDiff {
         System.out.println("\n\n");
       }
       return b;
-      
+
     } catch (FactoryConfigurationError e) {
       throw new XmlDiffException(e);
     } catch (ParserConfigurationException e) {
@@ -227,7 +308,10 @@ public class XmlDiff {
     String n1 = e1.getNodeName();
     String n2 = e2.getNodeName();
     if (!n1.equals(n2)) {
-      System.out.println("Different elements found " + n1 + " != " + n2);
+      if (diffListener == null)
+        System.out.println("Different elements found " + n1 + " != " + n2);
+      else
+        diffListener.notifyDiffElements(e1, e2);
       return false;
     }
 
@@ -235,8 +319,12 @@ public class XmlDiff {
     NamedNodeMap atts1 = e1.getAttributes();
     NamedNodeMap atts2 = e2.getAttributes();
     if (atts1.getLength() != atts2.getLength()) {
-      System.out.println("Different number of attributes " + n1 + ": " + atts1.getLength() + " != "
-          + n2 + ": " + atts2.getLength());
+      if (diffListener == null)
+        System.out.println("Different number of attributes " + n1 + ": " + atts1.getLength()
+            + " != " + n2 + ": " + atts2.getLength());
+      else
+        diffListener.notifyDiffNumberOfAttributes(e1, e2);
+
       return false;
     }
     final int N = atts1.getLength();
@@ -244,13 +332,26 @@ public class XmlDiff {
       Attr a1 = (Attr) atts1.item(i);
       Attr a2 = (Attr) atts2.getNamedItem(a1.getName());
       if (a2 == null) {
-        System.out.println("Attributes differ: " + n1 + "." + a1.getName() + " not found");
-        return false;
+        if (diffListener == null) {
+          System.out.println("Attributes differ: " + n1 + "." + a1.getName() + " not found");
+          return false;
+        } else {
+          if (diffListener.notifyDiffAttributeMissing(a1))
+            continue;
+          else
+            return false;
+        }
+       
       }
       if (!attrComparator.equals(a1.getValue(), a2.getValue())) {
-        System.out.println("Attributes differ: " + n1 + "." + a1.getName() + ": " + a1.getValue()
-            + " != " + a2.getValue());
-        return false;
+        if (diffListener == null) {
+          System.out.println("Attributes differ: " + n1 + "." + a1.getName() + ": " + a1.getValue()
+              + " != " + a2.getValue());
+          return false;
+        } else {
+          if ( !diffListener.notifyDiffAttributes(a1, a2))
+            return false;
+        }
       }
     }
 
@@ -261,10 +362,14 @@ public class XmlDiff {
       removeEmpty(childs1);
       removeEmpty(childs2);
     }
-    
+
     if (childs1.size() != childs2.size()) {
+      if (diffListener == null)
       System.out.println("Children count of " + n1 + " differ: " + childs1.size() + " != "
           + childs2.size());
+      else
+        diffListener.notifyDiffNumberOfChildren(e1, e2);
+      
       return false;
     }
     Iterator it1 = childs1.iterator();
@@ -282,11 +387,11 @@ public class XmlDiff {
    * removes Text nodes containing whitespace
    */
   private void removeEmpty(List nodes) {
-    for (Iterator it = nodes.iterator(); it.hasNext(); ) {
+    for (Iterator it = nodes.iterator(); it.hasNext();) {
       Node n = (Node) it.next();
       if (n.getNodeType() != Node.TEXT_NODE)
         continue;
-      Text t = (Text)n;
+      Text t = (Text) n;
       String s = t.getData();
       if (s.trim().length() == 0)
         it.remove();
@@ -300,8 +405,13 @@ public class XmlDiff {
       s1 = s1.trim();
       s2 = s2.trim();
     }
-    if (!textComparator.equals(s1,s2)) {
-      System.out.println("Different text elements: \"" + s1 + "\" != \"" + s2 + "\"");
+    if (!textComparator.equals(s1, s2)) {
+      if (diffListener == null)
+        System.out.println("Different text elements: \"" + s1 + "\" != \"" + s2 + "\"");
+       else {
+         if ( diffListener.notifyDiffText(t1, t2) )
+           return true;
+       }
       return false;
     }
     return true;
@@ -310,7 +420,10 @@ public class XmlDiff {
   public boolean equals(Node n1, Node n2) {
     // different types can not be equal
     if (n1.getNodeType() != n2.getNodeType()) {
-      System.out.println("Differnt node type: " + n1.getNodeType() + " != " + n2.getNodeType());
+      if (diffListener == null)
+        System.out.println("Differnt node type: " + n1.getNodeType() + " != " + n2.getNodeType());
+      else
+        diffListener.notifyDiffNodeType(n1, n2);
       return false;
     }
 
@@ -371,4 +484,26 @@ public class XmlDiff {
     this.textComparator = textComparator;
   }
 
+  public interface IDiffListener {
+    void notifyDiffElements(Element e1, Element e2);
+    void notifyDiffNumberOfChildren(Element e1, Element e2);
+    void notifyDiffNumberOfAttributes(Element e1, Element e2);
+ 
+    /**
+     * @return true, if the difference is to be ignored
+     */
+     boolean notifyDiffAttributeMissing(Attr a1);
+ 
+    /**
+     * @return true, if the difference is to be ignored
+     */
+    boolean notifyDiffAttributes(Attr a1, Attr a2);
+
+    /**
+     * @return true, if the difference is to be ignored
+     */
+    boolean notifyDiffText(Text t1, Text t2);
+    
+    void notifyDiffNodeType(Node n1, Node n2);
+  } // IDiffListener
 }

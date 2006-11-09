@@ -277,4 +277,12 @@ public class EditableTableComponent extends ComponentSupport implements ITableCo
   public TableComponent getTableComp() {
     return tableComp;
   }
+
+  public boolean isReadOnly() {
+    return tableComp.isReadOnly();
+  }
+
+  public void setReadOnly(boolean readOnly) {
+    tableComp.setReadOnly(readOnly);
+  }
 }

@@ -1,5 +1,9 @@
 package com.tonbeller.wcf.expr;
 
+import java.beans.PropertyDescriptor;
+import java.util.HashMap;
+import java.util.Map;
+
 import junit.framework.TestCase;
 
 /**
@@ -7,12 +11,19 @@ import junit.framework.TestCase;
  */
 public class ExprUtilsTest extends TestCase {
   public class MyBean {
+    Object object = null;
     int value = 4;
     public int getValue() {
       return value;
     }
     public void setValue(int newValue) {
       this.value = newValue;
+    }
+    public Object getObject() {
+      return object;
+    }
+    public void setObject(Object object) {
+      this.object = object;
     }
   }
   
@@ -32,9 +43,15 @@ public class ExprUtilsTest extends TestCase {
    */
   protected void setUp() throws Exception {
     bean = new MyBean();
+    final Map map = new HashMap();
+    map.put("bean", bean);
+    
     ctx = new ExprContext() {
       public Object findBean(String name) {
-        return bean;
+        return map.get(name);
+      }
+      public void setBean(String name, Object value) {
+        map.put(name, value);
       }
     };
   }
@@ -71,4 +88,34 @@ public class ExprUtilsTest extends TestCase {
     assertEquals(27, bean.getValue());
   }
 
+  public void testSetBean1() {
+    MyBean b = new MyBean();
+    ExprUtils.setModelReference(ctx, "bean", b);
+    Object o = ExprUtils.getModelReference(ctx, "bean");
+    assertEquals(b, o);
+    o = ExprUtils.getModelReference(ctx, "#{bean}");
+    assertEquals(b, o);
+    o = ExprUtils.getModelReference(ctx, "${bean}");
+    assertEquals(b, o);
+  }
+
+  public void testSetBean2() {
+    MyBean b = new MyBean();
+    ExprUtils.setModelReference(ctx, "${bean}", b);
+    Object o = ExprUtils.getModelReference(ctx, "${bean}");
+    assertEquals(b, o);
+  }
+  
+  public void testSetBean3() {
+    Object obj1 = new Object();
+    ExprUtils.setModelReference(ctx, "${bean.object}", obj1);
+    assertEquals(obj1, bean.getObject());
+    Object obj2 = ExprUtils.getModelReference(ctx, "${bean.object}");
+    assertEquals(obj1, obj2);
+  }
+  
+  public void testPropertyDescriptor() {
+    PropertyDescriptor pd = ExprUtils.getPropertyDescriptor(ctx, "#{bean.value}");
+    assertEquals(Integer.TYPE, pd.getPropertyType());
+  }
 }

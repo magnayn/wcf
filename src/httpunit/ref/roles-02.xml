@@ -37,6 +37,21 @@
 </td>
 </tr>
 <tr>
+<td class="xform-label">Date + Calendar:</td>
+<td class="xform-input">
+<table>
+<tr>
+<td>
+<input title="please enter a date" type="text"/>
+</td>
+<td>
+<img src="/wcf/wcf/calendar/cal.png"/>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
 <td class="xform-label">Date/Time:</td>
 <td class="xform-input">
 <input title="please enter a date/time" type="text"/>

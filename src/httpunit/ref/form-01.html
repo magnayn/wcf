@@ -7,6 +7,24 @@
 <title>WCF Testpage</title>
 <link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
 <script src="wcf/scroller.js" language="JavaScript1.2" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/wcf/wcf/calendar/calendar.css">
+<script src="http://localhost:8080/wcf/wcf/calendar/calendar.js" language="JavaScript1.2" type="text/javascript"></script>
+<script>
+  jscalendarImgDir = "http://localhost:8080/wcf/wcf/calendar/";
+  jscalendarMonthName = new Array("January","February","March","April","May","June","July","August","September","October","November","December");
+  jscalendarMonthName2 = new Array("JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC");
+  jscalendarDayName = jscalendarStartAt==0 ? new Array("Sun","Mon","Tue","Wed","Thu","Fri","Sat") : new Array("Mon","Tue","Wed","Thu","Fri","Sat","Sun");
+  jscalendarTodayString = "Today is";
+  jscalendarWeekString = "Wk";
+  jscalendarGotoString = "Go To Current Month"
+  jscalendarScrollLeftMessage = "Click to scroll to previous month. Hold mouse button to scroll automatically."
+  jscalendarScrollRightMessage = "Click to scroll to next month. Hold mouse button to scroll automatically."
+  jscalendarSelectMonthMessage = "Click to select a month."
+  jscalendarSelectYearMessage = "Click to select a year."
+  jscalendarSelectDateMessage = "Select [date] as date."
+  jscalendarInit0();
+</script>
+
 </head>
 <body bgcolor=white>
 
@@ -24,56 +42,57 @@
   </td></tr></table></th></tr>
 
   
-  <tr><td class="xform-label">Text:</td><td class="xform-input"><input value="some string" name="string" type="text" id="string" title="please enter some text"></td></tr>
-  <tr><td class="xform-label">Integer:</td><td class="xform-input"><input value="0" name="int" type="text" id="int" title="please enter an integer"></td></tr>
-  <tr><td class="xform-label">Decimal number:</td><td class="xform-input"><input value="0.00" name="double" type="text" id="double" title="please enter a decimal number"></td></tr>
-  <tr><td class="xform-label">Date:</td><td class="xform-input"><input value="05/18/2005" name="date" type="text" id="date" title="please enter a date"></td></tr>
-  <tr><td class="xform-label">Date/Time:</td><td class="xform-input"><input value="05/18/2005 10:08:24" name="dateTime" type="text" id="dateTime" title="please enter a date/time"></td></tr>
+  <tr><td class="xform-label">Text:</td><td class="xform-input"><input value="some string" name="formcomp.string" type="text" id="formcomp.string" title="please enter some text"></td></tr>
+  <tr><td class="xform-label">Integer:</td><td class="xform-input"><input value="0" name="formcomp.int" type="text" id="formcomp.int" title="please enter an integer"></td></tr>
+  <tr><td class="xform-label">Decimal number:</td><td class="xform-input"><input value="0.00" name="formcomp.double" type="text" id="formcomp.double" title="please enter a decimal number"></td></tr>
+  <tr><td class="xform-label">Date:</td><td class="xform-input"><input value="07/13/2006" name="formcomp.date" type="text" id="formcomp.date" title="please enter a date"></td></tr>
+  <tr><td class="xform-label">Date + Calendar:</td><td class="xform-input"><table><tr><td><input value="07/13/2006" name="formcomp.datecal" type="text" id="formcomp.datecal" title="please enter a date"></td><td><img onclick="jscalendarPopUpCalendar(this,document.getElementById('formcomp.datecal'), 'dd.MM.yyyy')" src="/wcf/wcf/calendar/cal.png"></td></tr></table></td></tr>
+  <tr><td class="xform-label">Date/Time:</td><td class="xform-input"><input value="07/13/2006 16:00:05" name="formcomp.dateTime" type="text" id="formcomp.dateTime" title="please enter a date/time"></td></tr>
 
   
   
 
   
-  <tr><td class="xform-label">Password:</td><td class="xform-input"><input value="" name="password" type="password" id="password"></td></tr>
+  <tr><td class="xform-label">Password:</td><td class="xform-input"><input value="" name="formcomp.password" type="password" id="formcomp.password"></td></tr>
 
   
-  <tr><td class="xform-both" colspan="2">Text area:<br><textarea class="xform-textarea" cols="40" rows="7" name="textarea" id="textarea"></textarea></td></tr>
+  <tr><td class="xform-both" colspan="2">Text area:<br><textarea class="xform-textarea" cols="40" rows="7" name="formcomp.textarea" id="formcomp.textarea"></textarea></td></tr>
 
-  <tr><td class="xform-label">check box 1</td><td class="xform-input"><input value="x" name="checkbox1" type="checkbox" id="checkbox1"><input value="x" name="checkbox1.valid" type="hidden"></td></tr>
-  <tr><td class="xform-label">check box 2</td><td class="xform-input"><input value="x" name="checkbox2" type="checkbox" id="checkbox2"><input value="x" name="checkbox2.valid" type="hidden"></td></tr>
-
-  
-  <tr><td class="xform-label">List, single selection:</td><td class="xform-input"><select name="list1" id="list1">
-    <option value="list1.1">list item 1</option>
-    <option value="list1.2" selected>list item 2</option>
-    <option value="list1.3">list item 3</option>
-    <option value="list1.4">list item 4</option>
-  </select><input value="x" name="list1.valid" type="hidden"></td></tr>
-
+  <tr><td class="xform-label">check box 1</td><td class="xform-input"><input value="x" name="formcomp.checkbox1" type="checkbox" id="formcomp.checkbox1"><input value="x" name="formcomp.checkbox1.valid" type="hidden"></td></tr>
+  <tr><td class="xform-label">check box 2</td><td class="xform-input"><input value="x" name="formcomp.checkbox2" type="checkbox" id="formcomp.checkbox2"><input value="x" name="formcomp.checkbox2.valid" type="hidden"></td></tr>
 
   
-  <tr><td class="xform-label">List, multiple selection:</td><td class="xform-input"><select multiple name="listN" id="listN">
-    <option value="listN.1" selected>list item 1</option>
-    <option value="listN.2" selected>list item 2</option>
-    <option value="listN.3">list item 3</option>
-    <option value="listN.4">list item 4</option>
-  </select><input value="x" name="listN.valid" type="hidden"></td></tr>
+  <tr><td class="xform-label">List, single selection:</td><td class="xform-input"><select name="formcomp.list1" id="formcomp.list1">
+    <option value="formcomp.list1.1">list item 1</option>
+    <option value="formcomp.list1.2" selected>list item 2</option>
+    <option value="formcomp.list1.3">list item 3</option>
+    <option value="formcomp.list1.4">list item 4</option>
+  </select><input value="x" name="formcomp.list1.valid" type="hidden"></td></tr>
 
 
   
-  <tr><td class="xform-label">List, dynamic content:</td><td class="xform-input"><select name="listbox" id="listbox"><option value="wcfdcacb698.0" selected>item 1</option><option value="wcfdcacb698.1">item 2</option><option value="wcfdcacb698.2">item 3</option><option value="wcfdcacb698.3">item 4</option><option value="wcfdcacb698.4">item 5</option><option value="wcfdcacb698.5">item 6</option><option value="wcfdcacb698.6">item 7</option><option value="wcfdcacb698.7">item 8</option><option value="wcfdcacb698.8">item 9</option><option value="wcfdcacb698.9">item 10</option></select><input value="x" name="listbox.valid" type="hidden"></td></tr>
+  <tr><td class="xform-label">List, multiple selection:</td><td class="xform-input"><select multiple name="formcomp.listN" id="formcomp.listN">
+    <option value="formcomp.listN.1" selected>list item 1</option>
+    <option value="formcomp.listN.2" selected>list item 2</option>
+    <option value="formcomp.listN.3">list item 3</option>
+    <option value="formcomp.listN.4">list item 4</option>
+  </select><input value="x" name="formcomp.listN.valid" type="hidden"></td></tr>
+
+
+  
+  <tr><td class="xform-label">List, dynamic content:</td><td class="xform-input"><select name="formcomp.listbox" id="formcomp.listbox"><option value="wcf881f1611.0" selected>item 1</option><option value="wcf881f1611.1">item 2</option><option value="wcf881f1611.2">item 3</option><option value="wcf881f1611.3">item 4</option><option value="wcf881f1611.4">item 5</option><option value="wcf881f1611.5">item 6</option><option value="wcf881f1611.6">item 7</option><option value="wcf881f1611.7">item 8</option><option value="wcf881f1611.8">item 9</option><option value="wcf881f1611.9">item 10</option></select><input value="x" name="formcomp.listbox.valid" type="hidden"></td></tr>
 
   <tr><td class="xform-label">This is a label</td><td class="xform-input">value attribute goes here</td></tr>
   <tr><td class="xform-label">Your password: </td><td class="xform-input">Enter a password above</td></tr>
 
-  <tr><td class="xform-label">radio button 1</td><td class="xform-input"><input value="radio1" name="group1" type="radio" id="radio1"><input value="x" name="radio1.valid" type="hidden"></td></tr>
-  <tr><td class="xform-label">radio button 2</td><td class="xform-input"><input value="radio2" name="group1" type="radio" id="radio2" checked><input value="x" name="radio2.valid" type="hidden"></td></tr>
+  <tr><td class="xform-label">radio button 1</td><td class="xform-input"><input value="formcomp.radio1" name="group1" type="radio" id="formcomp.radio1"><input value="x" name="formcomp.radio1.valid" type="hidden"></td></tr>
+  <tr><td class="xform-label">radio button 2</td><td class="xform-input"><input value="formcomp.radio2" name="group1" type="radio" id="formcomp.radio2" checked><input value="x" name="formcomp.radio2.valid" type="hidden"></td></tr>
 
   <tr><td align="right" colspan="2"><div align="right">
-    <input value="Cancel" name="cancel" type="submit" id="cancel">
-    <input value="Revert" name="revert" type="submit" id="revert">
-    <input value="Validate" name="validate" type="submit" id="validate">
-    <input value="OK" name="ok" type="submit" id="ok">
+    <input value="Cancel" name="formcomp.cancel" type="submit" id="formcomp.cancel">
+    <input value="Revert" name="formcomp.revert" type="submit" id="formcomp.revert">
+    <input value="Validate" name="formcomp.validate" type="submit" id="formcomp.validate">
+    <input value="OK" name="formcomp.ok" type="submit" id="formcomp.ok">
   </div></td></tr>
 
 </table>

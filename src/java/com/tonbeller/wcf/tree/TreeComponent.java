@@ -63,6 +63,14 @@ public class TreeComponent extends NestableComponentSupport {
 
   // initialized once in initialize()
   TreeModel model;
+  TreeBounding bounding = NO_BOUNDING;
+  private static final TreeBounding NO_BOUNDING = new TreeBounding() {
+    public boolean isBounded(Object parent) {
+      return false;
+    }
+    public void unbound(Object parent) {
+    }
+  };
 
   // initialized for every render() call
   RequestContext context;
@@ -113,6 +121,7 @@ public class TreeComponent extends NestableComponentSupport {
    * its used by the ChangeOrderMgr.
    */
   public void setModel(TreeModel newModel) {
+    bounding = NO_BOUNDING;
     if (model != null)
       model.removeTreeModelChangeListener(changeListener);
     this.model = newModel;
@@ -233,7 +242,10 @@ public class TreeComponent extends NestableComponentSupport {
   }
 
   void renderExpandedAttr(Object node, Element nodeElem, String id) {
-    if (expanded.contains(node)) {
+    if (bounding.isBounded(node)) {
+      nodeElem.setAttribute("state", "bounded");
+      dispatcher.addRequestListener(id + ".unbound", null, new UnboundHandler(node));
+    } else if (expanded.contains(node)) {
       nodeElem.setAttribute("state", "expanded");
       dispatcher.addRequestListener(id + ".collapse", null, new CollapseHandler(node));
     } else if (model.hasChildren(node)) {
@@ -275,6 +287,18 @@ public class TreeComponent extends NestableComponentSupport {
     }
   }
 
+  class UnboundHandler implements RequestListener {
+    Object node;
+    public UnboundHandler(Object node) {
+      this.node = node;
+    }
+    public void request(RequestContext context) throws Exception {
+      Scroller.enableScroller(context);
+      bounding.unbound(node);
+      validate(context);
+    }
+  }
+  
   /**
    * returns the current selection
    */
@@ -489,5 +513,15 @@ public class TreeComponent extends NestableComponentSupport {
 
   public void setError(String string) {
     error = string;
+  }
+
+  public TreeBounding getBounding() {
+    return bounding;
+  }
+
+  public void setBounding(TreeBounding bounding) {
+    if (bounding == null)
+      bounding = NO_BOUNDING;
+    this.bounding = bounding;
   }
 }

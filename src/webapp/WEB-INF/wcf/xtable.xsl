@@ -106,8 +106,32 @@ stylesheet for wcf table component
   </tr>
 </xsl:template>
 
+<!--  
+  setzt das CSS class attribut aus dem  DOM oder aus dem Parameter. Hat die
+  Applikation ein class Attribut in den DOM geschrieben wird dieses genommen,
+  andernfalls der default-wert (= Parameter).
+-->
+<xsl:template name="set-class">
+  <xsl:param name="class"/>
+  <xsl:choose>
+    <xsl:when test="@class">
+      <xsl:attribute name="class">
+        <xsl:value-of select="@class"/>
+      </xsl:attribute>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:attribute name="class">
+        <xsl:value-of select="$class"/>
+      </xsl:attribute>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="xtd">
-  <td class="xtable-data">
+  <td>
+    <xsl:call-template name="set-class">
+      <xsl:with-param name="class">xtable-data</xsl:with-param>
+    </xsl:call-template>
     <xsl:apply-templates select="@align"/>
     <xsl:apply-templates select="@colspan"/>
     <xsl:apply-templates/>
@@ -115,7 +139,10 @@ stylesheet for wcf table component
 </xsl:template>
 
 <xsl:template match="xth[@selectId]">
-  <th class="xtable-heading">
+  <th>
+    <xsl:call-template name="set-class">
+      <xsl:with-param name="class">xtable-heading</xsl:with-param>
+    </xsl:call-template>
     <xsl:apply-templates select="@colspan"/>
     <input type="image" border="0" name="{@selectId}" src="{$context}/wcf/table/select.png" width="16" height="16"/>
     <xsl:apply-templates/>
@@ -123,7 +150,10 @@ stylesheet for wcf table component
 </xsl:template>
 
 <xsl:template match="xth[@sort]">
-  <th class="xtable-heading">
+  <th>
+    <xsl:call-template name="set-class">
+      <xsl:with-param name="class">xtable-heading</xsl:with-param>
+    </xsl:call-template>
     <input type="image" border="0" name="{@id}" src="{$context}/wcf/table/sort-{@sort}.png" width="9" height="9"/>
     <xsl:text> </xsl:text>
     <xsl:apply-templates/>
@@ -131,7 +161,10 @@ stylesheet for wcf table component
 </xsl:template>
 
 <xsl:template match="xth">
-  <th class="xtable-heading">
+  <th>
+    <xsl:call-template name="set-class">
+      <xsl:with-param name="class">xtable-heading</xsl:with-param>
+    </xsl:call-template>
     <xsl:apply-templates select="@colspan"/>
     <xsl:apply-templates/>
   </th>

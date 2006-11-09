@@ -13,6 +13,9 @@
 <xsl:include href="xtable.xsl"/>
 <xsl:include href="xtree.xsl"/>
 <xsl:include href="xtabbed.xsl"/>
+<xsl:include href="popup.xsl"/>
+
+<xsl:template match="skip[@hidden='true']"/>
 
 <xsl:template match="skip">
   <xsl:apply-templates/>

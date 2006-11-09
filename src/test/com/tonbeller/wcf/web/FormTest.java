@@ -8,6 +8,7 @@ import org.jaxen.JaxenException;
 import org.xml.sax.SAXException;
 
 import com.meterware.httpunit.GetMethodWebRequest;
+import com.meterware.httpunit.HttpUnitOptions;
 import com.meterware.httpunit.WebForm;
 import com.meterware.httpunit.WebLink;
 import com.meterware.httpunit.WebResponse;
@@ -16,6 +17,8 @@ public class FormTest extends HttpUnitTestCase {
 
   public FormTest(String arg0) {
     super(arg0);
+    HttpUnitOptions.setExceptionsThrownOnScriptError(false);
+    HttpUnitOptions.setScriptingEnabled(false);
   }
 
   private void check(String name) throws JaxenException, IOException, SAXException, TransformerException {
@@ -71,27 +74,28 @@ public class FormTest extends HttpUnitTestCase {
   private void runTests() throws Exception {
     check("form-01");
     WebForm wf = wc.getCurrentPage().getFormWithID("form01");
+    String id = "formcomp"; 
 
     // ********* test valid input ****************
-    wf.setParameter("string", "--ƒ÷‹ﬂ--");
-    wf.setParameter("int", "12");
-    wf.setParameter("double", "123.456");
-    wf.setParameter("date", "12/31/2003");
-    wf.setParameter("password", "x‰ˆ¸ƒ÷‹ﬂ");
-    wf.setParameter("textarea", "some\nmulti\nline\ntext\n");
-    wf.setParameter("checkbox1", "x");
-    wf.setParameter("checkbox2", "x");
-    wf.setParameter("list1", "list1.1");
-    wf.setParameter("listN", new String[]{ "listN.1", "listN.4"});
-    wf.setParameter("group1", "radio1");
+    wf.setParameter(id + ".string", "--ƒ÷‹ﬂ--");
+    wf.setParameter(id + ".int", "12");
+    wf.setParameter(id + ".double", "123.456");
+    wf.setParameter(id + ".date", "12/31/2003");
+    wf.setParameter(id + ".password", "x‰ˆ¸ƒ÷‹ﬂ");
+    wf.setParameter(id + ".textarea", "some\nmulti\nline\ntext\n");
+    wf.setParameter(id + ".checkbox1", "x");
+    wf.setParameter(id + ".checkbox2", "x");
+    wf.setParameter(id + ".list1", id + ".list1.1");
+    wf.setParameter(id + ".listN", new String[]{ id + ".listN.1", id + ".listN.4"});
+    wf.setParameter("group1", id + ".radio1");
     wf.submit(wf.getSubmitButtonWithID("formcomp.validate"));
     check("form-02");
 
     // ******** test invalid input *************
     wf = wc.getCurrentPage().getFormWithID("form01");
-    wf.setParameter("int", "nan");
-    wf.setParameter("double", "nan");
-    wf.setParameter("date", "nad");
+    wf.setParameter(id + ".int", "nan");
+    wf.setParameter(id + ".double", "nan");
+    wf.setParameter(id + ".date", "nad");
     wf.submit(wf.getSubmitButtonWithID("formcomp.ok"));
     check("form-03");
     wf.submit(wf.getSubmitButtonWithID("formcomp.revert"));

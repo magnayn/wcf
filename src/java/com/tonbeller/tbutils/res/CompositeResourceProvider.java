@@ -37,6 +37,10 @@ public class CompositeResourceProvider implements ResourceProvider {
     list.add(index, r);
   }
 
+  public List getProviders() {
+    return list;
+  }
+
   public Collection keySet() {
     Set set = new HashSet();
     for (Iterator it = list.iterator(); it.hasNext();) {

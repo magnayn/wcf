@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import org.w3c.dom.Document;
 
+import com.tonbeller.tbutils.res.Resources;
 import com.tonbeller.wcf.controller.RequestContext;
 import com.tonbeller.wcf.utils.I18nReplacer;
 import com.tonbeller.wcf.utils.ResourceLocator;
@@ -42,6 +43,10 @@ public class FormDocument {
       Locale loc = context.getLocale();
       ResourceBundle resb = ResourceBundle.getBundle(bundle, loc);
       I18nReplacer replacer = I18nReplacer.instance(resb);
+      replacer.replaceAll(dom);
+    } else {
+      Resources res = context.getResources();
+      I18nReplacer replacer = I18nReplacer.instance(res);
       replacer.replaceAll(dom);
     }
   }

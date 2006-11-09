@@ -29,6 +29,8 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import com.tonbeller.tbutils.res.Resources;
+
 public class LogHandler {
 
   private static Logger logger = Logger.getLogger(LogHandler.class);
@@ -114,21 +116,19 @@ public class LogHandler {
    * Verzeichnisse anlegen
    */
   private File initLogDir(String dir) {
-
-    File dirObj = logDir(dir, "user.home");
+    File baseDir = Resources.instance().getHomeDir();
+    File dirObj = logDir(dir, baseDir);
     if (dirObj == null)
-      dirObj = logDir(dir, "java.io.tmpdir");
-
+      dirObj = logDir(dir, new File("java.io.tmpdir"));
     if (dirObj == null)
       throw new IllegalArgumentException("Not available: " + dirObj);
-
     return dirObj;
   }
 
-  private File logDir(String dir, String sysProp) {
+  private File logDir(String dir, File baseDir) {
     File dirObj = new File(dir);
     if (!dirObj.isAbsolute())
-      dirObj = new File(new File(System.getProperty(sysProp)), dir);
+      dirObj = new File(baseDir, dir);
 
     if (dirObj.exists()) {
       if (!dirObj.isDirectory())

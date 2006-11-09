@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+<table border="1" cellspacing="0" cellpadding="2">
+<tr>
+<th class="class-1">class-1</th>
+<th class="xtable-heading">xtable-heading</th>
+</tr>
+<tr>
+<td class="class-2">class-2</td>
+<td class="xtable-data">xtable-data</td>
+</tr>
+</table>
+</form>

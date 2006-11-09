@@ -730,6 +730,14 @@
 
   <!-- ******************************************************************** -->
 
+  <tag body="tagdependent" class="com.tonbeller.wcf.form.CalendarControlTag" name="calendar">
+    <descr lang="en">Creates required javascript-modifications for the calendar-control in a wcf-form</descr>
+    <descr lang="de">Erzeugt benötigte JavaScript-Anpassungen für die Nutzung des CalendarControl im WCF-Form</descr>
+    <example><![CDATA[<wcf:calendar/>]]></example>
+  </tag>
+
+  <!-- ******************************************************************** -->
+
   <tag body="tagdependent" class="com.tonbeller.wcf.form.ConfirmComponentTag" name="confirm">
     <descr lang="en">A confirmation dialog. Used by other Components, not stand-alone</descr>
     <descr lang="de">Ein Bestätigungsdialog. Wird von anderen Komponenten verwendet, nicht stand-alone nutzbar</descr>

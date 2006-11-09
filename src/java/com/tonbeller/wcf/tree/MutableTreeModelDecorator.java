@@ -24,7 +24,7 @@ import com.tonbeller.wcf.changeorder.ChangeOrderUtils;
  * a caching TreeModel that allows to change the parent/child relationship.
  * @author av
  */
-public class MutableTreeModelDecorator implements MutableTreeModel, ChangeOrderModel {
+public class MutableTreeModelDecorator implements DecoratedTreeModel, MutableTreeModel, ChangeOrderModel {
   TreeModel decoree;
 
   Object[] roots;
@@ -77,7 +77,7 @@ public class MutableTreeModelDecorator implements MutableTreeModel, ChangeOrderM
       childrenMap.clear();
       parentMap.clear();
       roots = null;
-      fireModelChanged(false);
+      changeSupport.fireModelChanged(event);
     }
   };
 
@@ -87,7 +87,7 @@ public class MutableTreeModelDecorator implements MutableTreeModel, ChangeOrderM
     childrenMap.put(parent, children);
     for (int i = 0; i < children.length; i++)
       parentMap.put(children[i], parent);
-    fireModelChanged(false);
+    changeSupport.fireModelChanged(false, parent);
   }
 
   public Object[] getRoots() {
