@@ -115,8 +115,33 @@
   </page>
 
   <page title="News" id="news">
-    <h3>Bugfixes</h3>
-      see <a href="changelog.html">changelog</a>
+    <h3>new in 1.6.0</h3>
+    <ul>
+    <li>2006-11-01 11:54 - MULTIPLE_SELECTION_HREF added (Tree Component)</li>
+    <li>2006-10-26 13:21 - added property "selectionModel" in tree tag</li>
+    <li>2006-10-19 09:58 - parameter labels support i18n</li>
+    <li>2006-09-21 13:44 - fix confusing log entry</li>
+    <li>2006-09-21 13:34 - remove spaces from resource strings</li>
+    <li>2006-09-05 07:48 - added IDiffListener to XmlDiff </li>
+    <li>2006-07-14 10:13 - added Calendar-Control</li>
+    <li>2006-07-14 08:36 - Skip: Ignore if hidden</li>
+    <li>2006-07-13 14:59 - Calendar-Control</li>
+    <li>2006-06-29 13:44 - fixed formId in FormDemo and UploadDemo</li>
+    <li>2006-06-28 12:56 - evaluate page attribute</li>
+    <li>2006-05-05 07:14 - better icon for refresh node</li>
+    <li>2006-05-04 12:57 - BoundedTreeModelDecorator to reduce the number of SQLs in Navigator</li>
+    <li>2006-04-04 14:10 - removed duplicate variable in popup.xsl</li>
+    <li>2006-04-03 16:43 - more PopUpMenu Tests </li>
+    <li>2006-03-30 15:02 - update new version</li>
+    <li>2006-03-29 15:30 - Colors for PopUp Menu</li>
+    <li>2006-03-27 13:46 - Extended Session Pool</li>
+    <li>2006-03-22 15:17 - font size 0.8 em</li>
+    <li>2006-03-20 14:47 - fixed typo</li>
+    <li>2006-03-15 12:17 - SQL Logging does not work</li>
+    <li>2006-02-10 12:01 - make Pagesize in WCF table adjustable</li>
+    <li>2006-02-03 11:05 - make css attribute available to application</li>
+    <li>2006-01-12 12:33 - make PropertyResourceProvider public</li>
+    </ul>
 
     <h3>Supports BEA and WebSphere</h3>
 
