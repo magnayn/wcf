@@ -4,6 +4,7 @@
 
 <!-- ===================== Property Definitions =========================== -->
 
+  <property file="build.properties"/>
   <property file="${user.home}/build.properties"/>
 
   <property name="build.home"    value="${basedir}/build"/>

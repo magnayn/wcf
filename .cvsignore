@@ -3,3 +3,4 @@ dist
 wcf.zip
 junit*.properties
 wcf-*.zip
+build.properties
