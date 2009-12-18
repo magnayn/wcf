@@ -189,7 +189,7 @@ public abstract class ComponentSupport
    * To avoid conflicts the name of an entry (key) should equal the property name (getter/setter).
    * @return a Map that contains the visible boolean
    */
-  public Object getBookmarkState(int levelOfDetail) {
+  public Object retrieveBookmarkState(int levelOfDetail) {
     Map map = new HashMap();
     map.put("visible", new Boolean(isVisible()));
     return map;

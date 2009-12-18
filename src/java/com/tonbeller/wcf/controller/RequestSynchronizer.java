@@ -89,7 +89,7 @@ public class RequestSynchronizer {
   private synchronized boolean startNormalRequest(Handler handler) {
     if (currentThread == null) {
       logInfo("normal request");
-      currentThread = Thread.currentThread();
+      // currentThread = Thread.currentThread();
       return true;
     }
     return false;

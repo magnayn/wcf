@@ -52,7 +52,7 @@ public class BookmarkManager {
       String name = (String) en.nextElement();
       Object attr = session.getAttribute(name);
       if (attr instanceof Bookmarkable) {
-        Object value = ((Bookmarkable) attr).getBookmarkState(levelOfDetail);
+        Object value = ((Bookmarkable) attr).retrieveBookmarkState(levelOfDetail);
         if (value != null)
           map.put(name, value);
       }

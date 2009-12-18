@@ -328,10 +328,10 @@ public class FormComponent extends XmlComponent implements FormListener, WizardP
    * properties are addressed via the <code>modelReference</code>
    * attribute in the DOM.
    */
-  public Object getBookmarkState(int levelOfDetail) {
+  public Object retrieveBookmarkState(int levelOfDetail) {
     if (!bookmarkable)
       return null;
-    Map map = (Map) super.getBookmarkState(levelOfDetail);
+    Map map = (Map) super.retrieveBookmarkState(levelOfDetail);
     try {
       DOMXPath dx = new DOMXPath("//*[@modelReference]");
       for (Iterator it = dx.selectNodes(getDocument()).iterator(); it.hasNext();) {

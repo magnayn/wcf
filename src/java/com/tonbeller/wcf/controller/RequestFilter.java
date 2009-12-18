@@ -260,7 +260,8 @@ public class RequestFilter implements Filter {
 
       MyHandler handler = new MyHandler(context, chain);
       long t1 = System.currentTimeMillis();
-      RequestSynchronizer.instance(request).handleRequest(handler);
+      // RequestSynchronizer.instance(request).handleRequest(handler);
+      handler.normalRequest();
       long t2 = System.currentTimeMillis();
       if (logger.isInfoEnabled())
         logger.info("Request Execution total time: " + (t2 - t1) + " ms");

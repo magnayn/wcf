@@ -112,8 +112,8 @@ public class ToolBar extends NestableComponentSupport implements Bookmarkable {
     buttonMap.put(button.getId(), button);
   }
 
-  public Object getBookmarkState(int levelOfDetail) {
-    Map map = (Map) super.getBookmarkState(levelOfDetail);
+  public Object retrieveBookmarkState(int levelOfDetail) {
+    Map map = (Map) super.retrieveBookmarkState(levelOfDetail);
     for (Iterator it = content.iterator(); it.hasNext();) {
       ToolBarComponent cc = (ToolBarComponent) it.next();
       map.put(cc.getId(), new Boolean(cc.isVisible()));

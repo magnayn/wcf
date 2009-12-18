@@ -36,11 +36,11 @@ public interface Bookmarkable {
    * retrieves the state of this instance
    * @param levelOfDetail INTENSIONAL or EXTENSIONAL
    */
-  Object getBookmarkState(int levelOfDetail);
+  Object retrieveBookmarkState(int levelOfDetail);
 
   /**
    * sets the state of this instance
-   * @param state the state returned by getBookmarkState
+   * @param state the state returned by retrieveBookmarkState
    */
   void setBookmarkState(Object state);
 }
