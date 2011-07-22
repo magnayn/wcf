@@ -4,7 +4,7 @@
 
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
+  <link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/form/xform.css">
   <title>Logging Administration Form</title>
 </head>
 

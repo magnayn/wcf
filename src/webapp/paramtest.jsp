@@ -5,8 +5,8 @@
 <html>
 <head>
   <title>Parameter Tests</title>
-  <link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
-  <link rel="stylesheet" type="text/css" href="wcf/tree/xtree.css">
+  <link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/form/xform.css">
+  <link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/tree/xtree.css">
 </head>
 <body bgcolor=white>
 
@@ -84,6 +84,6 @@ With links (#{showParam} is undefined):
 </blockquote>
 
 <p><a href="index.jsp">back to index</a>
-<br><a href="wcf/showxml.jsp?render=tree03&amp;iehack=file.xml">show xml</a>
+<br><a href="../../wcf-war/src/main/webapp/wcf/showxml.jsp?render=tree03&amp;iehack=file.xml">show xml</a>
 </body>
 </html>

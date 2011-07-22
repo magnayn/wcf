@@ -7,10 +7,10 @@
 <html>
 <head>
 <title>Bounded Tree Model</title>
-<link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
-<link rel="stylesheet" type="text/css" href="wcf/tree/xtree.css">
+<link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/form/xform.css">
+<link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/tree/xtree.css">
 
-<script src="wcf/scroller.js" language="JavaScript1.2" type="text/javascript"></script>
+<script src="../../wcf-war/src/main/webapp/wcf/scroller.js" language="JavaScript1.2" type="text/javascript"></script>
 
 </head>
 <body bgcolor=white>
@@ -71,6 +71,6 @@
 </form>
 
 <p><a href="index.jsp">back to index</a>
-<br><a href="wcf/showxml.jsp?render=tree04&amp;iehack=file.xml">show xml</a>
+<br><a href="../../wcf-war/src/main/webapp/wcf/showxml.jsp?render=tree04&amp;iehack=file.xml">show xml</a>
 </body>
 </html>

@@ -11,7 +11,7 @@
 <html>
 <head>
 <title>WCF StatusLine</title>
-<link rel="stylesheet" type="text/css" href="wcf/status/status.css">
+<link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/status/status.css">
 </head>
 <body bgcolor="white">
 

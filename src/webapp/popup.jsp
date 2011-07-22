@@ -5,8 +5,8 @@
 <html>
 <head>
   <title>PopupMenu</title>
-  <link rel="stylesheet" type="text/css" href="wcf/wcf.css">
-  <script type="text/javascript" src="wcf/popup/popup.js">
+  <link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/wcf.css">
+  <script type="text/javascript" src="../../wcf-war/src/main/webapp/wcf/popup/popup.js">
 /***********************************************
 * Chrome CSS Drop Down Menu- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
 * This notice MUST stay intact for legal use

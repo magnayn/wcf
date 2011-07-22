@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>WCF Tests</title>
-<link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
+<link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/form/xform.css">
 </head>
 <body bgcolor="white" id="index">
 

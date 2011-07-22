@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>WCF Toolbar Test</title>
-<link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
+<link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/form/xform.css">
 </head>
 <body bgcolor=white>
 
@@ -32,6 +32,6 @@
 </form>
 
 <p><a href="index.jsp">back to index</a>
-<br><a href="wcf/showxml.jsp?render=toolbar01&amp;iehack=file.xml">show xml</a>
+<br><a href="../../wcf-war/src/main/webapp/wcf/showxml.jsp?render=toolbar01&amp;iehack=file.xml">show xml</a>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <title>PageStack Test</title>
-  <link rel="stylesheet" type="text/css" href="wcf/wcf.css">
+  <link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/wcf.css">
 </head>
 
 <body bgcolor="white" id="body">

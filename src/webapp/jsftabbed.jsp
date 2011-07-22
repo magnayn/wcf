@@ -5,10 +5,10 @@
 <html>
 <head>
 <title>WCF Tabbed</title>
-  <link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
-  <link rel="stylesheet" type="text/css" href="wcf/tree/xtree.css">
-  <link rel="stylesheet" type="text/css" href="wcf/table/xtable.css">
-  <link rel="stylesheet" type="text/css" href="wcf/tabbed/xtabbed.css">
+  <link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/form/xform.css">
+  <link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/tree/xtree.css">
+  <link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/table/xtable.css">
+  <link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/tabbed/xtabbed.css">
 </head>
 <body bgcolor=white>
   <f:view>
@@ -23,6 +23,6 @@
     </h:form>
   </f:view>
 <p><a href="index.jsp">back to index</a>
-<br><a href="wcf/showxml.jsp?render=tabbedForm&amp;iehack=file.xml">show xml</a>
+<br><a href="../../wcf-war/src/main/webapp/wcf/showxml.jsp?render=tabbedForm&amp;iehack=file.xml">show xml</a>
 </body>
 </html>

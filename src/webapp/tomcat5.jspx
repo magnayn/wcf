@@ -8,8 +8,8 @@
   <html>
     <head>
     <title>Tomat 5 / JSP 2.0 Expression Language Test</title>
-      <link rel="stylesheet" type="text/css" href="wcf/form/xform.css" />
-      <link rel="stylesheet" type="text/css" href="wcf/table/xtable.css" />
+      <link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/form/xform.css" />
+      <link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/table/xtable.css" />
     </head>
     <body bgcolor="white">
       <jsp:useBean id="tomcat5TableModel" class="com.tonbeller.wcf.table.TestModel" scope="session" />

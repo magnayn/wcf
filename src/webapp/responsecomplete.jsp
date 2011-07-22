@@ -10,7 +10,7 @@
 <html>
 <head>
 <title>WCF ResponseComplete</title>
-<link rel="stylesheet" type="text/css" href="wcf/status/status.css">
+<link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/status/status.css">
 </head>
 <body bgcolor="white">
 

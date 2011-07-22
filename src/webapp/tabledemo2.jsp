@@ -5,9 +5,9 @@
 <html>
 <head>
 <title>WCF Table Test</title>
-  <link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
-  <link rel="stylesheet" type="text/css" href="wcf/table/xtable.css">
-  <script src="wcf/scroller.js" language="JavaScript1.2" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/form/xform.css">
+  <link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/table/xtable.css">
+  <script src="../../wcf-war/src/main/webapp/wcf/scroller.js" language="JavaScript1.2" type="text/javascript"></script>
 </head>
 <body bgcolor=white>
 
@@ -26,7 +26,7 @@ WCF Table, no editing, readOnly
 
 </form>
 <p><a href="index.jsp">back to index</a>
-<br><a href="wcf/showxml.jsp?render=t1&amp;iehack=file.xml">show xml</a>
+<br><a href="../../wcf-war/src/main/webapp/wcf/showxml.jsp?render=t1&amp;iehack=file.xml">show xml</a>
 
 </body>
 </html>

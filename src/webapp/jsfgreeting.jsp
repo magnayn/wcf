@@ -37,6 +37,6 @@
       </h:form>
     </f:view>
     <p><a href="../index.jsp">back to index</a>
-    <br><a href="wcf/showxml.jsp?render=jsfFormComp&amp;iehack=file.xml">show xml</a>
+    <br><a href="../../wcf-war/src/main/webapp/wcf/showxml.jsp?render=jsfFormComp&amp;iehack=file.xml">show xml</a>
   </body>
 </HTML>  

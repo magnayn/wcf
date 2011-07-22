@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>Token 2</title>
-<link rel="stylesheet" type="text/css" href="wcf/wcf.css">
+<link rel="stylesheet" type="text/css" href="../../wcf-war/src/main/webapp/wcf/wcf.css">
 </head>
 <body bgcolor=white>
 
